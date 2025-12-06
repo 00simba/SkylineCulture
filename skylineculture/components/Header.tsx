@@ -277,6 +277,14 @@ export default function Header() {
               >
                 Contact
               </Link>
+
+              <Link
+                href="/track-order"
+                className="text-white text-xl font-medium hover:text-zinc-300 transition"
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
+                Track Order
+              </Link>
           </div>
         </div>
       )}
