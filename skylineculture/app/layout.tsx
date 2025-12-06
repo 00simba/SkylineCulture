@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer"
 import CartWrapper from "./cartwrapper";
 import { Toaster } from "react-hot-toast";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({
         <Footer/>
         </CartWrapper>
       </body>
+      <GoogleAnalytics gaId="G-CTCHM9JFFN" />
     </html>
   );
 }
