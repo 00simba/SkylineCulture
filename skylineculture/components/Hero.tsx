@@ -4,30 +4,6 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import heroData from "@/data/heroData"
 
-const slides = [
-  {
-    img: "/heromain.jpg",
-    title: "SkylineCulture Marketplace",
-    subtitle: "Browse and buy your dream Nissan Skyline",
-    button: "Shop Skylines",
-    href: "/listings",
-  },
-  {
-    img: "/hero3.jpg",
-    title: "Sell Your Skyline",
-    subtitle: "List your Nissan Skyline to thousands of viewers",
-    button: "Submit Request",
-    href: "/sell",
-  },
-  {
-    img: "/hero232.jpg",
-    title: "Merchandise For Fans",
-    subtitle: "Check out keychains, stickers, diecasts, and more",
-    button: "Shop Accessories",
-    href: "/accessories",
-  },
-];
-
 export default function Hero() {
   const [index, setIndex] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);

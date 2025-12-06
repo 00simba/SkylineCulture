@@ -38,7 +38,7 @@ export default function Header() {
 
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src= {`${cloudFrontUrl}/r34_keychain/r34key_main.webp`}
+            src= {`${cloudFrontUrl}/public/logo.webp`}
             alt="SkylineCulture"
             width={logoWidth}
             height={logoHeight}
