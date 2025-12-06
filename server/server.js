@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Product = require('./models/products');
 const Order = require('./models/orders');
-import getNextOrderNumber from "./lib/getNextOrderNumber";
+const orderUtil =  require('./lib/getNextOrderNumber.ts');
 const bodyParser = require('body-parser');
 const app = express();
 app.use(express.json());
