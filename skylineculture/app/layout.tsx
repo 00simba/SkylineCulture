@@ -25,20 +25,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={montserrat.variable}>
-      <head>
-        <meta name="theme-color" content="#000000" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      </head>
-      <body className="font-main flex flex-col min-h-screen bg-white">
-        <CartWrapper>
-        <Header/>
-        <main className="flex-grow">
-            {children}
-        </main>
-        <Toaster position="bottom-center" toastOptions={{ duration: 2000 }} />
-        <Footer/>
-        </CartWrapper>
-      </body>
+      <body className="font-main flex flex-col min-h-screen bg-black">
+  <CartWrapper>
+    <Header />
+    <main className="flex-grow bg-white">
+      {children}
+    </main>
+    <Toaster position="bottom-center" toastOptions={{ duration: 2000 }} />
+    <Footer />
+  </CartWrapper>
+</body>
       <GoogleAnalytics gaId="G-CTCHM9JFFN" />
     </html>
   );
