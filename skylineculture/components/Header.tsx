@@ -112,7 +112,7 @@ export default function Header() {
     <Link href="/" className="flex items-center gap-2">
       <div className="flex-none">
         <Image
-          src="/logo.png"
+          src={`${cloudFrontUrl}/public/logo.webp`}
           alt="SkylineCulture"
           width={logoWidth}
           height={logoHeight}
@@ -198,7 +198,7 @@ export default function Header() {
 
         <Link href="/" className="absolute left-1/2 -translate-x-1/2">
           <Image
-            src="/logo.png"
+            src={`${cloudFrontUrl}/public/logo.webp`}
             alt="SkylineCulture"
             width={logoWidth}
             height={logoHeight}

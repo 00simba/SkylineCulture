@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const cloudFrontUrl = 'https://d38opoffv15p79.cloudfront.net';
+
 export default function Footer() {
   return (
     <footer className="w-full bg-black text-white mt-20 pt-12 pb-8">
@@ -9,7 +11,7 @@ export default function Footer() {
         
         <div>
           <Image
-            src="/logo.png"
+            src={`${cloudFrontUrl}/public/logo.webp`}
             alt="SkylineCulture Logo"
             width={160}
             height={50}
