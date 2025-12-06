@@ -31,31 +31,67 @@ export default function Hero() {
   const [index, setIndex] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  // --- Swipe detection ---
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const minSwipeDistance = 50; // required distance
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].clientX;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const distance = touchEndX.current - touchStartX.current;
+
+    if (Math.abs(distance) < minSwipeDistance) return;
+
+    if (distance > 0) {
+      // swipe right → previous slide
+      setIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    } else {
+      // swipe left → next slide
+      setIndex((prev) => (prev + 1) % slides.length);
+    }
+
+    startTimer();
+  };
+
+  // --- Auto slide timer ---
   const startTimer = () => {
-    // Clear existing timer
     if (intervalRef.current) clearInterval(intervalRef.current);
 
-    // Start new timer
     intervalRef.current = setInterval(() => {
       setIndex((prev) => (prev + 1) % slides.length);
     }, 4000);
   };
 
   useEffect(() => {
-    startTimer();
+  startTimer();
+
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     };
   }, []);
 
-  // Runs when user clicks a dot
   const handleDotClick = (i: number) => {
     setIndex(i);
-    startTimer(); // reset timer
+    startTimer();
   };
 
   return (
-    <div className="relative w-full h-[55vh] md:h-[60vh] overflow-hidden">
+    <div
+      className="relative w-full h-[55vh] md:h-[60vh] overflow-hidden"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
       <div
         className="flex h-full transition-transform duration-700 ease-in-out"
         style={{ transform: `translateX(-${index * 100}%)` }}
@@ -76,11 +112,13 @@ export default function Hero() {
               <h1 className="text-3xl md:text-5xl font-semibold mb-4 drop-shadow-lg">
                 {slide.title}
               </h1>
-              <p className="text-lg md:text-2xl mb-6 opacity-90">{slide.subtitle}</p>
+              <p className="text-lg md:text-2xl mb-6 opacity-90">
+                {slide.subtitle}
+              </p>
 
               <a
                 href={slide.href}
-                className="px-6 py-3 bg-black hover:bg-blue-600 text-white rounded-md text-lg font-medium transition"
+                className="px-6 py-3 bg-black hover:bg-slate-600 text-white rounded-md text-lg font-medium transition"
               >
                 {slide.button}
               </a>
@@ -89,6 +127,7 @@ export default function Hero() {
         ))}
       </div>
 
+      {/* Dots */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, i) => (
           <button

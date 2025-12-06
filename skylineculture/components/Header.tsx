@@ -18,6 +18,7 @@ export default function Header() {
     { name: "Keychains", href: "/keychains" },
     { name: "Stickers", href: "/stickers" },
     { name: "Diecasts", href: "/diecast-cars" },
+    { name: "Pins", href: "/pins" }
   ];
 
   const navLinks = [
@@ -30,7 +31,7 @@ export default function Header() {
 
 
   return (
-    <header className="w-full bg-black top-0 left-0 z-50 relative">
+    <header className="w-full bg-black top-0 left-0 z-50 relative select-none">
 
       <div className="hidden lg:flex flex-row max-w-6xl mx-auto px-6 h-25 items-center justify-between">
 
@@ -50,14 +51,14 @@ export default function Header() {
             <Link
               key={link.name}
               href={link.href}
-              className="hover:text-blue-600 transition"
+              className="hover:text-zinc-300 transition"
             >
               {link.name}
             </Link>
           ))}
 
 <div className="relative group lg:block hidden">
-  <button className="hover:text-blue-600 transition">
+  <button className="hover:text-zinc-300 transition">
     Accessories
   </button>
 
@@ -77,14 +78,14 @@ export default function Header() {
 </div>
  <Link
     href="/contact"
-    className="hover:text-blue-600 transition"
+    className="hover:text-zinc-300 transition"
   >
     Contact
   </Link>
         </nav>
 
         <Link href="/cart" className="relative">
-  <FiShoppingCart className="text-2xl hover:text-blue-600 transition text-white" />
+  <FiShoppingCart className="text-2xl hover:text-zinc-300 transition text-white" />
 
   {cartCount > 0 && (
     <span className="
@@ -121,7 +122,7 @@ export default function Header() {
     </Link>
 
     <Link href="/cart" className="relative">
-  <FiShoppingCart className="text-white text-2xl hover:text-blue-600 transition" />
+  <FiShoppingCart className="text-white text-2xl hover:text-zinc-300 transition" />
 
   {cartCount > 0 && (
     <span className="
@@ -145,7 +146,7 @@ export default function Header() {
         <Link
           key={link.name}
           href={link.href}
-          className="hover:text-blue-600 transition"
+          className="hover:text-zinc-300 transition"
         >
           {link.name}
         </Link>
@@ -155,7 +156,7 @@ export default function Header() {
       <div className="relative">
         <button
           onClick={() => setAccessoriesOpen(!accessoriesOpen)}
-          className="hover:text-blue-600 transition"
+          className="hover:text-zinc-300 transition"
         >
           Accessories ▾
         </button>
@@ -177,7 +178,7 @@ export default function Header() {
 
        <Link
           href="/contact"
-          className="hover:text-blue-600 transition"
+          className="hover:text-zinc-300 transition"
         >
           Contact
         </Link>
@@ -239,7 +240,7 @@ export default function Header() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-white text-xl font-medium hover:text-blue-600 transition"
+                className="text-white text-xl font-medium hover:text-zinc-300 transition"
               >
                 {link.name}
               </Link>
@@ -248,7 +249,7 @@ export default function Header() {
             <div>
               <button
                 onClick={() => setAccessoriesOpen(!accessoriesOpen)}
-                className="text-white text-xl font-medium hover:text-blue-600 transition"
+                className="text-white text-xl font-medium hover:text-zinc-300 transition"
               >
                 Accessories ▾
               </button>
@@ -260,7 +261,7 @@ export default function Header() {
                       key={item.name}
                       href={item.href}
                       onClick={() => setMenuOpen(false)}
-                      className="text-white text-lg hover:text-blue-600"
+                      className="text-white text-lg hover:text-zinc-300 transition"
                     >
                       {item.name}
                     </Link>
@@ -271,7 +272,8 @@ export default function Header() {
 
              <Link
                 href="/contact"
-                className="hover:text-blue-600 transition"
+                className="text-white text-xl font-medium hover:text-zinc-300 transition"
+                onClick={() => setMenuOpen(!menuOpen)}
               >
                 Contact
               </Link>

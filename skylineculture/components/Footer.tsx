@@ -16,7 +16,7 @@ export default function Footer() {
             className="mb-4"
           />
           <p className="text-gray-400 text-sm leading-relaxed">
-            SkylineCulture — your home for premium Nissan Skyline accessories,
+            SkylineCulture — your home for Nissan Skyline accessories,
             collectibles, and marketplace listings.
           </p>
         </div>
