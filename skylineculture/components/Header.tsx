@@ -28,6 +28,7 @@ export default function Header() {
 
   const { cart } = useCart();
   const cartCount = cart.reduce((sum, item) => sum + item.productQuantity, 0);
+  const cloudFrontUrl = 'https://d38opoffv15p79.cloudfront.net';
 
 
   return (
@@ -37,7 +38,7 @@ export default function Header() {
 
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/logo.png"
+            src= {`${cloudFrontUrl}/r34_keychain/r34key_main.webp`}
             alt="SkylineCulture"
             width={logoWidth}
             height={logoHeight}

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import heroData from "@/data/heroData"
 
 const slides = [
   {
@@ -53,10 +54,10 @@ export default function Hero() {
 
     if (distance > 0) {
       // swipe right → previous slide
-      setIndex((prev) => (prev - 1 + slides.length) % slides.length);
+      setIndex((prev) => (prev - 1 + heroData.length) % heroData.length);
     } else {
       // swipe left → next slide
-      setIndex((prev) => (prev + 1) % slides.length);
+      setIndex((prev) => (prev + 1) % heroData.length);
     }
 
     startTimer();
@@ -67,7 +68,7 @@ export default function Hero() {
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     intervalRef.current = setInterval(() => {
-      setIndex((prev) => (prev + 1) % slides.length);
+      setIndex((prev) => (prev + 1) % heroData.length);
     }, 4000);
   };
 
@@ -96,7 +97,7 @@ export default function Hero() {
         className="flex h-full transition-transform duration-700 ease-in-out"
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
-        {slides.map((slide, i) => (
+        {heroData.map((slide, i) => (
           <div key={i} className="relative w-full h-full flex-shrink-0">
             <Image
               src={slide.img}
@@ -129,7 +130,7 @@ export default function Hero() {
 
       {/* Dots */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-        {slides.map((_, i) => (
+        {heroData.map((_, i) => (
           <button
             key={i}
             onClick={() => handleDotClick(i)}
