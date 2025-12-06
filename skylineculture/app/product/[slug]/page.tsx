@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import data from "@/data/data";
 import { Product, VariantOption } from "@/types/product";
 import { useParams } from "next/navigation";
@@ -26,6 +26,34 @@ export default function ProductPage() {
 
   const nextSlide = () => setIndex((i) => (i + 1) % product.img.length);
   const prevSlide = () => setIndex((i) => (i - 1 + product.img.length) % product.img.length);
+
+  /** -------------------------------------
+   *  SWIPE SUPPORT (MOBILE)
+   * ------------------------------------- */
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].clientX;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const distance = touchEndX.current - touchStartX.current;
+
+    if (Math.abs(distance) < minSwipeDistance) return;
+
+    if (distance > 0) {
+      prevSlide(); // swipe right
+    } else {
+      nextSlide(); // swipe left
+    }
+  };
 
   /** VARIANT STATE */
   const firstVariantGroup: VariantOption | undefined =
@@ -109,7 +137,11 @@ export default function ProductPage() {
 
         {/* IMAGE CAROUSEL */}
         <div className="relative">
-          <div className="relative w-full h-[300px] rounded-lg overflow-hidden sm:h-[450px] md:h-[600px]">
+          <div
+            className="relative w-full h-[300px] rounded-lg overflow-hidden sm:h-[450px] md:h-[600px]"
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+          >
             <Image
               src={product.img[index]}
               alt={product.title}
@@ -245,7 +277,7 @@ export default function ProductPage() {
             </div>
           </div>
 
-          {/* ADD TO CART (DISABLED IF SOLD OUT) */}
+          {/* ADD TO CART */}
           <button
             disabled={isSoldOut}
             className={`w-full py-3 rounded-md text-lg font-semibold transition ${
