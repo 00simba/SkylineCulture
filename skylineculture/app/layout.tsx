@@ -25,6 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={montserrat.variable}>
+      <head>
+        <meta name="theme-color" content="#000000" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      </head>
       <body className="font-main flex flex-col min-h-screen bg-white">
         <CartWrapper>
         <Header/>

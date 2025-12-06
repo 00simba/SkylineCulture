@@ -3,8 +3,3 @@
 @theme inline {
     --font-main: var(--font-montserrat);
 }
-
-header {
-  background-color: black;
-  padding-top: env(safe-area-inset-top);
-}
