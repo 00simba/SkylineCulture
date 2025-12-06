@@ -26,15 +26,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={montserrat.variable}>
       <body className="font-main flex flex-col min-h-screen bg-black">
-  <CartWrapper>
-    <Header />
-    <main className="flex-grow bg-white">
-      {children}
-    </main>
-    <Toaster position="bottom-center" toastOptions={{ duration: 2000 }} />
-    <Footer />
-  </CartWrapper>
-</body>
+        <CartWrapper>
+          <Header />
+          <main className="flex-grow bg-white">
+            {children}
+          </main>
+          <Toaster position="bottom-center" toastOptions={{ duration: 2000 }} />
+          <Footer />
+        </CartWrapper>
+      </body>
       <GoogleAnalytics gaId="G-CTCHM9JFFN" />
     </html>
   );

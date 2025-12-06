@@ -6,7 +6,7 @@ import cars from "@/data/carData";
 
 export default function LandingPage() {
   return (
-    <div className="w-full">
+    <div className="w-full mb-10">
 
       <Hero/>
 
