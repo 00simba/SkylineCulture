@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Product = require('./models/products');
 const Order = require('./models/orders');
-const orderUtil =  require('../skylineculture/lib/getNextOrderNumber.ts');
+import getNextOrderNumber from "./lib/getNextOrderNumber";
 const bodyParser = require('body-parser');
 const app = express();
 app.use(express.json());
