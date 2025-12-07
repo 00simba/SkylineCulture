@@ -80,8 +80,6 @@ export default function Hero() {
               alt={slide.title}
               fill
               className="object-cover"
-              priority={i === 0}
-              unoptimized
             />
 
             <div className="absolute inset-0 bg-black/40" />
