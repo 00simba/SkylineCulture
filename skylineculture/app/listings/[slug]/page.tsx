@@ -205,7 +205,7 @@ export default function ListingDetailPage() {
             <p><span className="font-semibold">Year:</span> {car.year}</p>
             <p><span className="font-semibold">Model:</span> {car.model}</p>
             <p><span className="font-semibold">Trim:</span> {car.trim}</p>
-            <p><span className="font-semibold">Mileage:</span> {car.milage} km</p>
+            <p><span className="font-semibold">Mileage:</span> {car.milage}</p>
             <p><span className="font-semibold">Color:</span> {car.color}</p>
             <p><span className="font-semibold">Code:</span> {car.code}</p>
             <p><span className="font-semibold">Location:</span> {car.location}</p>
