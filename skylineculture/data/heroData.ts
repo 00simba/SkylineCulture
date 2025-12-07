@@ -1,4 +1,4 @@
-const cloudFrontUrl = 'https://d38opoffv15p79.cloudfront.net';
+const cloudFrontUrl = 'https://d38opoffv15p79.cloudfront.net/Images';
 
 export default [
   {
