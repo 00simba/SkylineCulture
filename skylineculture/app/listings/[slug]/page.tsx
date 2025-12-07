@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import cars from "@/data/carData";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 export default function ListingDetailPage() {
@@ -15,7 +15,10 @@ export default function ListingDetailPage() {
 
   const [index, setIndex] = useState(0);
 
-  // EmailJS states
+  // LIGHTBOX
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  // EmailJS
   const formRef = useRef<HTMLFormElement | null>(null);
   const [sent, setSent] = useState(false);
 
@@ -29,10 +32,10 @@ export default function ListingDetailPage() {
 
     emailjs
       .sendForm(
-        "service_2mphqx7",      // your service ID
-        "template_nxdamx6",     // your template ID
+        "service_2mphqx7",
+        "template_nxdamx6",
         formRef.current!,
-        "tMgSATKzaRQ4LzWTM"     // your public key
+        "tMgSATKzaRQ4LzWTM"
       )
       .then(
         () => {
@@ -55,11 +58,63 @@ export default function ListingDetailPage() {
   }
 
   const nextSlide = () => setIndex((i) => (i + 1) % car.img.length);
-  const prevSlide = () =>
-    setIndex((i) => (i - 1 + car.img.length) % car.img.length);
+  const prevSlide = () => setIndex((i) => (i - 1 + car.img.length) % car.img.length);
+
+  // ESC closes fullscreen
+  useEffect(() => {
+    const close = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxOpen(false);
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
+    <div className="max-w-7xl mx-auto px-4 py-12 overflow-hidden">
+
+      {/* FULLSCREEN LIGHTBOX */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 bg-black/90 flex items-center justify-center z-[9999] p-4"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-5 right-5 text-white text-4xl"
+          >
+            ✕
+          </button>
+
+          {/* Arrows */}
+          <button
+            className="absolute left-4 text-white text-5xl"
+            onClick={(e) => {
+              e.stopPropagation();
+              prevSlide();
+            }}
+          >
+            ‹
+          </button>
+
+          <button
+            className="absolute right-4 text-white text-5xl"
+            onClick={(e) => {
+              e.stopPropagation();
+              nextSlide();
+            }}
+          >
+            ›
+          </button>
+
+          <Image
+            src={car.img[index]}
+            alt="fullscreen"
+            width={1400}
+            height={1400}
+            className="object-contain max-h-[90vh] w-auto"
+          />
+        </div>
+      )}
 
       {/* Breadcrumb */}
       <div className="text-sm text-black mb-5">
@@ -77,43 +132,55 @@ export default function ListingDetailPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
-        {/* IMAGE CAROUSEL */}
+        {/* LEFT - MAIN IMAGE */}
         <div>
-          <div className="relative w-full h-[280px] sm:h-[350px] md:h-[450px] lg:h-[500px] rounded-lg overflow-hidden bg-gray-200">
+          <div
+            className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-gray-200 cursor-pointer"
+            onClick={() => setLightboxOpen(true)}
+          >
             <Image
               src={car.img[index]}
               alt={car.model}
               fill
-              className="object-contain"
+              className="object-cover"
             />
 
             {car.img.length > 1 && (
-              <button
-                onClick={prevSlide}
-                className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-full"
-              >
-                ‹
-              </button>
-            )}
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevSlide();
+                  }}
+                  className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-full"
+                >
+                  ‹
+                </button>
 
-            {car.img.length > 1 && (
-              <button
-                onClick={nextSlide}
-                className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-full"
-              >
-                ›
-              </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextSlide();
+                  }}
+                  className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-full"
+                >
+                  ›
+                </button>
+              </>
             )}
           </div>
 
-          {/* Thumbnails */}
+          {/* THUMBNAILS */}
           {car.img.length > 1 && (
-            <div className="flex gap-3 mt-4 overflow-x-auto pb-2">
+            <div className="flex gap-3 mt-4 overflow-x-auto pb-2 scrollbar-none">
               {car.img.map((img, i) => (
                 <div
                   key={i}
-                  onClick={() => setIndex(i)}
-                  className={`relative w-24 h-16 rounded-md overflow-hidden cursor-pointer border ${
+                  onClick={() => {
+                    setIndex(i);
+                    setLightboxOpen(true);
+                  }}
+                  className={`relative w-24 h-20 rounded-md overflow-hidden cursor-pointer border flex-shrink-0 ${
                     index === i ? "border-blue-600" : "border-gray-300"
                   }`}
                 >
@@ -129,13 +196,11 @@ export default function ListingDetailPage() {
           )}
         </div>
 
-        {/* RIGHT INFO PANEL */}
+        {/* RIGHT SIDE */}
         <div className="space-y-6">
 
-          {/* PRICE */}
           <h2 className="text-3xl font-bold text-black">Price: {car.price}</h2>
 
-          {/* DETAILS */}
           <div className="space-y-2 text-black">
             <p><span className="font-semibold">Year:</span> {car.year}</p>
             <p><span className="font-semibold">Model:</span> {car.model}</p>
@@ -145,7 +210,15 @@ export default function ListingDetailPage() {
             <p><span className="font-semibold">Code:</span> {car.code}</p>
           </div>
 
-          {/* INQUIRY FORM */}
+          {/* DESCRIPTION */}
+          <div className="mt-6">
+            <h3 className="text-xl font-semibold mb-2">Description</h3>
+            <p className="text-gray-700 whitespace-pre-line leading-relaxed">
+              {car.description}
+            </p>
+          </div>
+
+          {/* CONTACT FORM */}
           <div className="border rounded-lg p-6 bg-white shadow-md">
 
             {sent ? (
@@ -164,13 +237,12 @@ export default function ListingDetailPage() {
 
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
 
-                  {/* Hidden car data for EmailJS */}
-                  
                   <input type="hidden" name="car_title" value={`${car.year} ${car.make} ${car.model}`} />
                   <input type="hidden" name="car_trim" value={car.trim} />
                   <input type="hidden" name="car_price" value={car.price} />
                   <input type="hidden" name="car_code" value={car.code} />
                   <input type="hidden" name="car_id" value={car.id} />
+
                   <input type="hidden" name="customer_name" value={fullName} />
                   <input type="hidden" name="customer_email" value={email} />
                   <input type="hidden" name="customer_phone" value={phone} />
@@ -220,7 +292,6 @@ export default function ListingDetailPage() {
                   >
                     Send Inquiry
                   </button>
-
                 </form>
               </>
             )}

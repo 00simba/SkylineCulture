@@ -58,7 +58,7 @@ export default [
         "shipping": [shipping[0]],
         "variants": [{"Select Color": ["Black", "Silver", "Chroma"]}],
         "collection" : "Keychains",
-        "featured" : true,
+        "featured" : false,
     },
     {
         "id" : 6,
@@ -98,7 +98,7 @@ export default [
         "shipping": [shipping[0]],
         "variants" : [{}],
         "collection" : "Stickers",
-        "featured" : true,
+        "featured" : false,
     },
     {
         "id" : 13,
@@ -160,7 +160,7 @@ export default [
         "shipping": [shipping[0]],
         "variants" : [{}],
         "collection" : "Keychains",
-        "featured" : true,
+        "featured" : false,
     },
     {
         "id" : 8,
@@ -200,7 +200,7 @@ export default [
         "shipping": [shipping[0]],
         "variants" : [{"Select Color": ["Black", "Silver", "Chroma"]}],
         "collection" : "Keychains",
-        "featured" : true,
+        "featured" : false,
     },
     {
         "id" : 10,

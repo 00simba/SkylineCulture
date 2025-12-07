@@ -10,4 +10,5 @@ export interface Car {
   location: string;
   img: string[];
   price: string;
+  description: string;
 }

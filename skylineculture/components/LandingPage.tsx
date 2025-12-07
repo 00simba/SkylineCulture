@@ -10,8 +10,6 @@ export default function LandingPage() {
 
       <Hero/>
 
-      {/*
-
       <h1 className="text-2xl font-bold mt-10 mb-10 text-center mx-auto">Featured Listings</h1>
 
       <div className="max-w-7xl mx-auto px-6">
@@ -22,8 +20,6 @@ export default function LandingPage() {
         </div>
       </div>
 
-      */}
-
       <h1 className="text-2xl font-bold mt-10 mb-10 text-center">Featured Items</h1>
 
       <div className="grid items-center gap-5 ml-5 mr-5 grid-cols-2 sm:gap-5 sm:ml-10 sm:mr-10 sm:grid-cols-3 md:ml-30 md:mr-30 md:grid-cols-4">
@@ -31,6 +27,19 @@ export default function LandingPage() {
           item.featured && <ProductCard key={item.id} item={item} />
         ))}
       </div>
+
+      {/* VIEW ACCESSORIES BUTTON */}
+      <div className="flex justify-center mt-10">
+        <a href="/accessories">
+          <button
+            className="px-10 py-2 bg-black text-white rounded-md hover:bg-blue-600 transition"
+          >
+            View Accessories
+          </button>
+        </a>
+      </div>
+
+      
 
   
     </div>

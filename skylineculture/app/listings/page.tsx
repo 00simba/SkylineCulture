@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import cars from "@/data/carData";
 
 export default function ListingsPage() {
   return (
@@ -22,11 +24,14 @@ export default function ListingsPage() {
         for your next Skyline — whether it’s a legendary R32, iconic R33, or the dream R34 GT-R.
       </p>
 
+      {/*
+
       <h1 className="text-2xl font-bold mb-8 text-black">
        Coming Soon...
       </h1>
 
-      {/*
+      */}
+
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {cars.map((car) => (
@@ -66,7 +71,6 @@ export default function ListingsPage() {
         ))}
       </div>
 
-      */}
     </div>
   );
 }
