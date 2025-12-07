@@ -13,7 +13,7 @@ export default function ListingsPage() {
       </div>
 
       <h1 className="text-3xl font-bold mb-8 text-black">
-        Nissan Skyline Listings
+        Own Your Dream
       </h1>
 
       <p className="text-gray-600 mb-10">

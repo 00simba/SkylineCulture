@@ -21,8 +21,8 @@ export default function LandingPage() {
           ))}
         </div>
       </div>
+
       */}
-      
 
       <h1 className="text-2xl font-bold mt-10 mb-10 text-center">Featured Items</h1>
 

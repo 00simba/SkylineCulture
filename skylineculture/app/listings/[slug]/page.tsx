@@ -4,7 +4,8 @@ import { useParams } from "next/navigation";
 import cars from "@/data/carData";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function ListingDetailPage() {
   const params = useParams();
@@ -13,6 +14,37 @@ export default function ListingDetailPage() {
   const car = cars.find((c) => c.id === slug);
 
   const [index, setIndex] = useState(0);
+
+  // EmailJS states
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const [sent, setSent] = useState(false);
+
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_2mphqx7",      // your service ID
+        "template_nxdamx6",     // your template ID
+        formRef.current!,
+        "tMgSATKzaRQ4LzWTM"     // your public key
+      )
+      .then(
+        () => {
+          setSent(true);
+          setFullName("");
+          setEmail("");
+          setPhone("");
+          setMessage("");
+        },
+        (error) => console.error("EmailJS Error:", error)
+      );
+  };
 
   if (!car) {
     return (
@@ -41,7 +73,7 @@ export default function ListingDetailPage() {
         {car.year} {car.make} {car.model}
       </h1>
 
-      <p className="text-gray-600 mb-10">{car.trim}</p>
+      <p className="text-xl text-gray-600 mb-10">{car.trim}</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
@@ -55,7 +87,6 @@ export default function ListingDetailPage() {
               className="object-contain"
             />
 
-            {/* Left Arrow */}
             {car.img.length > 1 && (
               <button
                 onClick={prevSlide}
@@ -65,7 +96,6 @@ export default function ListingDetailPage() {
               </button>
             )}
 
-            {/* Right Arrow */}
             {car.img.length > 1 && (
               <button
                 onClick={nextSlide}
@@ -76,7 +106,7 @@ export default function ListingDetailPage() {
             )}
           </div>
 
-          {/* Thumbnail Row */}
+          {/* Thumbnails */}
           {car.img.length > 1 && (
             <div className="flex gap-3 mt-4 overflow-x-auto pb-2">
               {car.img.map((img, i) => (
@@ -103,67 +133,101 @@ export default function ListingDetailPage() {
         <div className="space-y-6">
 
           {/* PRICE */}
-          <h2 className="text-3xl font-bold text-black">{car.price}</h2>
+          <h2 className="text-3xl font-bold text-black">Price: {car.price}</h2>
 
           {/* DETAILS */}
           <div className="space-y-2 text-black">
             <p><span className="font-semibold">Year:</span> {car.year}</p>
+            <p><span className="font-semibold">Model:</span> {car.model}</p>
+            <p><span className="font-semibold">Trim:</span> {car.trim}</p>
             <p><span className="font-semibold">Mileage:</span> {car.milage} km</p>
             <p><span className="font-semibold">Color:</span> {car.color}</p>
-            <p><span className="font-semibold">Trim:</span> {car.trim}</p>
-            <p><span className="font-semibold">Chassis Code:</span> {car.code}</p>
+            <p><span className="font-semibold">Code:</span> {car.code}</p>
           </div>
 
-          {/* INQUIRY BOX */}
+          {/* INQUIRY FORM */}
           <div className="border rounded-lg p-6 bg-white shadow-md">
-            <h3 className="text-xl font-semibold mb-3 text-black">
-              Inquire About This Vehicle
-            </h3>
 
-            <p className="text-gray-600 mb-4">
-              Want more details? Fill out the form below and we’ll contact you within 24 hours.
-            </p>
+            {sent ? (
+              <div className="bg-green-100 text-green-800 border border-green-300 p-4 rounded">
+                Your inquiry has been sent! We’ll get back to you within 24 hours.
+              </div>
+            ) : (
+              <>
+                <h3 className="text-xl font-semibold mb-3 text-black">
+                  Inquire About This Vehicle
+                </h3>
 
-            <form className="space-y-4">
+                <p className="text-gray-600 mb-4">
+                  Want more details? Fill out the form and we’ll contact you within 24 hours.
+                </p>
 
-              <input
-                type="text"
-                placeholder="Full Name"
-                className="w-full border rounded p-3"
-                required
-              />
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
 
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full border rounded p-3"
-                required
-              />
+                  {/* Hidden car data for EmailJS */}
+                  
+                  <input type="hidden" name="car_title" value={`${car.year} ${car.make} ${car.model}`} />
+                  <input type="hidden" name="car_trim" value={car.trim} />
+                  <input type="hidden" name="car_price" value={car.price} />
+                  <input type="hidden" name="car_code" value={car.code} />
+                  <input type="hidden" name="car_id" value={car.id} />
+                  <input type="hidden" name="customer_name" value={fullName} />
+                  <input type="hidden" name="customer_email" value={email} />
+                  <input type="hidden" name="customer_phone" value={phone} />
+                  <input type="hidden" name="customer_message" value={message} />
 
-              <input
-                type="tel"
-                placeholder="Phone Number"
-                className="w-full border rounded p-3"
-              />
+                  <input
+                    type="text"
+                    name="fullName"
+                    placeholder="Full Name"
+                    className="w-full border rounded p-3"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    required
+                  />
 
-              <textarea
-                className="w-full border rounded p-3 h-24"
-                placeholder="Your message..."
-              />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    className="w-full border rounded p-3"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
 
-              <button
-                type="submit"
-                className="w-full bg-black text-white py-3 rounded hover:bg-blue-600 transition"
-              >
-                Send Inquiry
-              </button>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone Number"
+                    className="w-full border rounded p-3"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
 
-            </form>
+                  <textarea
+                    name="message"
+                    placeholder="Your message..."
+                    className="w-full border rounded p-3 h-24"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    required
+                  />
+
+                  <button
+                    type="submit"
+                    className="w-full bg-black text-white py-3 rounded hover:bg-blue-600 transition"
+                  >
+                    Send Inquiry
+                  </button>
+
+                </form>
+              </>
+            )}
+
           </div>
-
         </div>
       </div>
-
     </div>
   );
 }

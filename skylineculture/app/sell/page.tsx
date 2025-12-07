@@ -16,7 +16,7 @@ export default function SellPage() {
 
   // Car fields
   const [carForm, setCarForm] = useState({
-    make: "",
+    make: "Nissan Skyline",
     model: "",
     trim: "",
     year: "",
@@ -114,7 +114,7 @@ export default function SellPage() {
     setPreview([]);
 
     setCarForm({
-      make: "",
+      make: "Nissan Skyline",
       model: "",
       trim: "",
       year: "",
@@ -144,7 +144,7 @@ export default function SellPage() {
         <Link href="/" className="text-black">Home</Link> / <span>Sell</span>
       </div>
 
-      <h1 className="text-3xl font-bold text-black mb-4">Sell Your Skyline</h1>
+      <h1 className="text-3xl font-bold text-black mb-4">List Your Skyline</h1>
 
       <p className="text-gray-600 mb-10">
         Sell your Skyline with confidence. Your listing will be featured on
@@ -165,7 +165,6 @@ export default function SellPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              ["Make", "make"],
               ["Model", "model"],
               ["Trim", "trim"],
               ["Year", "year"],
@@ -191,7 +190,7 @@ export default function SellPage() {
               <input
                 required
                 type="text"
-                placeholder="BNR34-012345"
+                placeholder="BNR34-401489"
                 value={carForm.vin}
                 className="w-full border rounded p-3 mt-1"
                 onChange={(e) => setCarForm({ ...carForm, vin: e.target.value })}
@@ -204,7 +203,7 @@ export default function SellPage() {
               <input
                 required
                 type="number"
-                placeholder="125000"
+                placeholder=""
                 value={carForm.price}
                 className="w-full border rounded p-3 mt-1"
                 onChange={(e) => setCarForm({ ...carForm, price: e.target.value })}

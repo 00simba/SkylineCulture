@@ -7,6 +7,7 @@ export interface Car {
   color: string;
   milage: string;
   code: string;
+  location: string;
   img: string[];
   price: string;
 }
