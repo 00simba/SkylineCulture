@@ -6,7 +6,6 @@ import Link from "next/link";
 import emailjs from "@emailjs/browser";
 
 export default function SellPage() {
-  // ------------------- State -------------------
   const [images, setImages] = useState<File[]>([]);
   const [preview, setPreview] = useState<string[]>([]);
   const [imageError, setImageError] = useState("");
@@ -14,7 +13,6 @@ export default function SellPage() {
   const [agreeFee, setAgreeFee] = useState(false);
   const [checkboxError, setCheckboxError] = useState("");
 
-  // Car fields
   const [carForm, setCarForm] = useState({
     make: "Nissan Skyline",
     model: "",
@@ -27,7 +25,6 @@ export default function SellPage() {
     description: "",
   });
 
-  // Contact fields
   const [contact, setContact] = useState({
     name: "",
     email: "",
@@ -35,18 +32,15 @@ export default function SellPage() {
     location: "",
   });
 
-  // ------------------- Image Upload -------------------
+  // ----------------- IMAGE UPLOAD -----------------
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const files = e.target.files;
     if (!files) return;
 
     const newFiles = Array.from(files);
-
-    // Merge old + new (max 10 images)
     const combinedFiles = [...images, ...newFiles].slice(0, 10);
     setImages(combinedFiles);
 
-    // Generate preview URLs
     const newPreviews = newFiles.map((file) => URL.createObjectURL(file));
     const combinedPreviews = [...preview, ...newPreviews].slice(0, 10);
     setPreview(combinedPreviews);
@@ -59,7 +53,7 @@ export default function SellPage() {
     setImages((prev) => prev.filter((_, i) => i !== index));
   }
 
-  // ------------------- Form Submit -------------------
+  // ----------------- FORM SUBMIT -----------------
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -75,27 +69,51 @@ export default function SellPage() {
 
     setCheckboxError("");
 
-    // Build FormData for backend
+    // Build formData
     const formData = new FormData();
     formData.append("form", JSON.stringify({ car: carForm, contact }));
     images.forEach((img) => formData.append("images", img));
 
-    // Upload to backend → S3
-    const uploadRes = await fetch("https://skylineculture-api.onrender.com/sell-car", {
-      method: "POST",
-      body: formData,
-    });
+    let uploadRes;
 
-    const data = await uploadRes.json();
+    try {
+      uploadRes = await fetch("https://skylineculture-api.onrender.com/sell-car", {
+        method: "POST",
+        body: formData,
+      });
+    } catch (err) {
+      console.error("UPLOAD FAILED:", err);
+      alert("Network error uploading listing. Please try again.");
+      return;
+    }
 
-    if (!data.success) {
+    if (!uploadRes.ok) {
+      console.error("SERVER ERROR:", await uploadRes.text());
       alert("Upload failed. Please try again.");
       return;
     }
 
-    const imageUrls = data.images;
+    let data: any;
 
-    // Notify via EmailJS
+    try {
+      data = await uploadRes.json();
+    } catch (err) {
+      console.error("INVALID JSON FROM SERVER:", err);
+      alert("Server returned invalid response.");
+      return;
+    }
+
+    console.log("BACKEND RESPONSE:", data);
+
+    if (!data.success || !data.images) {
+      alert("Upload failed. Try again.");
+      return;
+    }
+
+    const imageUrls = data.images;
+    console.log("CLOUDFRONT URLS:", imageUrls);
+
+    // Send email with correct URLs
     emailjs.send(
       "service_2mphqx7",
       "template_nxdamx6",
@@ -109,7 +127,7 @@ export default function SellPage() {
 
     alert("Your listing has been submitted! We will review it shortly.");
 
-    // Reset everything manually (since inputs are controlled)
+    // Reset form
     setImages([]);
     setPreview([]);
 
@@ -136,30 +154,30 @@ export default function SellPage() {
     setAgreeFee(false);
   }
 
-  // ------------------- UI -------------------
+  // ----------------- UI -----------------
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
-      {/* Breadcrumbs */}
       <div className="text-sm text-black mb-5">
-        <Link href="/" className="text-black">Home</Link> / <span>Sell</span>
+        <Link href="/" className="text-black">
+          Home
+        </Link>{" "}
+        / <span>Sell</span>
       </div>
 
       <h1 className="text-3xl font-bold text-black mb-4">List Your Skyline</h1>
 
       <p className="text-gray-600 mb-10">
         Sell your Skyline with confidence. Your listing will be featured on
-        <span className="font-semibold"> SkylineCulture</span> — a leading Nissan Skyline page
-        established in <span className="font-semibold">2016</span> with over
-        <span className="font-semibold"> 430,000 followers</span> — giving your car massive exposure.
-        <br /><br />
-        Fill out the form below to list your Nissan Skyline. Reviewed within 24–48 hours.
+        <span className="font-semibold"> SkylineCulture</span> — a leading Nissan Skyline page established in{" "}
+        <span className="font-semibold">2016</span> with over
+        <span className="font-semibold"> 430,000 followers</span>.
+        <br />
+        <br />
+        Reviewed within 24–48 hours.
       </p>
 
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white border rounded-lg p-8 shadow-md space-y-8"
-      >
-        {/* ================= CAR DETAILS ================= */}
+      <form onSubmit={handleSubmit} className="bg-white border rounded-lg p-8 shadow-md space-y-8">
+        {/* CAR DETAILS */}
         <div>
           <h2 className="text-2xl font-semibold text-black mb-4">Car Details</h2>
 
@@ -184,7 +202,6 @@ export default function SellPage() {
               </div>
             ))}
 
-            {/* VIN */}
             <div className="md:col-span-2">
               <label className="text-sm font-medium text-gray-700">VIN / Chassis Code</label>
               <input
@@ -197,13 +214,11 @@ export default function SellPage() {
               />
             </div>
 
-            {/* Price */}
             <div className="md:col-span-2">
               <label className="text-sm font-medium text-gray-700">Asking Price (USD)</label>
               <input
                 required
                 type="number"
-                placeholder=""
                 value={carForm.price}
                 className="w-full border rounded p-3 mt-1"
                 onChange={(e) => setCarForm({ ...carForm, price: e.target.value })}
@@ -212,7 +227,7 @@ export default function SellPage() {
           </div>
         </div>
 
-        {/* ================= DESCRIPTION ================= */}
+        {/* DESCRIPTION */}
         <div>
           <h2 className="text-2xl font-semibold text-black mb-4">Description</h2>
           <textarea
@@ -224,7 +239,7 @@ export default function SellPage() {
           />
         </div>
 
-        {/* ================= UPLOAD IMAGES ================= */}
+        {/* UPLOAD IMAGES */}
         <div>
           <h2 className="text-2xl font-semibold text-black mb-4">Upload Photos</h2>
           <p className="text-gray-600 mb-3">
@@ -247,6 +262,7 @@ export default function SellPage() {
               {preview.map((src, i) => (
                 <div key={i} className="relative w-full h-32 bg-gray-200 rounded overflow-hidden group">
                   <Image src={src} alt={`preview-${i}`} fill className="object-cover" />
+
                   <button
                     type="button"
                     onClick={() => removeImage(i)}
@@ -260,7 +276,7 @@ export default function SellPage() {
           )}
         </div>
 
-        {/* ================= CONTACT INFO ================= */}
+        {/* CONTACT */}
         <div>
           <h2 className="text-2xl font-semibold text-black mb-4">Contact Information</h2>
 
@@ -286,7 +302,7 @@ export default function SellPage() {
           </div>
         </div>
 
-        {/* ================= AGREEMENTS ================= */}
+        {/* AGREEMENTS */}
         <div className="space-y-4">
           <label className="flex items-start gap-3 text-black">
             <input
@@ -299,7 +315,8 @@ export default function SellPage() {
               I agree to the{" "}
               <Link href="/terms-and-service" className="text-blue-600 underline">
                 Terms & Services
-              </Link>.
+              </Link>
+              .
             </span>
           </label>
 
@@ -311,15 +328,14 @@ export default function SellPage() {
               className="mt-1"
             />
             <span>
-              I acknowledge that SkylineCulture charges a negotiated success fee
-              when a connected buyer + seller complete a sale.
+              I acknowledge that SkylineCulture charges a negotiated success fee when a buyer + seller complete a sale.
             </span>
           </label>
 
           {checkboxError && <p className="text-red-600 text-sm">{checkboxError}</p>}
         </div>
 
-        {/* ================= SUBMIT ================= */}
+        {/* SUBMIT */}
         <button
           type="submit"
           className="w-full bg-black text-white py-4 rounded-lg text-lg font-semibold hover:bg-blue-600 transition"
