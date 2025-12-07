@@ -8,8 +8,8 @@ const cars: Car[] = [
         model: "R34 GT-R",
         trim: "V-Spec",
         year: "1999",
-        color: "61,889 mi (99,602 km)",
-        milage: "50,000",
+        color: "QM1 White",
+        milage: "61,889 mi (99,602 km)",
         code: "BNR34",
         location: "UK",
         img: [
