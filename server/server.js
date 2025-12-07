@@ -47,7 +47,7 @@ app.post(
       const imageUrls = [];
 
       for (const img of req.files) {
-        const key = `Listings/${email}/${Date.now()}-${img.originalname}`;
+        const key = `Requests/${email}/${Date.now()}-${img.originalname}`;
 
         await s3
           .putObject({
