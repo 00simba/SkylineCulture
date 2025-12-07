@@ -81,6 +81,7 @@ export default function Hero() {
               fill
               className="object-cover"
               priority={i === 0}
+              unoptimized
             />
 
             <div className="absolute inset-0 bg-black/40" />
