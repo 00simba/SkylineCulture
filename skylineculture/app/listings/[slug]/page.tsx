@@ -123,13 +123,7 @@ export default function ListingDetailPage() {
         <span className="text-black">{car.make} {car.model}</span>
       </div>
 
-      {/* Title */}
-      <h1 className="text-3xl font-bold text-black mb-2">
-        {car.year} {car.make} {car.model}
-      </h1>
-
-      <p className="text-xl text-gray-600 mb-10">{car.trim}</p>
-
+    
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
         {/* LEFT - MAIN IMAGE */}
@@ -199,7 +193,14 @@ export default function ListingDetailPage() {
         {/* RIGHT SIDE */}
         <div className="space-y-6">
 
-          <h2 className="text-2xl font-bold text-black">Price: {car.price}</h2>
+          {/* Title */}
+      <h1 className="text-2xl font-bold text-black mb-1">
+        {car.make} {car.model}
+      </h1>
+
+      <p className="text-xl text-gray-700 mb-5"> {car.trim}</p>
+
+          <h2 className="text-xl font-bold text-black">Price: {car.price}</h2>
 
           <div className="space-y-2 text-black">
             <p><span className="font-semibold">Year:</span> {car.year}</p>

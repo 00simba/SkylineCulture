@@ -50,18 +50,25 @@ export default function ListingsPage() {
             </div>
 
             <div className="p-4">
-              <h2 className="text-xl font-semibold text-black">
+
+              <h2 className="text-xl font-bold">
                 {car.year} {car.make} {car.model}
               </h2>
-              <p className="text-gray-600">{car.trim}</p>
 
-              <p className="text-gray-800 text-lg mt-2 font-semibold">
-                {car.price}
+               <p className="text-gray-600 text-sm mt-1">
+                {car.trim} · {car.code} · {car.color}
               </p>
 
-              <p className="text-gray-500 text-sm mt-1">
-                {car.milage} km • {car.color}
-              </p>
+              <div className="mt-3 space-y-1 text-sm">
+                <p>
+                  <span className="font-semibold">Mileage:</span> {car.milage}
+                </p>
+                <p>
+                  <span className="font-semibold">Price:</span> {car.price}
+                </p>
+              </div>
+
+              
 
               <button className="mt-4 w-full bg-black text-white py-2 rounded hover:bg-blue-600 transition">
                 View Details
