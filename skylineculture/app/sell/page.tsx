@@ -328,7 +328,7 @@ export default function SellPage() {
               className="mt-1"
             />
             <span>
-              I acknowledge that SkylineCulture charges a negotiated success fee when a buyer + seller complete a sale.
+              I acknowledge that SkylineCulture charges a reasonable success fee when a buyer and seller complete a sale.
             </span>
           </label>
 
