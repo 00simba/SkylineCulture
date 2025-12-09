@@ -20,7 +20,7 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <h1 className="text-2xl font-bold mt-10 mb-10 text-center">Featured Items</h1>
+      <h1 className="text-2xl font-bold mt-10 mb-10 text-center">Featured Accessories</h1>
 
       <div className="grid items-center gap-5 ml-5 mr-5 grid-cols-2 sm:gap-5 sm:ml-10 sm:mr-10 sm:grid-cols-3 md:ml-30 md:mr-30 md:grid-cols-4">
         {data.map(item => (

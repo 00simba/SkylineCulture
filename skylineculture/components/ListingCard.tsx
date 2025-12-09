@@ -27,7 +27,7 @@ export default function ListingCard({ car }: { car: Car }) {
 
         <div className="mt-3 space-y-1 text-sm">
           <p>
-            <span className="font-semibold">Mileage:</span> {car.milage} km
+            <span className="font-semibold">Mileage:</span> {car.milage}
           </p>
           <p>
             <span className="font-semibold">Price:</span> {car.price}

@@ -199,7 +199,7 @@ export default function ListingDetailPage() {
         {/* RIGHT SIDE */}
         <div className="space-y-6">
 
-          <h2 className="text-3xl font-bold text-black">Price: {car.price}</h2>
+          <h2 className="text-2xl font-bold text-black">Price: {car.price}</h2>
 
           <div className="space-y-2 text-black">
             <p><span className="font-semibold">Year:</span> {car.year}</p>

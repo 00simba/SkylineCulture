@@ -11,7 +11,7 @@ const cars: Car[] = [
         color: "QM1 White",
         milage: "61,889 mi (99,602 km)",
         code: "BNR34",
-        location: "UK",
+        location: "United Kingdom",
         img: [
             `${cloudFrontUrl}/1/1.jpg`,
             `${cloudFrontUrl}/1/2.jpg`,
