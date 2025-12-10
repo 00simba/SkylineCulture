@@ -56,7 +56,7 @@ export default function ListingsPage() {
               </h2>
 
                <p className="text-gray-600 text-sm mt-1">
-                {car.trim} · {car.code} · {car.color}
+                {car.code} · {car.trim} · {car.color}
               </p>
 
               <div className="mt-3 space-y-1 text-sm">

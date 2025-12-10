@@ -60,6 +60,9 @@ export default function ListingDetailPage() {
   const nextSlide = () => setIndex((i) => (i + 1) % car.img.length);
   const prevSlide = () => setIndex((i) => (i - 1 + car.img.length) % car.img.length);
 
+  // Detect video
+  const isVideo = car.img[index].toLowerCase().endsWith(".mov") || car.img[index].toLowerCase().endsWith(".mp4");
+
   // ESC closes fullscreen
   useEffect(() => {
     const close = (e: KeyboardEvent) => {
@@ -87,7 +90,7 @@ export default function ListingDetailPage() {
 
           {/* Arrows */}
           <button
-            className="absolute left-4 text-white text-5xl"
+            className="absolute left-4 text-white text-7xl"
             onClick={(e) => {
               e.stopPropagation();
               prevSlide();
@@ -97,7 +100,7 @@ export default function ListingDetailPage() {
           </button>
 
           <button
-            className="absolute right-4 text-white text-5xl"
+            className="absolute right-4 text-white text-7xl"
             onClick={(e) => {
               e.stopPropagation();
               nextSlide();
@@ -106,13 +109,23 @@ export default function ListingDetailPage() {
             ›
           </button>
 
-          <Image
-            src={car.img[index]}
-            alt="fullscreen"
-            width={1400}
-            height={1400}
-            className="object-contain max-h-[90vh] w-auto"
-          />
+          {/* MEDIA in LIGHTBOX */}
+          {isVideo ? (
+            <video
+              src={car.img[index]}
+              controls
+              autoPlay
+              className="object-contain max-h-[90vh] w-auto"
+            />
+          ) : (
+            <Image
+              src={car.img[index]}
+              alt="fullscreen"
+              width={1400}
+              height={1400}
+              className="object-contain max-h-[90vh] w-auto"
+            />
+          )}
         </div>
       )}
 
@@ -132,12 +145,24 @@ export default function ListingDetailPage() {
             className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-gray-200 cursor-pointer"
             onClick={() => setLightboxOpen(true)}
           >
-            <Image
-              src={car.img[index]}
-              alt={car.model}
-              fill
-              className="object-cover"
-            />
+
+            {/* MEDIA IN MAIN VIEWER */}
+            {isVideo ? (
+              <video
+                src={car.img[index]}
+                className="w-full h-full object-cover"
+                muted
+                controls
+                playsInline
+              />
+            ) : (
+              <Image
+                src={car.img[index]}
+                alt={car.model}
+                fill
+                className="object-cover"
+              />
+            )}
 
             {car.img.length > 1 && (
               <>
@@ -167,25 +192,28 @@ export default function ListingDetailPage() {
           {/* THUMBNAILS */}
           {car.img.length > 1 && (
             <div className="flex gap-3 mt-4 overflow-x-auto pb-2 scrollbar-none">
-              {car.img.map((img, i) => (
-                <div
-                  key={i}
-                  onClick={() => {
-                    setIndex(i);
-                    setLightboxOpen(true);
-                  }}
-                  className={`relative w-24 h-20 rounded-md overflow-hidden cursor-pointer border flex-shrink-0 ${
-                    index === i ? "border-blue-600" : "border-gray-300"
-                  }`}
-                >
-                  <Image
-                    src={img}
-                    alt={`thumb-${i}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ))}
+              {car.img.map((img, i) => {
+                const isThumbVideo = img.toLowerCase().endsWith(".mov") || img.toLowerCase().endsWith(".mp4");
+
+                return (
+                  <div
+                    key={i}
+                    onClick={() => {
+                      setIndex(i);
+                      setLightboxOpen(true);
+                    }}
+                    className={`relative w-24 h-20 rounded-md overflow-hidden cursor-pointer border flex-shrink-0 ${
+                      index === i ? "border-blue-600" : "border-gray-300"
+                    }`}
+                  >
+                    {isThumbVideo ? (
+                      <video src={img} className="w-full h-full object-cover" muted />
+                    ) : (
+                      <Image src={img} alt={`thumb-${i}`} fill className="object-cover" />
+                    )}
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
@@ -194,13 +222,11 @@ export default function ListingDetailPage() {
         <div className="space-y-6">
 
           {/* Title */}
-      <h1 className="text-2xl font-bold text-black mb-1">
-        {car.make} {car.model}
-      </h1>
+          <h1 className="text-2xl font-bold text-black mb-1">
+            {car.make} {car.model}
+          </h1>
 
-      <p className="text-xl text-gray-700 mb-5"> {car.trim}</p>
-
-          <h2 className="text-xl font-bold text-black">Price: {car.price}</h2>
+          <h2 className="text-xl font-bold text-black mb-3">Price: {car.price}</h2>
 
           <div className="space-y-2 text-black">
             <p><span className="font-semibold">Year:</span> {car.year}</p>

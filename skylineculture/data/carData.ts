@@ -35,6 +35,42 @@ const cars: Car[] = [
         price: "On Request",
         description: "A stunning White R34 GT-R V-SPEC, another exclusive variation of the R34. With a production count of just 1,222 units, this car remains a sought-after gem among enthusiasts.\n\nThis car goes above and beyond a stock example, with every detail meticulously fine-tuned to create a true machine for the road. From the engine to the chassis, every aspect of the vehicle looks amazing.\n\nThis enhanced RB engine mitigates its traditional shortcomings through the replacement of some of the factory internals with many parts as HKS, ARC, and very nice set of brand-new wheels. Upgrades include the HKS 2.8 litre engine, paired with an HKS Big Single Turbo Kit and a very nice and clean engine bay with valve covers in the color of HKS. (Original HKS crate engine) The vehicle has been tested on a dynamometer, where it achieved a remarkable output of 780 horsepower.\n\nIn summary: A rare limited edition R34 GT-R that has been professionally tuned to perfect standards is a perfect addition to any car collector’s collection. Don’t miss out on the opportunity to own this unique vehicle.\n\n04/1999 Nissan Skyline R34 GT-R QM1 White\n\nSpecs:\n• HKS 2.8 Litre RB28DETT\n• HKS 272° Camshafts\n• HKS Water Pump\n• HKS T51R KAI BB Turbo\n• HKS V-Cam Pro System\n• HKS Air Filter\n• HKS Intercooler Piping\n• Nismo Intake Plenum\n• Altraks Turbo Manifold\n• ARC Titanium Muffler\n• Getrag 6SPD Transmission\n• 1050CC Injector Dynamics Injectors\n• 2× Bosch Fuel Pump\n• SARD 5 Litre Collector Tank\n• ARC Aluminium Radiator\n• ARC Intercooler\n• Haltech Elite 2000 ECU (checked on 98 octane pump fuel)\n• AIM Digital Dash\n• Nitron Force 3Way Suspension\n• Alcon Brake Kit\n• Ferodo Pads\n• 18” Volk Racing TE37 Wheels\n• Michelin Pilot Sport\n• Nismo Side Skirts\n• Nismo Rear Spats\n• Carbon Wing Legs\n• Colour: 2983 made in QM1 white (V-SPEC: 1222)\n• 99,602 kms\n• No accident history\n• Built by Auto Gallery Yokohama\n• 780PS spec dyno checked on 98 octane pump fuel\n• U.S. Import Legal",
     },
+    {
+        id: '2',
+        make: "Nissan Skyline",
+        model: "R34 GT-R",
+        trim: "Base",
+        year: "2000",
+        color: "WV2 Sparkling Silver",
+        milage: "44,137 mi (71,033 km)",
+        code: "BNR34",
+        location: "Australia",
+        img: [
+            `${cloudFrontUrl}/2/1.jpg`,
+            `${cloudFrontUrl}/2/2.jpg`,
+            `${cloudFrontUrl}/2/3.jpg`,
+            `${cloudFrontUrl}/2/4.jpg`,
+            `${cloudFrontUrl}/2/5.jpg`,
+            `${cloudFrontUrl}/2/6.jpg`,
+            `${cloudFrontUrl}/2/7.jpg`,
+            `${cloudFrontUrl}/2/8.jpg`,
+            `${cloudFrontUrl}/2/9.jpg`,
+            `${cloudFrontUrl}/2/10.jpg`,
+            `${cloudFrontUrl}/2/11.jpg`,
+            `${cloudFrontUrl}/2/12.jpg`,
+            `${cloudFrontUrl}/2/13.jpg`,
+            `${cloudFrontUrl}/2/14.jpg`,
+            `${cloudFrontUrl}/2/15.jpg`,
+            `${cloudFrontUrl}/2/16.jpg`,
+            `${cloudFrontUrl}/2/17.jpg`,
+            `${cloudFrontUrl}/2/18.mov`,
+            `${cloudFrontUrl}/2/19.jpg`,
+            
+
+        ],
+        price: "$125,000",
+        description: "Finished in the highly desirable WV2 Sparkling Silver, this 2000 Nissan Skyline R34 GT-R Series 2 presents a rare opportunity to own a beautifully preserved and tastefully enhanced example of one of Japan’s most iconic performance cars. With 71,000 km and service history included, this GT-R combines originality with carefully selected OEM+ and premium upgrades that elevate both its presence and drivability.\n\nThis example features a full suite of dry carbon aero enhancements from All Street, complementing the GT-R’s timeless design with a more aggressive and modern appearance. The exterior is further enhanced by a set of Nismo LMGT4 wheels, while suspension and braking improvements ensure the car performs as impressively as it looks.\n\nA standout upgrade is the R35 GT-R brake conversion, equipped with carbon-ceramic rotors and pads — a premium enhancement valued at over $15,000. Together with Tein coilovers and a carbon rear diffuser, this GT-R benefits from a balanced combination of aesthetics, performance, and exclusivity.\n\nInside, the vehicle features the desirable Series 2 black interior, complemented by Nismo accessories including a titanium shift knob, white-face cluster, and Nismo floor mats — all contributing to a refined, collector-focused cabin.\n\nIn summary: This WV2 R34 GT-R is an exceptional OEM+ example with rare factory colour, low mileage, and premium upgrades throughout. Ideal for enthusiasts seeking a highly desirable, clean, and thoughtfully enhanced GT-R.\n\nSpecs:\n· Series 2 black interior\n· R35 GTR brakes with carbon ceramic rotors and pads ($15,000+ upgrade)\n· All Street front diffuser in dry carbon\n· All Street side skirts and pods in dry carbon\n· All Street wing blade and extended legs in dry carbon\n· Nismo old logo exhaust\n· Tein Coilovers\n· Carbon rear diffuser\n· Nismo LMGT4\n· Nismo titanium shift knob\n· Nismo white face cluster\n· Nismo floor mats\n· Billet centre caps\n",
+    },
 ]
 
 export default cars;
