@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import NotFound from "@/app/not-found";
 
 export default function ListingDetailPage() {
   const params = useParams();
@@ -53,9 +54,7 @@ export default function ListingDetailPage() {
 
   if (!car) {
     return (
-      <div className="max-w-7xl mx-auto px-6 py-20 text-center">
-        <h1 className="text-2xl font-bold">Listing Not Found</h1>
-      </div>
+      <NotFound/>
     );
   }
 
