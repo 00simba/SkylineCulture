@@ -11,7 +11,9 @@ export default function ListingDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
 
-  const car = cars.find((c) => c.id === slug);
+  console.log(slug)
+
+  const car = cars.find((c) => `${c.year}-${c.color}-${c.trim}-${c.id}`.toLowerCase() === slug);
 
   const [index, setIndex] = useState(0);
 
@@ -132,7 +134,7 @@ export default function ListingDetailPage() {
       {/* Breadcrumb */}
       <div className="text-sm text-black mb-5">
         <Link href="/" className="text-black">Home</Link> /{" "}
-        <Link href="/listings" className="text-black">Listings</Link> /{" "}
+        <Link href="/for-sale" className="text-black">Listings</Link> / <Link href="/for-sale/r33-gtr" className="text-black">R33 GT-R</Link> /{" "}
         <span className="text-black">{car.make} {car.model}</span>
       </div>
 

@@ -38,11 +38,11 @@ export default function SellPage() {
     if (!files) return;
 
     const newFiles = Array.from(files);
-    const combinedFiles = [...images, ...newFiles].slice(0, 10);
+    const combinedFiles = [...images, ...newFiles].slice(0, 20);
     setImages(combinedFiles);
 
     const newPreviews = newFiles.map((file) => URL.createObjectURL(file));
-    const combinedPreviews = [...preview, ...newPreviews].slice(0, 10);
+    const combinedPreviews = [...preview, ...newPreviews].slice(0, 20);
     setPreview(combinedPreviews);
 
     setImageError("");
@@ -241,9 +241,9 @@ export default function SellPage() {
 
         {/* UPLOAD IMAGES */}
         <div>
-          <h2 className="text-2xl font-semibold text-black mb-4">Upload Photos</h2>
+          <h2 className="text-2xl font-semibold text-black mb-4">Upload Media</h2>
           <p className="text-gray-600 mb-3">
-            Upload up to <strong>10 images</strong>.
+            Upload up to <strong>20 images and videos</strong>.
           </p>
 
           <input

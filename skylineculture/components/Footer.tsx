@@ -26,7 +26,7 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-3">Shop</h3>
           <ul className="space-y-2 text-gray-300 text-sm">
-            <li><Link href="/listings" className="hover:text-white">Listings</Link></li>
+            <li><Link href="/for-sale" className="hover:text-white">Browse</Link></li>
             <li><Link href="/keychains" className="hover:text-white">Keychains</Link></li>
             <li><Link href="/stickers" className="hover:text-white">Stickers</Link></li>
             <li><Link href="/diecast-cars" className="hover:text-white">Diecast Models</Link></li>

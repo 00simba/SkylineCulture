@@ -6,7 +6,7 @@ export default [
     title: "SkylineCulture Marketplace",
     subtitle: "Browse and buy your dream Nissan Skyline",
     button: "Shop Skylines",
-    href: "/listings",
+    href: "/for-sale",
   },
   {
     img: `${cloudFrontUrl}/public/hero2.webp`,

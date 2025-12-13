@@ -14,8 +14,8 @@ export default function ListingsPage() {
         <span className="text-black">Listings</span>
       </div>
 
-      <h1 className="text-3xl font-bold mb-8 text-black">
-        Own Your Dream
+      <h1 className="text-3xl font-bold mb-2 text-black">
+        R32 GT-R For Sale
       </h1>
 
       <p className="text-gray-600 mb-10">
@@ -24,20 +24,20 @@ export default function ListingsPage() {
         for your next Skyline — whether it’s a legendary R32, iconic R33, or the dream R34 GT-R.
       </p>
 
-      {/*
-
       <h1 className="text-2xl font-bold mb-8 text-black">
-       Coming Soon...
+       No Listings
       </h1>
 
-      */}
+
+      {/*
 
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {cars.map((car) => (
+          car.model == "R32 GT-R" &&
           <Link
             key={car.id}
-            href={`/listings/${car.id}`}
+            href={`/for-sale/r32-gtr/${car.year}-${car.color.toLowerCase()}-${car.trim.toLowerCase()}-${car.id.toLowerCase()}`}
             className="block bg-white border rounded-lg overflow-hidden shadow hover:shadow-lg transition"
           >
             <div className="relative w-full h-56">
@@ -77,6 +77,8 @@ export default function ListingsPage() {
           </Link>
         ))}
       </div>
+
+      */}
 
     </div>
   );

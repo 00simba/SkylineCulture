@@ -34,7 +34,9 @@ export default function ListingCard({ car }: { car: Car }) {
           </p>
         </div>
 
-        <Link href={`/listings/${car.id}`} className="block mt-4">
+        
+
+        <Link href={`/for-sale/${car.model.split(' ')[0] + '-' + car.model.split(' ')[1].replace('-', "")}/${car.year}-${car.color}-${car.trim}-${car.id}`.toLowerCase()} className="block mt-4">
           <button className="w-full bg-black text-white py-2 rounded-md hover:bg-blue-600 transition">
             View Details
           </button>

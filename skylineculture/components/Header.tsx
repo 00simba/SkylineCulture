@@ -11,6 +11,7 @@ import { useCart } from "@/app/context/CartContext";
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [accessoriesOpen, setAccessoriesOpen] = useState(false); // NEW
+  const [browseOpen, setBrowseOpen] = useState(false); // NEW
   const logoWidth = 250;
   const logoHeight = 250;
 
@@ -21,8 +22,13 @@ export default function Header() {
     { name: "Pins", href: "/pins" }
   ];
 
+  const listingsLinks = [
+    { name: "R34 GTR", href: "/for-sale/r34-gtr"},
+    { name: "R33 GTR", href: "/for-sale/r33-gtr"},
+    { name: "R32 GTR", href: "/for-sale/r32-gtr"},
+  ]
+
   const navLinks = [
-    { name: "Listings", href: "/listings" },
     { name: "Sell", href: "/sell" },
   ];
 
@@ -48,6 +54,29 @@ export default function Header() {
 
         <nav className="flex items-center gap-8 text-lg font-medium text-white">
 
+          <div className="relative group lg:block hidden">
+  <Link href="/for-sale">
+    <button className="hover:text-zinc-300 transition">
+      Browse
+    </button>
+  </Link>
+  
+
+  <div className="absolute left-0 mt-2 w-30 bg-white text-black rounded-md shadow-lg 
+                  opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                  transition-all duration-200 overflow-hidden">
+    {listingsLinks.map((item) => (
+      <Link
+        key={item.name}
+        href={item.href}
+        className="block px-4 py-2 text-sm hover:bg-gray-200"
+      >
+        {item.name}
+      </Link>
+    ))}
+  </div>
+</div>
+
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -59,11 +88,13 @@ export default function Header() {
           ))}
 
 <div className="relative group lg:block hidden">
-  <button className="hover:text-zinc-300 transition">
-    Accessories
-  </button>
-
-  <div className="absolute left-0 mt-2 w-40 bg-white text-black rounded-md shadow-lg 
+  <Link href={'/accessories'}>
+    <button  className="hover:text-zinc-300 transition">
+      Accessories
+    </button>
+  </Link>
+  
+  <div className="absolute left-0 mt-2 w-30 bg-white text-black rounded-md shadow-lg 
                   opacity-0 invisible group-hover:opacity-100 group-hover:visible 
                   transition-all duration-200 overflow-hidden">
     {accessoriesLinks.map((item) => (
@@ -143,6 +174,30 @@ export default function Header() {
   <div className="flex pb-5 justify-center">
     <nav className="flex text-white items-center gap-8 text-lg font-medium">
 
+      <div className="relative">
+        <button
+          onClick={() => {setBrowseOpen(!browseOpen); setAccessoriesOpen(false)}}
+          className="hover:text-zinc-300 transition"
+        >
+          Browse ▾
+        </button>
+
+        {browseOpen && (
+          <div className="absolute left-0 mt-2 w-40 bg-white text-black rounded-md shadow-lg z-30">
+            {listingsLinks.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="block px-4 py-2 text-sm hover:bg-gray-200"
+                onNavigate={() => setBrowseOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+
       {navLinks.map((link) => (
         <Link
           key={link.name}
@@ -156,7 +211,7 @@ export default function Header() {
 
       <div className="relative">
         <button
-          onClick={() => setAccessoriesOpen(!accessoriesOpen)}
+          onClick={() => {setAccessoriesOpen(!accessoriesOpen); setBrowseOpen(false)}}
           className="hover:text-zinc-300 transition"
         >
           Accessories ▾
@@ -169,6 +224,7 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 className="block px-4 py-2 text-sm hover:bg-gray-200"
+                onNavigate={() => setAccessoriesOpen(false)}
               >
                 {item.name}
               </Link>
@@ -235,21 +291,36 @@ export default function Header() {
               <HiOutlineX className="text-3xl" />
             </button>
 
-
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-white text-xl font-medium hover:text-zinc-300 transition"
-              >
-                {link.name}
-              </Link>
-            ))}
-
             <div>
               <button
-                onClick={() => setAccessoriesOpen(!accessoriesOpen)}
+                onClick={() => {setBrowseOpen(!browseOpen); setAccessoriesOpen(false)}}
+                className="text-white text-xl font-medium hover:text-zinc-300 transition"
+              >
+                Browse ▾
+              </button>
+
+              {browseOpen && (
+                <div className="ml-4 mt-2 flex flex-col gap-2">
+                  {listingsLinks.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => {{setMenuOpen(false); setAccessoriesOpen(false); setBrowseOpen(false)}}}
+                      className="text-white text-lg hover:text-zinc-300 transition"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+
+  
+            
+            <div>
+              <button
+                onClick={() => {setAccessoriesOpen(!accessoriesOpen); setBrowseOpen(false)}}
                 className="text-white text-xl font-medium hover:text-zinc-300 transition"
               >
                 Accessories ▾
@@ -261,7 +332,7 @@ export default function Header() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      onClick={() => setMenuOpen(false)}
+                      onClick={() => {setMenuOpen(false); setAccessoriesOpen(false); setBrowseOpen(false)}}
                       className="text-white text-lg hover:text-zinc-300 transition"
                     >
                       {item.name}
