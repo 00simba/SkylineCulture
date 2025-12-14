@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import NotFound from "@/app/not-found";
-import { generateMetadata } from "@/lib/generateListingMetadata";
 
 export default function ListingDetailPage() {
   const params = useParams();
@@ -67,7 +66,6 @@ export default function ListingDetailPage() {
 
   // ESC closes fullscreen
   useEffect(() => {
-    generateMetadata(car, params);
     const close = (e: KeyboardEvent) => {
       if (e.key === "Escape") setLightboxOpen(false);
     };
