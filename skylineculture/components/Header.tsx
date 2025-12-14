@@ -34,7 +34,7 @@ export default function Header() {
 
   const { cart } = useCart();
   const cartCount = cart.reduce((sum, item) => sum + item.productQuantity, 0);
-  const cloudFrontUrl = 'https://d38opoffv15p79.cloudfront.net';
+  const cloudFrontUrl = 'https://d38opoffv15p79.cloudfront.net/Images';
 
 
   return (
