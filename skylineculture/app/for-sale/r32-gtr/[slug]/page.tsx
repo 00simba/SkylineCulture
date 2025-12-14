@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import NotFound from "@/app/not-found";
+import { generateMetadata } from "@/lib/generateListingMetadata";
 
 export default function ListingDetailPage() {
   const params = useParams();
@@ -66,6 +67,7 @@ export default function ListingDetailPage() {
 
   // ESC closes fullscreen
   useEffect(() => {
+    generateMetadata(car, params);
     const close = (e: KeyboardEvent) => {
       if (e.key === "Escape") setLightboxOpen(false);
     };
@@ -134,7 +136,7 @@ export default function ListingDetailPage() {
       <div className="text-sm text-black mb-5">
         <Link href="/" className="text-black">Home</Link> /{" "}
         <Link href="/for-sale" className="text-black">Listings</Link> / <Link href="/for-sale/r32-gtr" className="text-black">R32 GT-R</Link> /{" "}
-        <span className="text-black">{car.make} {car.model}</span>
+        <span className="text-black">{car.year} {car.color} {car.trim}</span>
       </div>
 
     
