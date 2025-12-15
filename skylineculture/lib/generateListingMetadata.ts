@@ -19,7 +19,7 @@ export function generateListingMetadata({ params } : { params : { slug : string}
 
   const url = `https://www.skylineculture.com/for-sale/r34-gtr/${slug}`;
 
-  return {
+  const json =  {
     title: `${car.year} ${car.model} ${car.trim} – For Sale | SkylineCulture`,
     description: `${car.year} ${car.model} ${car.trim} in ${car.color}. View photos, price, mileage, and details.`,
 
@@ -49,4 +49,5 @@ export function generateListingMetadata({ params } : { params : { slug : string}
       images: [car.img[0]],
     },
   };
+  return json;
 }
