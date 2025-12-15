@@ -8,7 +8,7 @@ export default [
         "stars" : 0,
         "img" : [`${cloudFrontUrl}/r34_keychain/r34key_main.webp`, `${cloudFrontUrl}/r34_keychain/r34key_1.webp`],
         "price" : 14.99,
-        "sale_price": 9.99,
+        "sale_price": null,
         "url" : "r34-gtr-keychain",
         "description" : [
         
@@ -27,7 +27,7 @@ export default [
         "stars" : 0,
         "img" : [`${cloudFrontUrl}/r32_keychain/r32key_main.webp`],
         "price" : 14.99,
-        "sale_price": 9.99,
+        "sale_price": null,
         "url" : "r32-gtr-keychain",
         "description" : [
             
@@ -46,7 +46,7 @@ export default [
         "stars" : 5,
         "img" : [`${cloudFrontUrl}/turbo_keychain/turbo_main.webp`, `${cloudFrontUrl}/turbo_keychain/turbo_Black.webp`, `${cloudFrontUrl}/turbo_keychain/turbo_Silver.webp`, `${cloudFrontUrl}/turbo_keychain/turbo_Chroma.webp`],
         "price" : 9.99,
-        "sale_price": 7.99,
+        "sale_price": null,
         "url" : "turbo-keychain",
         "description" : [
             
@@ -66,7 +66,7 @@ export default [
         "stars" : 4.5,
         "img" : [`${cloudFrontUrl}/nos_keychain/nos_main.webp`, `${cloudFrontUrl}/nos_keychain/nos_1.webp`, `${cloudFrontUrl}/nos_keychain/nos_2.webp`],
         "price" : 7.99,
-        "sale_price": 4.99,
+        "sale_price": null,
         "url" : "nos-keychain",
         "description" : [
             
@@ -86,7 +86,7 @@ export default [
         "stars" : 5,
         "img" : [`${cloudFrontUrl}/100pc_sticker/100pc_main.webp`, `${cloudFrontUrl}/100pc_sticker/100pc_1.webp`, `${cloudFrontUrl}/100pc_sticker/100pc_2.webp`, `${cloudFrontUrl}/100pc_sticker/100pc_3.webp`],
         "price" : 14.99,
-        "sale_price": 9.99,
+        "sale_price": null,
         "url" : "100-pack-stickers",
         "description" : [
             
@@ -108,7 +108,7 @@ export default [
         `${cloudFrontUrl}/24r34_diecast/24r34_3.webp`, `${cloudFrontUrl}/24r34_diecast/24r34_4.webp`, `${cloudFrontUrl}/24r34_diecast/24r34_5.webp`, `${cloudFrontUrl}/24r34_diecast/24r34_6.webp`,
         `${cloudFrontUrl}/24r34_diecast/24r34_7.webp`],
         "price" : 34.99,
-        "sale_price": 29.99,
+        "sale_price": null,
         "url" : "24-r34-diecast",
         "description" : [
             
@@ -128,7 +128,7 @@ export default [
         "stars" : 5,
         "img" : [`${cloudFrontUrl}/36r34_diecast/36r34_main.webp`, `${cloudFrontUrl}/36r34_diecast/36r34_Blue.webp`, `${cloudFrontUrl}/36r34_diecast/36r34_Silver.webp`, `${cloudFrontUrl}/36r34_diecast/r36r34_Black.webp`],
         "price" : 19.99,
-        "sale_price": 14.99,
+        "sale_price": null,
         "url" : "36-r34-diecast",
         "description" : [
             
@@ -148,7 +148,7 @@ export default [
         "stars" : 4.5,
         "img" : [`${cloudFrontUrl}/gearbox_keychain/gearbox_main.webp`, `${cloudFrontUrl}/gearbox_keychain/gearbox_1.webp`, `${cloudFrontUrl}/gearbox_keychain/gearbox_2.webp`],
         "price" : 12.99,
-        "sale_price": 8.99,
+        "sale_price": null,
         "url" : "gearbox-keychain",
         "description" : [
             
@@ -168,7 +168,7 @@ export default [
         "stars" : 5,
         "img" : [`${cloudFrontUrl}/suspension_keychain/suspension_main.webp`, `${cloudFrontUrl}/suspension_keychain/suspension_Blue.webp`, `${cloudFrontUrl}/suspension_keychain/suspension_Green.webp`, `${cloudFrontUrl}/suspension_keychain/suspension_Gold.webp`, `${cloudFrontUrl}/suspension_keychain/suspension_Red.webp`, `${cloudFrontUrl}/suspension_keychain/suspension_Black.webp`],
         "price" : 11.99,
-        "sale_price": 7.99,
+        "sale_price": null,
         "url" : "suspension-keychain",
         "description" : [
             
@@ -188,7 +188,7 @@ export default [
         "stars" : 0,
         "img" : [`${cloudFrontUrl}/te37_keychain/te37_Black.webp`, `${cloudFrontUrl}/te37_keychain/te37_Chroma.webp`, `${cloudFrontUrl}/te37_keychain/te37_Silver.webp`, `${cloudFrontUrl}/te37_keychain/te37_1.webp`, `${cloudFrontUrl}/te37_keychain/te37_2.webp`, `${cloudFrontUrl}/te37_keychain/te37_3.webp`, `${cloudFrontUrl}/te37_keychain/te37_4.webp`],
         "price" : 11.99,
-        "sale_price": 9.99,
+        "sale_price": null,
         "url" : "te37-keychain",
         "description" : [
             
@@ -208,7 +208,7 @@ export default [
         "stars" : 4.5,
         "img" : [`${cloudFrontUrl}/gtr_keychain/gtr_main.webp`, `${cloudFrontUrl}/gtr_keychain/gtr_1.webp`, `${cloudFrontUrl}/gtr_keychain/gtr_2.webp`],
         "price" : 9.99,
-        "sale_price": 4.99,
+        "sale_price": null,
         "url" : "gtr-keychain",
         "description" : [
             
@@ -228,7 +228,7 @@ export default [
         "stars": 0,
         "img" : [`${cloudFrontUrl}/r34_pin/r34pin_main.webp`, `${cloudFrontUrl}/r34_pin/r34pin_1.webp`, `${cloudFrontUrl}/r34_pin/r34pin_2.webp`, `${cloudFrontUrl}/r34_pin/r34pin_3.webp`],
         "price" : 14.99,
-        "sale_price": 9.99,
+        "sale_price": null,
         "url" : "r34-gtr-pin",
         "description" : [
         
@@ -241,21 +241,21 @@ export default [
         "featured" : false,
     },
     {
-        "id" : 4,
-        "title" : "RB26 Keychain",
+        "id" : 14,
+        "title" : "Engine Bay Badge",
         "stars": 0,
-        "img" : [`${cloudFrontUrl}/rb26_keychain/rb26_main.webp`],
-        "price" : 9.99,
-        "sale_price": 4.99,
-        "url" : "rb26-keychain",
+        "img" : [`${cloudFrontUrl}/skylineculture-badge/badge_main.webp`, `${cloudFrontUrl}/skylineculture-badge/badge_1.webp`, `${cloudFrontUrl}/skylineculture-badge/badge_2.webp`],
+        "price" : 34.99,
+        "sale_price": null,
+        "url" : "skylineculture-badge",
         "description" : [
             
-        "Based off the heart of Godzilla, the RB26! The RB26, inline 6 2.6L engine debuted in 1989 and contributed to motorsports history as it set records."],
+        "Elevate your engine bay with a subtle yet unmistakable statement. The SkylineCulture Engine Bay Badge is precision-cut from 304-grade stainless steel and finished with a brushed surface for a clean, OEM-plus aesthetic.\n \nBuilt to withstand heat, moisture, and time, this badge is designed for enthusiasts who value quality and attention to detail. Whether mounted in the engine bay, on a strut bar, or a custom panel, it adds a refined motorsport-inspired touch without overpowering the build.\n\nEach badge includes pre-applied 3M automotive-grade adhesive for a secure and hassle-free installation—no drilling required.\n"],
 
-        "specs": "Made of PVC material allowing for flexibility while retaining durability and quality.",
+        "specs": "- Made from 304 stainless steel with brushed metal finish\n- Measures 3 inches by 0.65 inches\n- Precision laser-etched SkylineCulture branding\n- Heat and corrosion-resistant\n- Includes 3M automotive-grade tape for easy installation\n- Ideal for engine bays, show cars, and street builds\n\nDesigned for true Skyline enthusiasts — clean, timeless, and built to last.",
         "shipping": [shipping[0]],
         "variants" : [{}],
-        "collection" : "Keychains", 
+        "collection" : "Other", 
         "featured" : false,   
     },
 ]

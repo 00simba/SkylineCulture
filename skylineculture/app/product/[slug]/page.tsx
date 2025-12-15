@@ -188,8 +188,19 @@ export default function ProductPage() {
 
           {/* PRICE */}
           <div className="flex items-center gap-3 mb-2">
-            <p className="text-xl font-semibold text-blue-600">${product.sale_price.toFixed(2)}</p>
-            <p className="text-xl line-through text-gray-400">${product.price.toFixed(2)}</p>
+            {product.sale_price  ?
+              <>
+              <p className="text-xl font-semibold text-blue-600">${product.sale_price}</p>
+              <p className="text-xl line-through text-gray-400">${product.price.toFixed(2)}</p>
+              </> 
+             
+              :
+              <>
+              <p className="text-xl font-semibold text-blue-600">${product.price.toFixed(2)}</p>
+              </>
+            
+            }
+  
           </div>
 
           {/* SOLD OUT LABEL */}
@@ -220,7 +231,7 @@ export default function ProductPage() {
           )}
 
           {/* DESCRIPTION */}
-          <div className="mb-6">
+          <div className="mb-6 whitespace-pre-line">
             <h2 className="text-xl font-semibold mb-2 text-black">Description</h2>
             <ul className="text-black space-y-2">
               {product.description.map((line, i) => (
@@ -321,7 +332,7 @@ export default function ProductPage() {
 
                 <div className="p-3 bg-black">
                   <p className="font-semibold">{item.title}</p>
-                  <p className="text-white text-sm">${item.sale_price}</p>
+                  <p className="text-white text-sm">${item.price}</p>
                 </div>
               </Link>
             ))}

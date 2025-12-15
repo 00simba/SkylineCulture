@@ -8,7 +8,7 @@ import { Product } from "@/types/product";
 export default function AccessoriesPage() {
   // ====== Extract ACCESSORY ITEMS ======
   const accessories: Product[] = data.filter((item: Product) =>
-    ["Keychains", "Stickers", "Diecast Cars", "Pins"].includes(item.collection)
+    ["Keychains", "Stickers", "Diecast Cars", "Pins", "Other"].includes(item.collection)
   );
 
   // ====== Extract categories dynamically ======
@@ -30,11 +30,11 @@ export default function AccessoriesPage() {
     }
 
     if (sortMethod === "low-high") {
-      items.sort((a, b) => a.sale_price - b.sale_price);
+      items.sort((a, b) => a.price - b.price);
     }
 
     if (sortMethod === "high-low") {
-      items.sort((a, b) => b.sale_price - a.sale_price);
+      items.sort((a, b) => b.price - a.price);
     }
 
     return items;

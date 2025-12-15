@@ -19,7 +19,8 @@ export default function Header() {
     { name: "Keychains", href: "/keychains" },
     { name: "Stickers", href: "/stickers" },
     { name: "Diecasts", href: "/diecast-cars" },
-    { name: "Pins", href: "/pins" }
+    { name: "Pins", href: "/pins" },
+    { name: "Other", href: "/other"}
   ];
 
   const listingsLinks = [
