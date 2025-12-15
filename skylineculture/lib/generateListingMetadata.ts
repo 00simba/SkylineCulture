@@ -38,6 +38,10 @@ export function generateListingMetadata({ params } : { params : { slug : string}
       ],
     },
 
+    other: {
+        "og:image": car.img[0]
+    },
+
     twitter: {
       card: "summary_large_image",
       title: `${car.year} ${car.model} ${car.trim}`,
