@@ -252,7 +252,7 @@ export default [
             
         "Elevate your engine bay with a subtle yet unmistakable statement. The SkylineCulture Engine Bay Badge is precision-cut from 304-grade stainless steel and finished with a brushed surface for a clean, OEM-plus aesthetic.\n \nBuilt to withstand heat, moisture, and time, this badge is designed for enthusiasts who value quality and attention to detail. Whether mounted in the engine bay, on a strut bar, or a custom panel, it adds a refined motorsport-inspired touch without overpowering the build.\n\nEach badge includes pre-applied 3M automotive-grade adhesive for a secure and hassle-free installation—no drilling required.\n"],
 
-        "specs": "- Made from 304 stainless steel with brushed metal finish\n- Measures 3 inches by 0.65 inches\n- Precision laser-etched SkylineCulture branding\n- Heat and corrosion-resistant\n- Includes 3M automotive-grade tape for easy installation\n- Ideal for engine bays, show cars, and street builds\n\nDesigned for true Skyline enthusiasts — clean, timeless, and built to last.",
+        "specs": "- Made from 304 stainless steel with brushed metal finish\n- Measures 3 inches by 0.65 inches and 1mm in thickness\n- Precision laser-etched SkylineCulture branding\n- Heat and corrosion-resistant\n- Includes 3M automotive-grade tape for easy installation\n- Ideal for engine bays, show cars, and street builds\n\nDesigned for true Skyline enthusiasts — clean, timeless, and built to last.",
         "shipping": [shipping[0]],
         "variants" : [{}],
         "collection" : "Other", 
