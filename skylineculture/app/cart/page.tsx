@@ -95,7 +95,7 @@ export default function CartPage() {
               </p>
 
               <p className="text-blue-600 font-bold mt-1">
-                ${item.salePrice}
+                ${item.productPrice}
               </p>
 
               <button
