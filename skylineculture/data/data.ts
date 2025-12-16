@@ -120,7 +120,7 @@ export default [
         "shipping": [shipping[0]],
         "variants" : [{"Select Color": ["Blue", "White"]}],
         "collection" : "Diecast Cars",
-        "featured" : true,
+        "featured" : false,
     },
     {
         "id" : 12,
@@ -256,6 +256,6 @@ export default [
         "shipping": [shipping[0]],
         "variants" : [{}],
         "collection" : "Other", 
-        "featured" : false,   
+        "featured" : true,   
     },
 ]
