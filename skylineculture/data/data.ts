@@ -244,7 +244,7 @@ export default [
         "id" : 14,
         "title" : "Engine Bay Badge",
         "stars": 0,
-        "img" : [`${cloudFrontUrl}/skylineculture-badge/badge_main.webp`, `${cloudFrontUrl}/skylineculture-badge/badge_1.webp`, `${cloudFrontUrl}/skylineculture-badge/badge_2.webp`],
+        "img" : [`${cloudFrontUrl}/skylineculture-badge/badge_main.webp`, `${cloudFrontUrl}/skylineculture-badge/badge_1.webp`, `${cloudFrontUrl}/skylineculture-badge/badge_2.webp`, `${cloudFrontUrl}/skylineculture-badge/badge_3.webp`],
         "price" : 34.99,
         "sale_price": null,
         "url" : "skylineculture-badge",
