@@ -13,6 +13,24 @@ const montserrat = Montserrat({
   variable: "--font-montserrat"
 })
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "SkylineCulture",
+  url: "https://www.skylineculture.com",
+  logo: "https://www.skylineculture.com/logo.png",
+  sameAs: [
+    "https://www.instagram.com/skylineculture"
+  ]
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "SkylineCulture",
+  url: "https://www.skylineculture.com",
+};
+
 export const metadata: Metadata = {
   title: "SkylineCulture",
   description: "Nissan Skyline marketplace and merchandise",
@@ -26,6 +44,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={montserrat.variable}>
       <body className="font-main flex flex-col min-h-screen bg-black">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd)}}/>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd)}}/>
         <CartWrapper>
           <Header />
           <main className="flex-grow bg-white">
