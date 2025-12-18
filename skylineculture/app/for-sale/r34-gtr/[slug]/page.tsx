@@ -2,8 +2,6 @@ import { generateListingMetadata } from "@/lib/generateListingMetadata";
 import { generateListingJsonLd } from "@/lib/generateListingJsonLd";
 import ListingDetailPage from "../ListingDetailPage";
 import cars from "@/data/carData";
-import { Car } from "@/types/car";
-import { json } from "stream/consumers";
 
 export async function generateMetadata(
   { params }: { params: { slug: string } }

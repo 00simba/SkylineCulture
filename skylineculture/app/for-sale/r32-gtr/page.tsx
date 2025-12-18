@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import cars from "@/data/carData";
 
 export default function ListingsPage() {
   return (
@@ -23,6 +21,8 @@ export default function ListingsPage() {
         Every listing is verified for authenticity, giving you confidence while searching  
         for your next Skyline — whether it’s a legendary R32, iconic R33, or the dream R34 GT-R.
       </p>
+
+      
 
       <h1 className="text-2xl font-bold mb-8 text-black">
        No Listings

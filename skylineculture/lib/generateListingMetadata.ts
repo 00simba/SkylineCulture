@@ -1,7 +1,9 @@
 import cars from "@/data/carData";
-
+import { notFound } from "next/navigation";
 export function generateListingMetadata({ params } : { params : { slug : string}}) {
+
   const slug = params.slug;
+  const url = `https://www.skylineculture.com/for-sale/r34-gtr/${slug}`;
   const car = cars.find(
     (c) =>
       `${c.year}-${c.color}-${c.trim}-${c.id}`
@@ -9,15 +11,11 @@ export function generateListingMetadata({ params } : { params : { slug : string}
         .replace(/\s+/g, "-")
         === slug
   );
+  
 
   if (!car) {
-    return {
-      title: "Listing Not Found | SkylineCulture",
-      description: "This Skyline listing could not be found.",
-    };
-  }
-
-  const url = `https://www.skylineculture.com/for-sale/r34-gtr/${slug}`;
+    notFound();
+  };
 
   const json =  {
     title: `${car.year} ${car.model} ${car.trim} – For Sale | SkylineCulture`,
