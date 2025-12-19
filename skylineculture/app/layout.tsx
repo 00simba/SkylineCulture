@@ -31,10 +31,16 @@ const websiteJsonLd = {
   url: "https://www.skylineculture.com",
 };
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "SkylineCulture",
-  description: "Nissan Skyline marketplace and merchandise",
+  description:
+    "Your home for Nissan Skyline accessories, diecast models, and verified marketplace listings.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png"
+  },
 };
+
 
 export default function RootLayout({
   children,
