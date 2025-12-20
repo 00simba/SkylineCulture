@@ -38,7 +38,7 @@ export default function Footer() {
           <ul className="space-y-2 text-gray-300 text-sm">
             <li><Link href="/contact" className="hover:text-white">Contact Us</Link></li>
             <li><Link href="/track-order" className="hover:text-white">Track Order</Link></li>
-            <li><Link href="/terms-and-service" className="hover:text-white">Terms & Service</Link></li>
+            <li><Link href="/terms-and-services" className="hover:text-white">Terms & Service</Link></li>
             <li><Link href="/privacy-policy" className="hover:text-white">Privacy Policy</Link></li>
           </ul>
         </div>

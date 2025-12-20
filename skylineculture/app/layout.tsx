@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -34,7 +33,7 @@ const websiteJsonLd = {
 export const metadata = {
   title: "SkylineCulture",
   description:
-    "Your home for Nissan Skyline accessories, diecast models, and verified marketplace listings.",
+    "Your home for buying and selling verified Nissan Skyline listings and accessories.",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-icon.png"
