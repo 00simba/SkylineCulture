@@ -33,7 +33,7 @@ const websiteJsonLd = {
 export const metadata = {
   title: "SkylineCulture",
   description:
-    "Your home for buying and selling verified Nissan Skyline listings and accessories.",
+    "The trusted marketplace to buy and sell Nissan Skyline cars, accessories, and collectibles. Verified listings and a global enthusiast community.",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-icon.png"
