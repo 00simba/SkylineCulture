@@ -20,9 +20,7 @@ export default function ListingsPage() {
         </h1>
 
         <p className="text-gray-600 mb-10">
-          Browse a curated selection of Nissan Skyline models from trusted owners.  
-          Every listing is verified for authenticity, giving you confidence while searching  
-          for your next Skyline — whether it’s a legendary R32, iconic R33, or the dream R34 GT-R.
+          Browse a curated selection of Nissan Skyline R34 GT-R listings from trusted owners. Each vehicle is reviewed for authenticity and condition, giving you confidence as you search for the most iconic GT-R—revered for its performance, design, and legendary status.
         </p>
 
         {/*
