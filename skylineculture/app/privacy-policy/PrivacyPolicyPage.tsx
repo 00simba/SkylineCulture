@@ -104,7 +104,7 @@ export default function PrivacyPolicyPage() {
 
         <p className="mt-2">
           To exercise these rights, please contact us at{" "}
-          <a href="mailto:info@skylineculture.com" className="text-blue-600 underline">
+          <a href="mailto:info@skylineculture.com" className="text-red-600 underline">
             info@skylineculture.com
           </a>.
         </p>

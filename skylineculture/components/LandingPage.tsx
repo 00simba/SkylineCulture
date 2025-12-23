@@ -32,7 +32,7 @@ export default function LandingPage() {
       <div className="flex justify-center mt-10">
         <a href="/accessories">
           <button
-            className="px-10 py-2 bg-black text-white rounded-md hover:bg-blue-600 transition"
+            className="px-10 py-2 bg-black text-white rounded-md hover:bg-red-600 transition"
           >
             View Accessories
           </button>

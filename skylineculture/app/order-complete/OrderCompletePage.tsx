@@ -54,7 +54,7 @@ function OrderCompleteContent() {
         </div>
         <a
           href="/"
-          className="inline-block bg-black text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition"
+          className="inline-block bg-black text-white px-6 py-3 rounded-lg hover:bg-red-600 transition"
         >
           Return Home
         </a>
@@ -78,7 +78,7 @@ function OrderCompleteContent() {
 
       <a
         href="/"
-        className="inline-block bg-black text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition"
+        className="inline-block bg-black text-white px-6 py-3 rounded-lg hover:bg-red-600 transition"
       >
         Return Home
       </a>

@@ -313,7 +313,7 @@ export default function SellPage() {
             />
             <span>
               I agree to the{" "}
-              <Link href="/terms-and-service" className="text-blue-600 underline">
+              <Link href="/terms-and-service" className="text-red-600 underline">
                 Terms & Services
               </Link>
               .
@@ -338,7 +338,7 @@ export default function SellPage() {
         {/* SUBMIT */}
         <button
           type="submit"
-          className="w-full bg-black text-white py-4 rounded-lg text-lg font-semibold hover:bg-blue-600 transition"
+          className="w-full bg-black text-white py-4 rounded-lg text-lg font-semibold hover:bg-red-600 transition"
         >
           Submit Listing Request
         </button>

@@ -200,7 +200,7 @@ export default function ListingDetailPage({ slug } : any) {
                       setLightboxOpen(true);
                     }}
                     className={`relative w-24 h-20 rounded-md overflow-hidden cursor-pointer border flex-shrink-0 ${
-                      index === i ? "border-blue-600" : "border-gray-300"
+                      index === i ? "border-red-600" : "border-gray-300"
                     }`}
                   >
                     {isThumbVideo ? (
@@ -223,7 +223,7 @@ export default function ListingDetailPage({ slug } : any) {
             {car.make} {car.model}
           </h1>
 
-          <h2 className="text-xl font-bold text-black mb-3">Price: {car.price}</h2>
+          <h2 className="text-xl font-bold text-black mb-3">{car.price}</h2>
 
           <div className="space-y-2 text-black">
             <p><span className="font-semibold">Year:</span> {car.year}</p>
@@ -313,7 +313,7 @@ export default function ListingDetailPage({ slug } : any) {
 
                   <button
                     type="submit"
-                    className="w-full bg-black text-white py-3 rounded hover:bg-blue-600 transition"
+                    className="w-full bg-black text-white py-3 rounded hover:bg-red-600 transition"
                   >
                     Send Inquiry
                   </button>

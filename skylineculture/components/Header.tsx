@@ -123,7 +123,7 @@ export default function Header() {
   {cartCount > 0 && (
     <span className="
       absolute -top-2 -right-2 
-      bg-blue-600 text-white 
+      bg-red-600 text-white 
       text-xs font-semibold 
       w-5 h-5 flex items-center justify-center 
       rounded-full shadow
@@ -160,7 +160,7 @@ export default function Header() {
   {cartCount > 0 && (
     <span className="
       absolute -top-2 -right-2 
-      bg-blue-600 text-white 
+      bg-red-600 text-white 
       text-xs font-semibold 
       w-5 h-5 flex items-center justify-center 
       rounded-full shadow
@@ -270,7 +270,7 @@ export default function Header() {
   {cartCount > 0 && (
     <span className="
       absolute -top-2 -right-2 
-      bg-blue-600 text-white 
+      bg-red-600 text-white 
       text-xs font-semibold 
       w-5 h-5 flex items-center justify-center 
       rounded-full shadow

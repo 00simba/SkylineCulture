@@ -52,7 +52,7 @@ export default function ContactPage() {
       <p className="text-gray-700 mb-8">
         Please fill out the form below in order to get in touch about any
         inquiries, or email{" "}
-        <a href="mailto:info@skylineculture.com" className="text-blue-600 underline">
+        <a href="mailto:info@skylineculture.com" className="text-red-600 underline">
           info@skylineculture.com
         </a>
         . You can expect to receive a response within 24 hours.
@@ -125,7 +125,7 @@ export default function ContactPage() {
             disabled={!(name && email && subject && message)}
             className={`w-full py-3 rounded-md text-lg font-semibold transition ${
               name && email && subject && message
-                ? "bg-blue-600 hover:bg-blue-500 text-white"
+                ? "bg-red-600 hover:bg-red-500 text-white"
                 : "bg-gray-400 text-gray-700 cursor-not-allowed"
             }`}
           >

@@ -66,7 +66,7 @@ export default function ListingsPage() {
 
                 
 
-                <button className="mt-4 w-full bg-black text-white py-2 rounded hover:bg-blue-600 transition">
+                <button className="mt-4 w-full bg-black text-white py-2 rounded hover:bg-red-600 transition">
                   View Details
                 </button>
               </div>

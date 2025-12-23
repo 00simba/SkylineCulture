@@ -52,7 +52,7 @@ export default function CartPage() {
         <h1 className="text-3xl font-bold text-black mb-4">
           Your Cart is Empty
         </h1>
-        <Link href="/accessories" className="text-blue-600 underline">
+        <Link href="/accessories" className="text-red-600 underline">
           Browse Items →
         </Link>
       </div>
@@ -94,7 +94,7 @@ export default function CartPage() {
                 Qty: {item.productQuantity}
               </p>
 
-              <p className="text-blue-600 font-bold mt-1">
+              <p className="text-black-600 font-bold mt-1">
                 ${item.productPrice}
               </p>
 
@@ -130,7 +130,7 @@ export default function CartPage() {
 
       {/* Checkout */}
       <button
-        className="w-full mt-6 bg-black text-white py-4 rounded-lg font-semibold hover:bg-blue-600 transition disabled:opacity-50"
+        className="w-full mt-6 bg-black text-white py-4 rounded-lg font-semibold hover:bg-red-600 transition disabled:opacity-50"
         onClick={handleCheckout}
         disabled={loading}
       >

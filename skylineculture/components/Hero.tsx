@@ -94,7 +94,7 @@ export default function Hero() {
 
               <a
                 href={slide.href}
-                className="px-6 py-3 bg-black hover:bg-slate-600 text-white rounded-md text-lg font-medium transition"
+                className="px-6 py-3 bg-black hover:bg-red-600 text-white rounded-md text-lg font-medium transition"
               >
                 {slide.button}
               </a>

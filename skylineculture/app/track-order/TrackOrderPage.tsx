@@ -65,7 +65,7 @@ export default function TrackOrderPage() {
             value={orderId}
             onChange={(e) => handleOrderIdChange(e.target.value)}
             placeholder="1234"
-            className="border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-600"
+            className="border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-red-600"
           />
           {error && (
             <p className="text-red-600 text-sm mt-2">{error}</p>
@@ -81,14 +81,14 @@ export default function TrackOrderPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            className="border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-600"
+            className="border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-red-600"
           />
         </div>
 
         {/* SUBMIT */}
         <button
           type="submit"
-          className="w-full bg-black text-white py-3 rounded-md text-lg font-semibold hover:bg-blue-600 transition"
+          className="w-full bg-black text-white py-3 rounded-md text-lg font-semibold hover:bg-red-600 transition"
         >
           Track Order
         </button>

@@ -194,13 +194,13 @@ export default function ProductPage({ slug } : any ) {
           <div className="flex items-center gap-3 mb-2">
             {product.sale_price  ?
               <>
-              <p className="text-xl font-semibold text-blue-600">${product.sale_price}</p>
+              <p className="text-xl font-semibold text-black">${product.sale_price}</p>
               <p className="text-xl line-through text-gray-400">${product.price.toFixed(2)}</p>
               </> 
              
               :
               <>
-              <p className="text-xl font-semibold text-blue-600">${product.price.toFixed(2)}</p>
+              <p className="text-xl font-semibold text-black">${product.price.toFixed(2)}</p>
               </>
             
             }
@@ -223,7 +223,7 @@ export default function ProductPage({ slug } : any ) {
                     onClick={() => setSelectedVariant(option)}
                     className={`px-4 py-2 rounded-md border bg-black ${
                       selectedVariant === option
-                        ? "bg-blue-600 border-blue-500"
+                        ? "bg-red-600 border-red-500"
                         : "border-gray-500 hover:border-gray-300"
                     }`}
                   >
@@ -298,7 +298,7 @@ export default function ProductPage({ slug } : any ) {
             className={`w-full py-3 rounded-md text-lg font-semibold transition ${
               isSoldOut
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-500 text-white"
+                : "bg-red-600 hover:bg-red-500 text-white"
             }`}
             onClick={() => {
               if (isSoldOut) return;
