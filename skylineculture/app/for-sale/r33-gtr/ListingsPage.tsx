@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import cars from "@/data/carData";
 
 export default function ListingsPage() {
   return (
@@ -8,7 +10,7 @@ export default function ListingsPage() {
       <div className="max-w-7xl mx-auto px-6 py-12">
 
         <div className="text-sm text-black mb-5">
-          <Link href="/" className="text-black">Home</Link>
+          <Link href="/" className="text-red-600 underline">Home</Link>
           {" / "}
           <span className="text-black">Listings</span>
         </div>
@@ -22,12 +24,10 @@ export default function ListingsPage() {
         </p>
 
         <h1 className="text-2xl font-bold mb-8 text-black">
-        No Listings
+        No Active Listings
         </h1>
 
-
         {/*
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {cars.map((car) => (
             car.model == "R33 GT-R" &&
@@ -73,7 +73,9 @@ export default function ListingsPage() {
             </Link>
           ))}
         </div>
-          */}
+
+        */}
+
 
       </div>
     </>

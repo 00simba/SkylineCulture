@@ -1,6 +1,6 @@
 import { generateProductMetadata } from "@/lib/generateProductMetadata";
 import { generateProductJsonLd } from "@/lib/generateProductJsonLd";
-import ProductPage from "../../accessories/ProductPage";
+import ProductPage from "../../ProductPage";
 import products from "@/data/productData";
 
 export async function generateMetadata({ params } : { params : { slug : string } }){
@@ -10,14 +10,14 @@ export async function generateMetadata({ params } : { params : { slug : string }
 
 export default async function Page( { params } : { params: { slug : string}} ){
 
-  const result = await (params as any);
-  const product = products.find((p) => p.url === result.slug);
-  const url = `https://skylineculture.com/products/${result.slug}`
+  const { slug } = await (params as any);
+  const product = products.find((p) => p.url === slug);
+  const url = `https://skylineculture.com/accessories/other/${slug}`;
   const jsonLd = product ? generateProductJsonLd(product, url) : null;
 
   return(
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}/>
+      {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}/>}
       <ProductPage/>
     </>
   )

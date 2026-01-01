@@ -1,6 +1,6 @@
 "use client";
 
-import data from "@/data/data";
+import data from "@/data/productData";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 
@@ -15,14 +15,16 @@ export default function PinsPage() {
 
         {/* 🔥 Breadcrumbs (same style as product pages) */}
         <div className="text-sm text-black mb-5">
-          <Link href="/" className="text-black">Home</Link>
+          <Link href="/" className="text-red-600 underline">Home</Link>
+          {" / "}
+          <Link href="/accessories" className="text-red-600 underline">Accessories</Link>
           {" / "}
           <span className="text-black">Pins</span>
         </div>
 
         {/* Page Title */}
         <h1 className="text-2xl md:text-3xl font-bold mb-4 text-black">
-          Keychains
+          Pins
         </h1>
 
         <p className="text-gray-600 mb-6">

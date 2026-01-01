@@ -128,8 +128,8 @@ export default function ListingDetailPage({ slug } : any) {
 
       {/* Breadcrumb */}
       <div className="text-sm text-black mb-5">
-        <Link href="/" className="text-black">Home</Link> /{" "}
-        <Link href="/for-sale" className="text-black">Listings</Link> / <Link href="/for-sale/r34-gtr" className="text-black">R34 GT-R</Link> /{" "}
+        <Link href="/" className="text-red-600 underline">Home</Link> /{" "}
+        <Link href="/for-sale" className="text-red-600 underline">Listings</Link> / <Link href="/for-sale/r34-gtr" className="text-red-600 underline">R34 GT-R</Link> /{" "}
         <span className="text-black">{car.year} {car.color} {car.trim}</span>
       </div>
 
@@ -244,7 +244,7 @@ export default function ListingDetailPage({ slug } : any) {
           </div>
 
           {/* CONTACT FORM */}
-          <div className="border rounded-lg p-6 bg-white shadow-md">
+          <div className="rounded-lg p-6 bg-gray-100 shadow-md">
 
             {sent ? (
               <div className="bg-green-100 text-green-800 border border-green-300 p-4 rounded">
@@ -256,7 +256,7 @@ export default function ListingDetailPage({ slug } : any) {
                   Inquire About This Vehicle
                 </h3>
 
-                <p className="text-gray-600 mb-4">
+                <p className="text-black mb-4">
                   Want more details? Fill out the form and we’ll contact you within 24 hours.
                 </p>
 
@@ -277,7 +277,7 @@ export default function ListingDetailPage({ slug } : any) {
                     type="text"
                     name="fullName"
                     placeholder="Full Name"
-                    className="w-full border rounded p-3"
+                    className="w-full rounded p-3 bg-white"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     required
@@ -287,7 +287,7 @@ export default function ListingDetailPage({ slug } : any) {
                     type="email"
                     name="email"
                     placeholder="Email"
-                    className="w-full border rounded p-3"
+                    className="w-full rounded p-3 bg-white"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -297,7 +297,7 @@ export default function ListingDetailPage({ slug } : any) {
                     type="tel"
                     name="phone"
                     placeholder="Phone Number"
-                    className="w-full border rounded p-3"
+                    className="w-full rounded p-3 bg-white"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                   />
@@ -305,7 +305,7 @@ export default function ListingDetailPage({ slug } : any) {
                   <textarea
                     name="message"
                     placeholder="Your message..."
-                    className="w-full border rounded p-3 h-24"
+                    className="w-full rounded p-3 h-24 bg-white"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required

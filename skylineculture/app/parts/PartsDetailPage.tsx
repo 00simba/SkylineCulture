@@ -1,15 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import products from "@/data/data";
-import { Product, VariantOption } from "@/types/product";
+import parts from "@/data/partsData";
+import { VariantOption } from "@/types/part";
 import { useCart } from "@/app/context/CartContext";
 import toast from "react-hot-toast";
 import NotFound from "@/app/not-found";
-import axios from "axios";
 import { generateProductMetadata } from "@/lib/generateProductMetadata";
+import Link from "next/link";
 
 export async function generateMetadata(
   { params } : { params : { slug : string } }
@@ -19,18 +18,21 @@ export async function generateMetadata(
 
 }
 
-export default function ProductPage({ slug } : any ) {
+export default function PartsDetailPage({ slug } : any ) {
   const { addToCart } = useCart();
 
-  const product: Product | undefined = products.find((p) => p.url === slug);
+  const part = parts.find((p) => p.url[0] === slug);
 
-  if (!product) return <NotFound />;
+  console.log(slug);
+  
+
+  if (!part) return <NotFound />;
 
   /** IMAGE STATE */
   const [index, setIndex] = useState(0);
 
-  const nextSlide = () => setIndex((i) => (i + 1) % product.img.length);
-  const prevSlide = () => setIndex((i) => (i - 1 + product.img.length) % product.img.length);
+  const nextSlide = () => setIndex((i) => (i + 1) % part.img.length);
+  const prevSlide = () => setIndex((i) => (i - 1 + part.img.length) % part.img.length);
 
   /** -------------------------------------
    *  SWIPE SUPPORT (MOBILE)
@@ -62,8 +64,8 @@ export default function ProductPage({ slug } : any ) {
 
   /** VARIANT STATE */
   const firstVariantGroup: VariantOption | undefined =
-    product.variants?.[0] && Object.keys(product.variants[0]).length > 0
-      ? product.variants[0]
+    part.variants?.[0] && Object.keys(part.variants[0]).length > 0
+      ? part.variants[0]
       : undefined;
 
   const variantName = firstVariantGroup ? Object.keys(firstVariantGroup)[0] : null;
@@ -82,9 +84,10 @@ export default function ProductPage({ slug } : any ) {
   const [isSoldOut, setIsSoldOut] = useState(false);
 
   // Load stock from MongoDB
+  {/*
   useEffect(() => {
     axios.post("https://skylineculture-api.onrender.com/get-stock", {
-        productName: product.title,
+        productName: part.title,
       })
       .then((res) => {
         setStockData(res.data[0]?.stock);
@@ -104,37 +107,38 @@ export default function ProductPage({ slug } : any ) {
         setIsSoldOut(soldOut);
       })
       .catch((err) => console.error(err));
-  }, [selectedVariant]);
+  }, [selectedVariant]); */}
 
   /** RECOMMENDED ITEMS */
-  const recommended = products
-    .filter((p) => p.collection === product.collection && p.url !== product.url)
-    .slice(0, 3);
-
+  
   return (
+
     <div className="max-w-6xl mx-auto px-6 py-10 text-white">
 
-      {/* BACK BUTTON */}
+      {/* BACK BUTTON 
       <Link
-        href={`/${product.collection.toLowerCase().replace(" ", "-")}`}
+        href={`/${part.compatible[0].toLowerCase().replace(" ", "-")}`}
         className="text-black mb-6 inline-block"
       >
-        ← Back to {product.collection}
+        ← Back to {part.compatible[0]}
       </Link>
+        */}
 
-      {/* BREADCRUMB */}
+      {/* BREADCRUMB 
       <div className="text-sm text-black mb-5">
         <Link href="/" className="text-black">Home</Link>
         {" / "}
         <Link
-          href={`/${product.collection.toLowerCase().replace(" ", "-")}`}
+          href={`/${part.compatible[0].toLowerCase().replace(" ", "-")}`}
           className="text-black"
         >
-          {product.collection}
+          {part.compatible[0]}
         </Link>
         {" / "}
-        <span className="text-black">{product.title}</span>
+        <span className="text-black">{part.compatible[0]}</span>
       </div>
+        */}
+      
 
       {/* MAIN GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -147,15 +151,15 @@ export default function ProductPage({ slug } : any ) {
             onTouchEnd={onTouchEnd}
           >
             <Image
-              src={product.img[index]}
-              alt={product.title}
+              src={part.img[index]}
+              alt={part.title}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-contain"
             />
           </div>
 
-          {product.img.length > 1 && (
+          {part.img.length > 1 && (
             <>
               <button
                 onClick={prevSlide}
@@ -172,7 +176,7 @@ export default function ProductPage({ slug } : any ) {
               </button>
 
               <div className="flex justify-center gap-2 mt-3">
-                {product.img.map((_, i) => (
+                {part.img.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setIndex(i)}
@@ -186,21 +190,25 @@ export default function ProductPage({ slug } : any ) {
           )}
         </div>
 
+        
+
         {/* INFO */}
         <div>
-          <h1 className="text-black text-2xl font-bold mb-1">{product.title}</h1>
+          <h1 className="text-red-600 text-xl font-bold mb-1">NISMO</h1>
+          <h1 className="text-black text-2xl font-bold mb-1 ">{part.title}</h1>
+          
 
           {/* PRICE */}
           <div className="flex items-center gap-3 mb-2">
-            {product.sale_price  ?
+            {part.sale_price  ?
               <>
-              <p className="text-xl font-semibold text-black">${product.sale_price}</p>
-              <p className="text-xl line-through text-gray-400">${product.price.toFixed(2)}</p>
+              <p className="text-xl font-semibold text-black">${part.sale_price}</p>
+              <p className="text-xl line-through text-gray-400">${part.price.toFixed(2)}</p>
               </> 
              
               :
               <>
-              <p className="text-xl font-semibold text-black">${product.price.toFixed(2)}</p>
+              <p className="text-xl font-semibold text-black">${part.price.toFixed(2)}</p>
               </>
             
             }
@@ -214,7 +222,7 @@ export default function ProductPage({ slug } : any ) {
 
           {/* VARIANT SELECTOR */}
           {variantName && (
-            <div className="mb-6">
+            <div className="mb-4">
               <h3 className="text-black text-lg font-semibold mb-2">{variantName}</h3>
               <div className="flex gap-3 flex-wrap">
                 {variantOptions.map((option, i) => (
@@ -235,39 +243,51 @@ export default function ProductPage({ slug } : any ) {
           )}
 
           {/* DESCRIPTION */}
-          <div className="mb-6 whitespace-pre-line">
-            <h2 className="text-xl font-semibold mb-2 text-black">Description</h2>
+          <div className="mb-5 whitespace-pre-line">
             <ul className="text-black space-y-2">
-              {product.description.map((line, i) => (
+              {part.description.map((line, i) => (
                 <li key={i}>{line}</li>
               ))}
             </ul>
           </div>
 
           {/* SPECS */}
-          {product.specs && (
-            <div className="mb-6">
-              <h2 className="text-xl font-semibold mb-2 text-black">Specifications</h2>
-              <p className="text-black whitespace-pre-line">{product.specs}</p>
+          {part.specs && (
+            <div className="mb-5">
+              <h2 className="text-xl font-semibold mb-1 text-black">Details</h2>
+              <p className="text-black whitespace-pre-line">{part.specs}</p>
+              { part.catalogue ?
+                <p>
+                  <Link href={`${part.catalogue}`} target="_blank" rel="noopener noreferrer">
+                    <span className="text-red-600 underline">Parts Catalogue</span>
+                  </Link> 
+                    <span className="text-black">: {part.partNumber.join(", ")}</span>
+                </p>
+                :
+                <p className="text-gray-600 cursor-not-allowed">
+                  <span className="underline">Parts Catalogue</span>
+                  <span>: {part.partNumber.join(", ")}</span>
+                </p>
+              }
             </div>
           )}
 
           {/* SHIPPING */}
-          {product.shipping && (
-            <div className="mb-6">
-              <h2 className="text-xl font-semibold mb-2 text-black">Shipping</h2>
-              <p className="text-black whitespace-pre-line">{product.shipping[0]}</p>
+          {part.shipping && (
+            <div className="mb-5">
+              <h2 className="text-xl font-semibold mb-1 text-black">Shipping</h2>
+              <p className="text-black whitespace-pre-line">{part.shipping[0]}</p>
             </div>
           )}
 
           {/* QUANTITY */}
           <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2 text-black">Quantity</h3>
+            <h3 className="text-lg font-semibold mb-1 text-black">Quantity</h3>
 
             <div className="flex items-center w-32 border border-gray-400 rounded-md overflow-hidden">
               <button
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
-                className="w-10 h-10 flex items-center justify-center text-xl text-black hover:bg-gray-200"
+                className="w-10 h-10 flex items-center justify-center text-xl text-black hover:bg-gray-200 cursor-pointer"
               >
                 -
               </button>
@@ -285,24 +305,29 @@ export default function ProductPage({ slug } : any ) {
 
               <button
                 onClick={() => setQty((q) => q + 1)}
-                className="w-10 h-10 flex items-center justify-center text-xl text-black hover:bg-gray-200"
+                className="w-10 h-10 flex items-center justify-center text-xl text-black hover:bg-gray-200 cursor-pointer"
               >
                 +
               </button>
             </div>
           </div>
 
+          <div className="mb-6">
+            <p className="text-blue-600">Earn Skyline (SKYLN) on this purchase</p>
+            <p className="text-gray-400">SKYLN earned is based on your order total.</p>
+          </div>
+
           {/* ADD TO CART */}
           <button
             disabled={isSoldOut}
-            className={`w-full py-3 rounded-md text-lg font-semibold transition ${
+            className={`w-full py-3 rounded-md text-lg font-semibold transition cursor-pointer ${
               isSoldOut
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-red-600 hover:bg-red-500 text-white"
             }`}
             onClick={() => {
               if (isSoldOut) return;
-              addToCart(product, qty, selectedVariant);
+              addToCart(part, qty, selectedVariant);
               toast.success("Added to cart!");
             }}
           >
@@ -311,38 +336,6 @@ export default function ProductPage({ slug } : any ) {
         </div>
       </div>
 
-      {/* RECOMMENDED ITEMS */}
-      {recommended.length > 0 && (
-        <div className="mt-16">
-          <h2 className="text-black text-center text-2xl font-semibold mb-6">
-            You May Also Like
-          </h2>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-            {recommended.map((item) => (
-              <Link
-                key={item.id}
-                href={`/product/${item.url}`}
-                className="bg-gray-900 rounded-lg overflow-hidden hover:opacity-80 transition border-2 border-gray-200"
-              >
-                <div className="relative w-full h-40">
-                  <Image
-                    src={item.img[0]}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="p-3 bg-black">
-                  <p className="font-semibold">{item.title}</p>
-                  <p className="text-white text-sm">${item.price}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -1,6 +1,6 @@
-import PinsPage from "./PinsPage";
+import PinsPage from "../PinsPage";
 import { generateCollectionJsonLd } from "@/lib/generateCollectionJsonLd";
-import data from "@/data/data";
+import data from "@/data/productData";
 
 import type { Metadata } from "next";
 

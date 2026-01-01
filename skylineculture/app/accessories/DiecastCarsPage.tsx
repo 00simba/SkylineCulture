@@ -1,11 +1,11 @@
 "use client";
 
-import data from "@/data/data";
+import data from "@/data/productData";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 
 export default function DiecastCarsPage() {
-  const diecasts = data.filter((p) => p.collection === "Diecast Cars");
+  const diecasts = data.filter((p) => p.collection.toLowerCase() === "diecast-cars");
 
   return (
     <>
@@ -13,7 +13,9 @@ export default function DiecastCarsPage() {
 
         {/* 🔥 Breadcrumbs (same style as your other pages) */}
         <div className="text-sm text-black mb-5">
-          <Link href="/" className="text-black">Home</Link>
+          <Link href="/" className="text-red-600 underline">Home</Link>
+          {" / "}
+          <Link href="/accessories" className="text-red-600 underline">Accessories</Link>
           {" / "}
           <span className="text-black">Diecast Cars</span>
         </div>

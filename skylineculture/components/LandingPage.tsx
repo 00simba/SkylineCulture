@@ -1,5 +1,5 @@
 import ProductCard from "@/components/ProductCard";
-import data from "@/data/data";
+import data from "@/data/productData";
 import Hero from "@/components/Hero";
 import ListingCard from "./ListingCard";
 import cars from "@/data/carData";

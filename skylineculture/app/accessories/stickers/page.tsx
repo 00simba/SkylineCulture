@@ -1,5 +1,5 @@
-import data from "@/data/data";
-import StickersPage from "./StickersPage";
+import data from "@/data/productData";
+import StickersPage from "../StickersPage";
 import { generateCollectionJsonLd } from "@/lib/generateCollectionJsonLd";
 
 import type { Metadata } from "next";
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page(){
-    const stickers = data.filter((p) => p.collection === "Stickers");
+    const stickers = data.filter((p) => p.collection.toLowerCase() === "stickers");
     const stickersJsonLd = generateCollectionJsonLd("Stickers", stickers.map((p) => ({
         url: `https://www.skylineculture.com/product/${p.url}`
     })));

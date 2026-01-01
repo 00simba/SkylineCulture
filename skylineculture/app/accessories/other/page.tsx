@@ -1,6 +1,6 @@
 import { generateCollectionJsonLd } from "@/lib/generateCollectionJsonLd";
-import OthersPage from "./OthersPage";
-import data from "@/data/data";
+import OthersPage from "../OthersPage";
+import data from "@/data/productData";
 
 import type { Metadata } from "next";
 

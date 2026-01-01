@@ -16,18 +16,24 @@ export default function Header() {
   const logoHeight = 250;
 
   const accessoriesLinks = [
-    { name: "Keychains", href: "/keychains" },
-    { name: "Stickers", href: "/stickers" },
-    { name: "Diecasts", href: "/diecast-cars" },
-    { name: "Pins", href: "/pins" },
-    { name: "Other", href: "/other"}
+    { name: "Keychains", href: "/accessories/keychains" },
+    { name: "Stickers", href: "/accessories/stickers" },
+    { name: "Diecasts", href: "/accessories/diecast-cars" },
+    { name: "Pins", href: "/accessories/pins" },
+    { name: "Other", href: "/accessories/other"}
   ];
 
   const listingsLinks = [
-    { name: "R34 GTR", href: "/for-sale/r34-gtr"},
-    { name: "R33 GTR", href: "/for-sale/r33-gtr"},
-    { name: "R32 GTR", href: "/for-sale/r32-gtr"},
+    { id: "listings-1", name: "R34 GT-R", href: "/for-sale/r34-gtr"},
+    { id: "listings-2", name: "R33 GT-R", href: "/for-sale/r33-gtr"},
+    { id: "listings-3",name: "R32 GT-R", href: "/for-sale/r32-gtr"},
   ]
+
+    const partsLinks = [
+    { id: "parts-1", name: "R34 GT-R", href: "/parts" },
+    { id: "parts-2", name: "R33 GT-R", href: "/parts" },
+    { id: "parts-3", name: "R32 GT-R", href: "/parts" },
+  ];
 
   const navLinks = [
     { name: "Sell", href: "/sell" },
@@ -37,9 +43,11 @@ export default function Header() {
   const cartCount = cart.reduce((sum, item) => sum + item.productQuantity, 0);
   const cloudFrontUrl = 'https://d38opoffv15p79.cloudfront.net/Images';
 
-
   return (
-    <header className="w-full bg-black top-0 left-0 z-50 relative select-none">
+
+    // DESKTOP 
+    
+    <header className="sticky w-full bg-black top-0 left-0 z-50 relative select-none">
 
       <div className="hidden lg:flex flex-row max-w-6xl mx-auto px-6 h-25 items-center justify-between">
 
@@ -57,7 +65,7 @@ export default function Header() {
 
           <div className="relative group lg:block hidden">
   <Link href="/for-sale">
-    <button className="hover:text-zinc-300 transition">
+    <button className="hover:text-zinc-300 transition cursor-pointer">
       Browse
     </button>
   </Link>
@@ -68,7 +76,7 @@ export default function Header() {
                   transition-all duration-200 overflow-hidden">
     {listingsLinks.map((item) => (
       <Link
-        key={item.name}
+        key={item.id}
         href={item.href}
         className="block px-4 py-2 text-sm hover:bg-gray-200"
       >
@@ -78,7 +86,35 @@ export default function Header() {
   </div>
 </div>
 
-          {navLinks.map((link) => (
+        
+
+          <div className="relative group lg:block hidden">
+          <Link href={'/parts'}>
+            <button  className="hover:text-zinc-300 transition cursor-pointer">
+              Parts
+            </button>
+          </Link>
+
+            
+
+          
+          <div className="absolute left-0 mt-2 w-30 bg-white text-black rounded-md shadow-lg 
+                          opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                          transition-all duration-200 overflow-hidden">
+            {partsLinks.map((item) => (
+              <Link
+                key={item.id}
+                href={item.href}
+                className="block px-4 py-2 text-sm hover:bg-gray-200"
+              >
+                {item.name}
+              </Link>
+            ))}
+
+          </div>
+        </div>
+
+        {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
@@ -87,6 +123,7 @@ export default function Header() {
               {link.name}
             </Link>
           ))}
+
 
 <div className="relative group lg:block hidden">
   <Link href={'/accessories'}>
@@ -170,7 +207,10 @@ export default function Header() {
   )}
 </Link>
 
+
   </div>
+  
+  {/* TABLET */}
 
   <div className="flex pb-5 justify-center">
     <nav className="flex text-white items-center gap-8 text-lg font-medium">
@@ -280,7 +320,10 @@ export default function Header() {
   )}
 </Link>
 
-      </div>
+    </div>
+
+        
+       {/* MOBILE */}
 
       {menuOpen && (
         <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setMenuOpen(false)}>
@@ -358,8 +401,8 @@ export default function Header() {
               >
                 Track Order
               </Link>
-          </div>
         </div>
+      </div>
       )}
     </header>
   );

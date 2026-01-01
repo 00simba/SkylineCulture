@@ -20,7 +20,7 @@ const products: Product[] = [
         "specs": "Size: 2 inches on longest side\n Material: Constructed of metal",
         "shipping": [shipping[0]],
         "variants" : [{}],
-        "collection" : "Keychains",
+        "collection" : "keychains",
         "featured" : true,
     },
     {
@@ -39,7 +39,7 @@ const products: Product[] = [
         "specs": "Size: 2 inches on longest side\n Material: Constructed of metal",
         "shipping": [shipping[0]],
         "variants" : [{}],
-        "collection" : "Keychains",
+        "collection" : "keychains",
         "featured" : true,
     },
     {
@@ -59,7 +59,7 @@ const products: Product[] = [
         "specs": "Size: 28mm X 16mm.\n Material: Constructed of metal",
         "shipping": [shipping[0]],
         "variants": [{"Select Color": ["Black", "Silver", "Chroma"]}],
-        "collection" : "Keychains",
+        "collection" : "keychains",
         "featured" : false,
     },
     {
@@ -79,7 +79,7 @@ const products: Product[] = [
         "specs": "Size: 2 inches on longest side\n Material: Constructed of zinc alloy",
         "shipping": [shipping[0]],
         "variants" : [{}],
-        "collection" : "Keychains",
+        "collection" : "keychains",
         "featured" : false,
     },
     {
@@ -99,7 +99,7 @@ const products: Product[] = [
         "specs": "Size: 4cm to 10cm\n Material: Vinyl, Eco-Friendly PVC",
         "shipping": [shipping[0]],
         "variants" : [{}],
-        "collection" : "Stickers",
+        "collection" : "stickers",
         "featured" : false,
     },
     {
@@ -121,7 +121,7 @@ const products: Product[] = [
         "specs": "Brand: Welly\n Scale: 1:24",
         "shipping": [shipping[0]],
         "variants" : [{"Select Color": ["Blue", "White"]}],
-        "collection" : "Diecast Cars",
+        "collection" : "diecast-cars",
         "featured" : false,
     },
     {
@@ -141,7 +141,7 @@ const products: Product[] = [
         "specs": "Brand: Jackiekim \n Scale: 1:36",
         "shipping": [shipping[0]],
         "variants" : [{"Select Color": ["Blue", "Black", "Silver"]}],
-        "collection" : "Diecast Cars",
+        "collection" : "diecast-cars",
         "featured" : false,
     },
     {
@@ -161,7 +161,7 @@ const products: Product[] = [
         "specs": "Size: 2 inches on longest side\n Material: Constructed of metal",
         "shipping": [shipping[0]],
         "variants" : [{}],
-        "collection" : "Keychains",
+        "collection" : "keychains",
         "featured" : false,
     },
     {
@@ -181,7 +181,7 @@ const products: Product[] = [
         "specs": "Size: 74mm length\n Material: Constructed of metal",
         "shipping": [shipping[0]],
         "variants": [{"Select Colour": ["Blue", "Green", "Gold", "Red", "Black"]}],
-        "collection" : "Keychains",
+        "collection" : "keychains",
         "featured" : false,
     },
     {
@@ -201,7 +201,7 @@ const products: Product[] = [
         "specs": "Size: 3.2cm rim diameter\n Material: Constructed of zinc alloy",
         "shipping": [shipping[0]],
         "variants" : [{"Select Color": ["Black", "Silver", "Chroma"]}],
-        "collection" : "Keychains",
+        "collection" : "keychains",
         "featured" : false,
     },
     {
@@ -221,7 +221,7 @@ const products: Product[] = [
         "specs": "Size: 1.5 inches by 1.7 inches\n Material: Constructed of metal",
         "shipping": [shipping[0]],
         "variants" : [{}],
-        "collection" : "Keychains",
+        "collection" : "keychains",
         "featured" : true,
     },
     {
@@ -239,7 +239,7 @@ const products: Product[] = [
         "specs": "Size: 1.5 in x 0.75 in\n Double Black Rubber Pin Clutch\n Soft Enamel Process\n Black Dyed Metal",
         "shipping": [shipping[0]],
         "variants" : [{}],
-        "collection" : "Pins",
+        "collection" : "pins",
         "featured" : false,
     },
     {
@@ -257,7 +257,7 @@ const products: Product[] = [
         "specs": "- Made from 304 stainless steel with brushed metal finish\n- Measures 3 inches by 0.65 inches and 1mm in thickness\n- Precision laser-etched SkylineCulture branding\n- Heat and corrosion-resistant\n- Includes 3M automotive-grade tape for easy installation\n- Ideal for engine bays, show cars, and street builds\n\nDesigned for true Skyline enthusiasts — clean, timeless, and built to last.",
         "shipping": [shipping[0]],
         "variants" : [{}],
-        "collection" : "Other", 
+        "collection" : "other", 
         "featured" : true,   
     },
 ]

@@ -5,6 +5,7 @@ import Footer from "@/components/Footer"
 import CartWrapper from "./cartwrapper";
 import { Toaster } from "react-hot-toast";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Metadata } from "next";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -30,16 +31,19 @@ const websiteJsonLd = {
   url: "https://www.skylineculture.com",
 };
 
-export const metadata = {
-  title: "SkylineCulture",
+export const metadata: Metadata = {
+  title: {
+    default: "SkylineCulture | Nissan Skyline Buy & Sell Marketplace",
+    template: "%s | SkylineCulture",
+  },
   description:
-    "The trusted marketplace to buy and sell Nissan Skyline cars, accessories, and collectibles. Verified listings and a global enthusiast community.",
+    "Buy and sell Nissan Skyline GT-Rs, explore genuine NISMO parts, and shop Skyline accessories and collectibles.",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-icon.png"
   },
+  metadataBase: new URL("https://www.skylineculture.com"),
 };
-
 
 export default function RootLayout({
   children,

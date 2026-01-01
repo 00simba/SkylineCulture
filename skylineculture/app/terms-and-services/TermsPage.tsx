@@ -20,10 +20,9 @@ export default function TermsPage() {
         <h2 className="text-xl font-semibold mb-3">1. Platform Purpose</h2>
         <p>
           SkylineCulture connects Nissan Skyline enthusiasts, buyers, and sellers through
-          our website and our social media presence of over 430,000 followers.
-          We provide product sales, accessories, and a marketplace for vehicle listings.
-          SkylineCulture does not own or inspect the vehicles listed by sellers unless
-          otherwise stated.
+          our website and social media presence. We provide product sales, accessories,
+          and a marketplace for vehicle listings. SkylineCulture does not own, inspect,
+          or guarantee vehicles listed by sellers unless otherwise stated.
         </p>
       </section>
 
@@ -33,44 +32,41 @@ export default function TermsPage() {
         <p>
           Users are responsible for ensuring that all submitted vehicle information is
           accurate, honest, and up to date. SkylineCulture reserves the right to decline
-          or remove any listing that appears fraudulent, misleading, or unsafe for buyers.
+          or remove any listing that appears fraudulent, misleading, or inappropriate.
         </p>
       </section>
 
-      {/* 3. Marketplace Fee (Required, Not Optional) */}
+      {/* 3. Vehicle Listing Fee */}
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">3. Marketplace Fee</h2>
+        <h2 className="text-xl font-semibold mb-3">3. Vehicle Listing Fee</h2>
 
         <p>
-          SkylineCulture <span className="font-semibold">charges a mandatory service
-          fee</span> for connecting a buyer and seller through the SkylineCulture platform
-          or associated social media channels.
+          SkylineCulture charges a <span className="font-semibold">one-time listing fee of
+          $39 USD</span> to publish a vehicle for sale on the SkylineCulture website.
         </p>
 
         <p className="mt-2">
-          This fee applies to all vehicle sales that occur as a direct result of:
+          This fee covers the creation, hosting, and exposure of your vehicle listing
+          on the SkylineCulture platform.
+        </p>
+
+        <p className="mt-2">
+          The listing fee is:
         </p>
 
         <ul className="list-disc ml-6 mt-2 space-y-1">
-          <li>SkylineCulture introducing a buyer to a seller</li>
-          <li>A buyer contacting a seller after viewing the vehicle on SkylineCulture</li>
-          <li>Exposure generated through SkylineCulture’s 430,000+ follower audience</li>
+          <li>Charged once per vehicle listing</li>
+          <li>Non-refundable once the listing is published</li>
+          <li>Not contingent on whether the vehicle sells</li>
         </ul>
 
         <p className="mt-2">
-          The fee amount is <span className="font-semibold">required</span> and will be
-          mutually agreed upon with the seller prior to or during the listing process.
-          This fee may vary depending on vehicle value and promotional efforts.
-        </p>
-
-        <p className="mt-2">
-          By submitting a vehicle listing, you acknowledge and agree to pay the agreed
-          marketplace fee if your vehicle sells as a result of SkylineCulture’s exposure,
-          communication, or referral.
+          SkylineCulture does <span className="font-semibold">not</span> charge commissions,
+          success fees, or percentages of vehicle sale prices.
         </p>
       </section>
 
-      {/* 4. Payments & Checkout */}
+      {/* 4. Product Sales & Payments */}
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">4. Product Sales & Payments</h2>
         <p>
@@ -96,7 +92,8 @@ export default function TermsPage() {
         <h2 className="text-xl font-semibold mb-3">6. Returns & Refunds</h2>
         <p>
           Returns are accepted for unused accessory items within 14 days of delivery.
-          Vehicle listings, promotional services, and marketplace fees are non-refundable.
+          Vehicle listing fees, promotional services, and published listings are
+          non-refundable.
         </p>
       </section>
 
@@ -104,9 +101,9 @@ export default function TermsPage() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">7. Seller Obligations</h2>
         <p>
-          Sellers must notify SkylineCulture immediately upon sale of their vehicle.
-          Failure to do so may result in account restrictions or legal action to recover
-          owed marketplace fees.
+          Sellers must ensure their listing remains accurate and must notify
+          SkylineCulture if the vehicle is no longer available so the listing can
+          be updated or removed.
         </p>
       </section>
 

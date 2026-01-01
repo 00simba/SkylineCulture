@@ -1,13 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import cars from "@/data/carData";
 
 export default function ListingsPage() {  
   return (
     <>
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="text-sm text-black mb-5">
-          <Link href="/" className="text-black">Home</Link>
+          <Link href="/" className="text-red-600 underline">Home</Link>
           {" / "}
           <span className="text-black">Listings</span>
         </div>
@@ -20,14 +22,14 @@ export default function ListingsPage() {
           Browse a curated selection of Nissan Skyline R32 GT-R listings from trusted owners. Each car is reviewed for authenticity and condition, giving you confidence as you search for the original GT-R—celebrated for its motorsport pedigree and iconic place in Skyline history.
         </p>
 
-        
 
         <h1 className="text-2xl font-bold mb-8 text-black">
-        No Listings
+        No Active Listings
         </h1>
 
 
         {/*
+
 
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -77,6 +79,7 @@ export default function ListingsPage() {
         </div>
 
         */}
+
       </div>
     </>
   );

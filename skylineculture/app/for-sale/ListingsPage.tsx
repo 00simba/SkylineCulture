@@ -9,13 +9,13 @@ export default function ListingsPage() {
     <div className="max-w-7xl mx-auto px-6 py-12">
 
       <div className="text-sm text-black mb-5">
-        <Link href="/" className="text-black">Home</Link>
+        <Link href="/" className="text-red-600 underline">Home</Link>
         {" / "}
         <span className="text-black">Listings</span>
       </div>
 
-      <h1 className="text-3xl font-bold mb-8 text-black">
-        Skyline GT-R For Sale
+      <h1 className="text-3xl font-bold mb-5 text-black">
+        Nissan Skyline GT-R For Sale
       </h1>
 
       <p className="text-gray-600 mb-10">

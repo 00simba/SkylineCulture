@@ -10,7 +10,7 @@ export default function ListingsPage() {
       <div className="max-w-7xl mx-auto px-6 py-12">
 
         <div className="text-sm text-black mb-5">
-          <Link href="/" className="text-black">Home</Link>
+          <Link href="/" className="text-red-600 underline">Home</Link>
           {" / "}
           <span className="text-black">Listings</span>
         </div>

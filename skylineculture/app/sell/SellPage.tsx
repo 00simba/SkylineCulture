@@ -158,15 +158,15 @@ export default function SellPage() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <div className="text-sm text-black mb-5">
-        <Link href="/" className="text-black">
+        <Link href="/" className="text-red-600 underline">
           Home
         </Link>{" "}
         / <span>Sell</span>
       </div>
 
-      <h1 className="text-3xl font-bold text-black mb-4">List Your Skyline</h1>
+      <h1 className="text-3xl font-bold text-black mb-5">List Your Skyline</h1>
 
-      <p className="text-gray-600 mb-10">
+      <p className="text-gray-600 mb-6">
         Sell your Skyline with confidence. Your listing will be featured on
         <span className="font-semibold"> SkylineCulture</span> — a leading Nissan Skyline page established in{" "}
         <span className="font-semibold">2016</span> with over
@@ -176,7 +176,7 @@ export default function SellPage() {
         Reviewed within 24–48 hours.
       </p>
 
-      <form onSubmit={handleSubmit} className="bg-white border rounded-lg p-8 shadow-md space-y-8">
+      <form onSubmit={handleSubmit} className="bg-gray-100 rounded-lg p-8 shadow-md space-y-8">
         {/* CAR DETAILS */}
         <div>
           <h2 className="text-2xl font-semibold text-black mb-4">Car Details</h2>
@@ -196,7 +196,7 @@ export default function SellPage() {
                   type={field === "year" ? "number" : "text"}
                   placeholder={label}
                   value={(carForm as any)[field]}
-                  className="w-full border rounded p-3 mt-1"
+                  className="w-full bg-white rounded p-3 mt-1"
                   onChange={(e) => setCarForm({ ...carForm, [field]: e.target.value })}
                 />
               </div>
@@ -209,7 +209,7 @@ export default function SellPage() {
                 type="text"
                 placeholder="BNR34-401489"
                 value={carForm.vin}
-                className="w-full border rounded p-3 mt-1"
+                className="w-full bg-white rounded p-3 mt-1"
                 onChange={(e) => setCarForm({ ...carForm, vin: e.target.value })}
               />
             </div>
@@ -220,7 +220,7 @@ export default function SellPage() {
                 required
                 type="number"
                 value={carForm.price}
-                className="w-full border rounded p-3 mt-1"
+                className="w-full bg-white rounded p-3 mt-1"
                 onChange={(e) => setCarForm({ ...carForm, price: e.target.value })}
               />
             </div>
@@ -233,7 +233,7 @@ export default function SellPage() {
           <textarea
             required
             value={carForm.description}
-            className="w-full border rounded p-4 h-32"
+            className="w-full bg-white rounded p-4 h-32"
             placeholder="Condition, mods, service history, etc."
             onChange={(e) => setCarForm({ ...carForm, description: e.target.value })}
           />
@@ -252,7 +252,7 @@ export default function SellPage() {
             multiple
             accept="image/*"
             onChange={handleImageUpload}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 bg-white rounded"
           />
 
           {imageError && <p className="text-red-600 text-sm mt-2">{imageError}</p>}
@@ -294,7 +294,7 @@ export default function SellPage() {
                   type={field === "email" ? "email" : "text"}
                   placeholder={label}
                   value={(contact as any)[field]}
-                  className="w-full border rounded p-3 mt-1"
+                  className="w-full bg-white rounded p-3 mt-1"
                   onChange={(e) => setContact({ ...contact, [field]: e.target.value })}
                 />
               </div>
@@ -313,7 +313,7 @@ export default function SellPage() {
             />
             <span>
               I agree to the{" "}
-              <Link href="/terms-and-service" className="text-red-600 underline">
+              <Link href="/terms-and-services" className="text-red-600 underline">
                 Terms & Services
               </Link>
               .
@@ -328,7 +328,7 @@ export default function SellPage() {
               className="mt-1"
             />
             <span>
-              I acknowledge that SkylineCulture charges a reasonable success fee when a buyer and seller complete a sale.
+              I acknowledge that SkylineCulture charges a one-time, non-refundable listing fee of $39 USD to publish a vehicle for sale once approved.
             </span>
           </label>
 

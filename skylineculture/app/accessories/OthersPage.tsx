@@ -1,41 +1,40 @@
 "use client";
 
-import data from "@/data/data";
+import data from "@/data/productData";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import { generateCollectionJsonLd } from "@/lib/generateCollectionJsonLd";
 
-export default function KeychainsPage(){
-    // Filter items belonging to Keychains collection
-  const keychains = data.filter(
-    (item) => item.collection.toLowerCase() === "keychains"
+export default function OthersPage() {
+  const others = data.filter(
+    (item) => item.collection.toLowerCase() === "other"
   );
-  const keychainJsonLd = generateCollectionJsonLd("Keychains", keychains.map((p) => ({
-    url: `https://www.skylineculture.com/product/${p.url}`
+
+  const othersJsonLd = generateCollectionJsonLd("Other", others.map((p) => ({
+    url: `https://skylineculture.com/product/${p.url}`
   })));
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(keychainJsonLd)}}/>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(othersJsonLd)}}/>
       <div className="max-w-6xl mx-auto px-6 py-10">
 
-        {/* 🔥 Breadcrumbs (same style as product pages) */}
         <div className="text-sm text-black mb-5">
-          <Link href="/" className="text-black">Home</Link>
+          <Link href="/" className="text-red-600 underline">Home</Link>
           {" / "}
-          <span className="text-black">Keychains</span>
+          <Link href="/accessories" className="text-red-600 underline">Accessories</Link>
+          {" / "}
+          <span className="text-black">Other</span>
         </div>
 
-        {/* Page Title */}
         <h1 className="text-2xl md:text-3xl font-bold mb-4 text-black">
-          Keychains
+          Other
         </h1>
 
         <p className="text-gray-600 mb-6">
-          Add some JDM flair to your keys — small details that make a big statement.
+          Add a subtle touch of JDM heritage — refined details that speak for themselves.
         </p>
 
-        {/* Grid of Products */}
         <div
           className="
             grid 
@@ -45,12 +44,12 @@ export default function KeychainsPage(){
             gap-6
           "
         >
-          {keychains.map((item) => (
+          {others.map((item) => (
             <ProductCard key={item.id} item={item} />
           ))}
         </div>
 
-        {keychains.length === 0 && (
+        {others.length === 0 && (
           <p className="text-gray-500 mt-10 text-center">
             No keychains available at the moment.
           </p>

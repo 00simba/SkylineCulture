@@ -1,6 +1,6 @@
 import { generateCollectionJsonLd } from "@/lib/generateCollectionJsonLd";
-import KeychainsPage from "./KeychainsPage";
-import data from "@/data/data";
+import KeychainsPage from "../KeychainsPage";
+import data from "@/data/productData";
 
 import type { Metadata } from "next";
 
@@ -29,7 +29,7 @@ export default function Page(){
     (item) => item.collection.toLowerCase() === "keychains"
   );
   const keychainJsonLd = generateCollectionJsonLd("Keychains", keychains.map((p) => ({
-    url: `https://www.skylineculture.com/product/${p.url}`
+    url: `https://www.skylineculture.com/accessories/${p.collection}`
   })));
 
   return(

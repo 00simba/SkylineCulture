@@ -17,7 +17,7 @@ export default [
   },
   {
     img: `${cloudFrontUrl}/public/hero3.webp`,
-    title: "Merchandise For Fans",
+    title: "JDM Accessories",
     subtitle: "Check out keychains, stickers, diecasts, and more",
     button: "Shop Accessories",
     href: "/accessories",

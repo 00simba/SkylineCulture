@@ -27,9 +27,9 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-3">Shop</h3>
           <ul className="space-y-2 text-gray-300 text-sm">
             <li><Link href="/for-sale" className="hover:text-white">Browse</Link></li>
+            <li><Link href="/parts" className="hover:text-white">NISMO Parts</Link></li>
+            <li><Link href="/sell" className="hover:text-white">Sell</Link></li>
             <li><Link href="/accessories" className="hover:text-white">Accessories</Link></li>
-            <li><Link href="/stickers" className="hover:text-white">Stickers</Link></li>
-            <li><Link href="/diecast-cars" className="hover:text-white">Diecast Models</Link></li>
           </ul>
         </div>
 

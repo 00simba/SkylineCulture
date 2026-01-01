@@ -1,11 +1,10 @@
-import { Product } from "@/types/product";
+import { Part } from "@/types/part";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ProductCard({ item } : { item: Product }) {
+export default function ProductCard({ item } : { item: Part }) {
   return (
-
-    <Link href={`/accessories/${item.collection}/${item.url}`} className="block cursor-pointer">
+    <Link href={`/parts/${item.url[0]}`} className="block cursor-pointer">
       <div>
         <div className="relative w-full aspect-square max-w-[500px]">
           <Image

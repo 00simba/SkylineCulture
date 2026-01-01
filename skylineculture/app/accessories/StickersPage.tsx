@@ -1,16 +1,18 @@
-import data from "@/data/data";
+import data from "@/data/productData";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 
 export default function StickersPage() {
-  const stickers = data.filter((p) => p.collection === "Stickers");
+  const stickers = data.filter((p) => p.collection.toLowerCase() === "stickers");
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
 
       {/* 🔥 Breadcrumbs (same style as product, listings, keychains) */}
       <div className="text-sm text-black mb-5">
-        <Link href="/" className="text-black">Home</Link>
+        <Link href="/" className="text-red-600 underline">Home</Link>
+        {" / "}
+        <Link href="/accessories" className="text-red-600 underline">Accessories</Link>
         {" / "}
         <span className="text-black">Stickers</span>
       </div>

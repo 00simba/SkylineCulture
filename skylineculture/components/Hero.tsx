@@ -65,7 +65,7 @@ export default function Hero() {
 
   return (
     <div
-      className="relative w-full h-[55vh] md:h-[60vh] overflow-hidden"
+      className="relative w-full h-[55vh] md:h-[45vh] overflow-hidden"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >

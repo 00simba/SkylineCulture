@@ -1,4 +1,4 @@
-import products from "@/data/data";
+import products from "@/data/productData";
 import { notFound } from "next/navigation";
 
 export function generateProductMetadata({ params } : { params: { slug: string }}){
