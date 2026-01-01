@@ -5,12 +5,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 export interface CartItem {
   productId: string;
   productName: string;
+  productBrand: string;
+  productImage: string;
   productQuantity: number;
   productVariant: string | null;
-  productImage: string;
   productPrice: number;
-  salePrice: number;
   productUrl: string;
+  productWeight: number;
 }
 
 interface CartContextType {
@@ -73,12 +74,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         updated.push({
           productId: product.id,
           productName: product.title,
+          productBrand: product.brand,
+          productImage: picture,
           productQuantity: quantity,
           productVariant: variant ?? "null",
-          productImage: picture,
           productPrice: product.price,
-          salePrice: product.sale_price,
           productUrl: product.url,
+          productWeight: product.weightLb
         });
       }
 

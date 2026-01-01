@@ -27,7 +27,7 @@ export default function NotFoundPage() {
       <Link
         href="/"
         className="bg-black text-white px-8 py-3 rounded-lg text-lg font-semibold 
-                   hover:bg-red-600 transition duration-200"
+                   hover:bg-red-800 transition duration-200"
       >
         Go Back Home
       </Link>

@@ -1,55 +1,77 @@
 import products from "@/data/productData";
 import { notFound } from "next/navigation";
 
-export function generateProductMetadata({ params } : { params: { slug: string }}){
+export function generateProductMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const slug = params.slug;
 
-    const slug = params.slug;
-    const url = `https://www.skylineculture.com/product/${slug}`;
+  // 1️⃣ Find product by base slug OR variant slug
+  const product = products.find(
+    (p) =>
+      p.url === slug ||
+      p.options?.values.some((opt) => opt.slug === slug)
+  );
 
-    const product = products.find((p) => p.url === slug);
-    
-    if(!product){
-        notFound();
-    }
+  if (!product) {
+    notFound();
+  }
 
-    var description = product.description[0].slice(0, 140).replace(/\s+\S*$/, "");
-    var image = product.img[0];
+  // 2️⃣ Resolve variant (if any)
+  const selectedOption =
+    product.options?.values.find((opt) => opt.slug === slug) || null;
 
-    const json = {
-        title: `${product.title} – SkylineCulture`,
-        description,
+  // 3️⃣ Build correct URL
+  const url = `https://www.skylineculture.com/accessories/${product.collection}/${slug}`;
 
-        openGraph: {
-        title: `${product.title} | SkylineCulture`,
-        description,
-        url,
-        type: "website",
-        images: image
-            ? [
-                {
-                url: image,
-                width: 1200,
-                height: 630,
-                alt: product.title,
-                },
-            ]
-            : [],
-        },
+  // 4️⃣ Title (include variant for SEO clarity)
+  const title = selectedOption
+    ? `${product.title} – ${selectedOption.label} | SkylineCulture`
+    : `${product.title} | SkylineCulture`;
 
-        twitter: {
-        card: "summary_large_image",
-        title: product.title,
-        description,
-        images: image ? [image] : [],
-        },
+  // 5️⃣ Description
+  const description = product.description[0]
+    .slice(0, 140)
+    .replace(/\s+\S*$/, "");
 
-        other: {
-        "og:image": image,
-        "product:price:amount": (
-            product.sale_price ?? product.price
-        ).toString(),
-        "product:price:currency": "USD",
-        },
-    };
-    return json;
+  const image = product.img[0];
+
+  return {
+    title,
+    description,
+
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "website",
+      images: image
+        ? [
+            {
+              url: image,
+              width: 1200,
+              height: 630,
+              alt: title,
+            },
+          ]
+        : [],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: image ? [image] : [],
+    },
+
+    other: {
+      "og:image": image,
+      "product:price:amount": (
+        product.sale_price ?? product.price
+      ).toString(),
+      "product:price:currency": "USD",
+    },
+  };
 }

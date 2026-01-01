@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import data from "@/data/productData";
 import ProductCard from "@/components/ProductCard";
 import { Product } from "@/types/product";

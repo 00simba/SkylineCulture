@@ -3,12 +3,14 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import parts from "@/data/partsData";
-import { VariantOption } from "@/types/part";
 import { useCart } from "@/app/context/CartContext";
 import toast from "react-hot-toast";
 import NotFound from "@/app/not-found";
 import { generateProductMetadata } from "@/lib/generateProductMetadata";
 import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
+import { Part } from "@/types/part";
+import axios from "axios";
 
 export async function generateMetadata(
   { params } : { params : { slug : string } }
@@ -18,13 +20,22 @@ export async function generateMetadata(
 
 }
 
-export default function PartsDetailPage({ slug } : any ) {
+const stockCache: Record<string, any> = {};
+
+
+
+export default function PartsDetailPage() {
+
+  const router = useRouter();
   const { addToCart } = useCart();
-
-  const part = parts.find((p) => p.url[0] === slug);
-
-  console.log(slug);
+  const params = useParams();
+  const slug = params.slug as string;
   
+  const part: Part | undefined = parts.find(
+  (p) =>
+    p.url === slug ||
+    p.options?.values.some((opt) => opt.slug === slug)
+);
 
   if (!part) return <NotFound />;
 
@@ -62,83 +73,118 @@ export default function PartsDetailPage({ slug } : any ) {
     }
   };
 
-  /** VARIANT STATE */
-  const firstVariantGroup: VariantOption | undefined =
-    part.variants?.[0] && Object.keys(part.variants[0]).length > 0
-      ? part.variants[0]
-      : undefined;
+   /** VARIANT STATE (OPTIONS) */
+  const variantName = part.options?.name ?? null;
+  const variantOptions = part.options?.values ?? [];
 
-  const variantName = firstVariantGroup ? Object.keys(firstVariantGroup)[0] : null;
-  const variantOptions = variantName ? firstVariantGroup![variantName] : [];
+  
 
-  const [selectedVariant, setSelectedVariant] = useState<string | null>(
-    variantOptions.length > 0 ? variantOptions[0] : "Default"
-  );
+const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
+const [qty, setQty] = useState(1);
 
-  const [qty, setQty] = useState(1);
-
-  /** ----------------------------
+    /** ----------------------------
    *  STOCK SYSTEM
    * ---------------------------- */
-  const [stockData, setStockData] = useState<any>(null);
-  const [isSoldOut, setIsSoldOut] = useState(false);
+  const [variantsStock, setVariantsStock] = useState<any[]>([]);
+const [isSoldOut, setIsSoldOut] = useState(false);
 
-  // Load stock from MongoDB
-  {/*
+
   useEffect(() => {
-    axios.post("https://skylineculture-api.onrender.com/get-stock", {
-        productName: part.title,
-      })
-      .then((res) => {
-        setStockData(res.data[0]?.stock);
+  const cacheKey = part.title;
 
-        if (!res.data[0]?.stock) return;
+  if (stockCache[cacheKey]) {
+    setVariantsStock(stockCache[cacheKey]);
+    return;
+  } 
 
-        let soldOut = false;
+  axios
+    .post("https://skylineculture-api.onrender.com/get-stock", {
+      url: `/${part.url}`,
+    })
+    .then((res) => {
+      stockCache[cacheKey] = res.data;
+      setVariantsStock(res.data);
+    })
+    .catch(console.error);
+}, [part.title]);
 
-        res.data[0].stock.forEach((obj: any) => {
-          for (const [key, value] of Object.entries(obj)) {
-            if ((key === selectedVariant || key === "Default") && value === 0) {
-              soldOut = true;
-            }
-          }
-        });
+useEffect(() => {
+  if (!variantsStock.length) return;
 
-        setIsSoldOut(soldOut);
-      })
-      .catch((err) => console.error(err));
-  }, [selectedVariant]); */}
+  // Product has variants but user has not selected one yet
+  if (variantName && !selectedVariant) {
+    setIsSoldOut(true); // block add-to-cart
+    return;
+  }
 
-  /** RECOMMENDED ITEMS */
-  
+  // Product has variants and one is selected
+  if (variantName && selectedVariant) {
+    const variant = variantsStock.find(
+      (v) =>
+        v.name.trim().toLowerCase() ===
+        selectedVariant.trim().toLowerCase()
+    );
+
+    setIsSoldOut(!variant || variant.stock <= 0);
+    return;
+  }
+
+  // Product has NO variants (single-variant product)
+  setIsSoldOut(variantsStock[0].stock <= 0);
+}, [selectedVariant, variantsStock, variantName]);
+
+
+
+useEffect(() => {
+  if (!part.options) {
+    setSelectedVariant(null);
+    return;
+  }
+
+  const option = part.options.values.find(
+    (opt) => opt.slug === slug
+  );
+
+  setSelectedVariant(option?.label ?? null);
+}, [slug, part.options]);
+
+
+
+  const effectiveVariant =
+  selectedVariant ??
+  part.options?.values.find((opt) => opt.slug === slug)?.label ??
+  null;
+
+  const hasVariants = Boolean(variantName);
+  const variantNotSelected = hasVariants && selectedVariant === null;
+
+
   return (
 
     <div className="max-w-6xl mx-auto px-6 py-10 text-white">
 
-      {/* BACK BUTTON 
       <Link
-        href={`/${part.compatible[0].toLowerCase().replace(" ", "-")}`}
+        href={`/parts/${part.brand.toLocaleLowerCase()}`}
         className="text-black mb-6 inline-block"
       >
-        ← Back to {part.compatible[0]}
+        ← Back to {part.brand} Parts
       </Link>
-        */}
 
-      {/* BREADCRUMB 
       <div className="text-sm text-black mb-5">
-        <Link href="/" className="text-black">Home</Link>
+        <Link href="/" className="text-red-600 underline">Home</Link>
+        {" / "}
+        <Link href="/" className="text-red-600 underline">Parts</Link>
         {" / "}
         <Link
-          href={`/${part.compatible[0].toLowerCase().replace(" ", "-")}`}
-          className="text-black"
+          href={`/parts/${part.brand.toLocaleLowerCase()}`}
+          className="text-red-600 underline"
         >
-          {part.compatible[0]}
+          {part.brand}
         </Link>
         {" / "}
-        <span className="text-black">{part.compatible[0]}</span>
+        <span className="text-black">{part.title}</span>
       </div>
-        */}
-      
+    
 
       {/* MAIN GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -156,6 +202,7 @@ export default function PartsDetailPage({ slug } : any ) {
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-contain"
+              unoptimized
             />
           </div>
 
@@ -216,26 +263,28 @@ export default function PartsDetailPage({ slug } : any ) {
           </div>
 
           {/* SOLD OUT LABEL */}
-          {isSoldOut && (
+          {isSoldOut && !variantNotSelected && (
             <p className="text-red-600 font-semibold mb-2 text-lg">OUT OF STOCK</p>
           )}
 
           {/* VARIANT SELECTOR */}
           {variantName && (
-            <div className="mb-4">
+            <div className="mb-6">
               <h3 className="text-black text-lg font-semibold mb-2">{variantName}</h3>
               <div className="flex gap-3 flex-wrap">
                 {variantOptions.map((option, i) => (
                   <button
                     key={i}
-                    onClick={() => setSelectedVariant(option)}
+                   onClick={() => {
+                      router.push(`/parts/${option.slug}`);
+                    }}
                     className={`px-4 py-2 rounded-md border bg-black ${
-                      selectedVariant === option
-                        ? "bg-red-600 border-red-500"
+                      selectedVariant === option.label
+                        ? "bg-red-800 border-red-500"
                         : "border-gray-500 hover:border-gray-300"
                     }`}
                   >
-                    {option}
+                    {option.label}
                   </button>
                 ))}
               </div>
@@ -312,27 +361,41 @@ export default function PartsDetailPage({ slug } : any ) {
             </div>
           </div>
 
-          <div className="mb-6">
-            <p className="text-blue-600">Earn Skyline (SKYLN) on this purchase</p>
-            <p className="text-gray-400">SKYLN earned is based on your order total.</p>
+          {/*
+
+          <div className="mb-5">
+            <p className="text-slate-600 text-sm">
+              Earn Skyline <span className="font-medium">(SKYLN)</span> automatically with this purchase
+            </p>
+            <p className="text-gray-400 text-xs mt-1">
+              SKYLN rewards are calculated based on your order total.
+            </p>
           </div>
 
+          */}
+
+
           {/* ADD TO CART */}
-          <button
-            disabled={isSoldOut}
-            className={`w-full py-3 rounded-md text-lg font-semibold transition cursor-pointer ${
-              isSoldOut
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-red-600 hover:bg-red-500 text-white"
-            }`}
-            onClick={() => {
-              if (isSoldOut) return;
-              addToCart(part, qty, selectedVariant);
-              toast.success("Added to cart!");
-            }}
-          >
-            {isSoldOut ? "Out of Stock" : "Add to Cart"}
-          </button>
+        <button
+          disabled={isSoldOut || variantNotSelected}
+          className={`w-full py-3 rounded-md text-lg font-semibold transition ${
+            isSoldOut || variantNotSelected
+              ? "bg-zinc-400 cursor-not-allowed"
+              : "bg-red-800 hover:bg-red-700 text-white"
+          }`}
+          onClick={() => {
+            if (isSoldOut || variantNotSelected) return;
+
+            addToCart(part, qty, effectiveVariant);
+            toast.success("Added to cart!");
+          }}
+        >
+          {variantNotSelected
+            ? part.options?.name ?? "Select Option"
+            : isSoldOut
+            ? "Out of Stock"
+            : "Add to Cart"}
+        </button>
         </div>
       </div>
 

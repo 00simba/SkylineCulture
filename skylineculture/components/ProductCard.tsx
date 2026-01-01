@@ -13,6 +13,7 @@ export default function ProductCard({ item } : { item: Product }) {
             alt={item.title}
             fill
             className="rounded-md object-cover"
+            unoptimized
           />
         </div>
 

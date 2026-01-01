@@ -4,7 +4,7 @@ export default function TermsPage() {
 
       {/* Breadcrumb */}
       <div className="text-sm text-black mb-5">
-        <a href="/" className="text-black">Home</a> / <span>Terms & Services</span>
+        <a href="/" className="text-red-600 underline">Home</a> / <span>Terms & Services</span>
       </div>
 
       <h1 className="text-3xl font-bold mb-6">Terms & Services</h1>

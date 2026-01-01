@@ -37,7 +37,7 @@ Product.find().then((result) => result.map((item) => {
 
 app.post(
   "/sell-car",
-  upload.array("images", 10),
+  upload.array("images", 20),
   async (req, res) => {
     try {
       const { form } = req.body;
@@ -76,10 +76,24 @@ app.post(
 );
 
 
-app.post('/get-stock', async (req, res) => {
-    await Product.find({name: req.body.productName}).then((response) => {
-        res.send(response);}).catch((err) => {console.log(err)})
-})
+app.post("/get-stock", async (req, res) => {
+  try {
+    const product = await Product.findOne(
+      { url: req.body.url },
+      { variants: 1, _id: 0 }
+    );
+
+    if (!product) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    res.json(product.variants);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 
 app.post('/remove-inventory', async (req, res) => {
   try {

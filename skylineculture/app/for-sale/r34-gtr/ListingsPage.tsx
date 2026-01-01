@@ -37,7 +37,7 @@ export default function ListingsPage() {
             <Link
               key={car.id}
               href={`/for-sale/r34-gtr/${car.year}-${car.color.toLowerCase()}-${car.trim.toLowerCase()}-${car.id.toLowerCase()}`}
-              className="block bg-white border rounded-lg overflow-hidden shadow hover:shadow-lg transition"
+              className="w-full rounded-lg border border-gray-300 shadow-md overflow-hidden hover:shadow-lg transition"
             >
               <div className="relative w-full h-56">
                 <Image
@@ -69,7 +69,7 @@ export default function ListingsPage() {
 
                 
 
-                <button className="mt-4 w-full bg-black text-white py-2 rounded hover:bg-red-600 transition">
+                <button className="mt-4 w-full bg-black text-white py-2 rounded hover:bg-zinc-800 transition">
                   View Details
                 </button>
               </div>

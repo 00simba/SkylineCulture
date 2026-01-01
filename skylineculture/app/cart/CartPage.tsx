@@ -5,11 +5,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+import ShippingRateForm from "@/components/ShippingForm";
 
 export default function CartPage() {
   const { cart, removeFromCart } = useCart();
   const [country, setCountry] = useState("Select Country");
   const [loading, setLoading] = useState(false);
+
+  
+  const totalWeightLb = cart.reduce(
+    (sum, item) => sum + item.productWeight * item.productQuantity,
+    0
+  );
+
+  const handleCalculateShipping = async (address: any) => {
+    try {
+      const res = await axios.post("/api/shippo", {
+        address,
+        totalWeightLb,
+      });
+
+      console.log("Shipping rates:", res.data);
+      // later: store rates in state and display them
+    } catch (err) {
+      console.error(err);
+      alert("Failed to calculate shipping");
+    }
+  };
+
+
 
   const handleCheckout = async () => {
     if (country === "Select Country") {
@@ -46,6 +70,21 @@ export default function CartPage() {
     }
   };
 
+
+  return (
+      <div className="max-w-4xl mx-auto px-6 py-20 text-center">
+        <h1 className="text-3xl font-bold text-black mb-4">
+          Checkout Under Maintenance
+        </h1>
+        <Link href="/accessories" className="text-red-600 underline">
+          Browse Items →
+        </Link>
+      </div>
+    );
+  }
+
+  {/*
+
   if (cart.length === 0) {
     return (
       <div className="max-w-4xl mx-auto px-6 py-20 text-center">
@@ -67,7 +106,7 @@ export default function CartPage() {
         {cart.map((item, i) => (
           <div
             key={i}
-            className="flex gap-4 border p-4 rounded-md bg-white"
+            className="flex gap-4 border border-gray-300 shadow p-4 rounded-lg bg-white"
           >
             <div className="relative w-28 h-28">
               <Image
@@ -99,8 +138,8 @@ export default function CartPage() {
               </p>
 
               <button
-                onClick={() =>
-                  removeFromCart(item.productId, item.productVariant)
+                onClick={() =>{
+                  removeFromCart(item.productId, item.productVariant)}
                 }
                 className="text-red-600 text-sm mt-2 underline"
               >
@@ -111,31 +150,13 @@ export default function CartPage() {
         ))}
       </div>
 
-      {/* Country selector */}
-      <div className="mt-8">
-        <label className="text-black font-semibold">
-          Shipping Country
-        </label>
-        <select
-          className="border p-3 rounded w-full mt-2"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-        >
-          <option>Select Country</option>
-          <option>Canada</option>
-          <option>USA</option>
-          <option>International</option>
-        </select>
-      </div>
+      <ShippingRateForm onCalculate={handleCalculateShipping} />
 
-      {/* Checkout */}
       <button
-        className="w-full mt-6 bg-black text-white py-4 rounded-lg font-semibold hover:bg-red-600 transition disabled:opacity-50"
+        className="w-full mt-6 bg-black text-white py-4 rounded-lg font-semibold hover:bg-zinc-800 transition disabled:opacity-50"
         onClick={handleCheckout}
         disabled={loading}
       >
         {loading ? "Processing..." : "Proceed to Checkout"}
       </button>
-    </div>
-  );
-}
+    </div> */}    

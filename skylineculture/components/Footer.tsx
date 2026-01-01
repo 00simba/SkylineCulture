@@ -16,10 +16,10 @@ export default function Footer() {
             width={160}
             height={50}
             className="mb-4"
+            unoptimized
           />
           <p className="text-gray-400 text-sm leading-relaxed">
-            SkylineCulture — your home for Nissan Skyline accessories,
-            collectibles, and marketplace listings.
+            SkylineCulture — your home for Nissan Skyline marketplace listings, parts, accessories, and collectibles.
           </p>
         </div>
 

@@ -4,29 +4,37 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import products from "@/data/productData";
-import { Product, VariantOption } from "@/types/product";
+import { Product } from "@/types/product";
 import { useCart } from "@/app/context/CartContext";
 import toast from "react-hot-toast";
 import NotFound from "@/app/not-found";
 import axios from "axios";
 import { generateProductMetadata } from "@/lib/generateProductMetadata";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+
 
 export async function generateMetadata(
   { params } : { params : { slug : string } }
 ){
   const result = await (params as any);
   return generateProductMetadata({ params: result});
-
 }
+
+const stockCache: Record<string, any> = {};
 
 export default function ProductPage() {
 
+  const router = useRouter();
   const { addToCart } = useCart();
   const params = useParams();
   const slug = params.slug as string;
 
-  const product: Product | undefined = products.find((p) => p.url === slug);
+  const product: Product | undefined = products.find(
+  (p) =>
+    p.url === slug ||
+    p.options?.values.some((opt) => opt.slug === slug)
+);
+
 
   if (!product) return <NotFound />;
 
@@ -64,54 +72,97 @@ export default function ProductPage() {
     }
   };
 
-  /** VARIANT STATE */
-  const firstVariantGroup: VariantOption | undefined =
-    product.variants?.[0] && Object.keys(product.variants[0]).length > 0
-      ? product.variants[0]
-      : undefined;
+  /** VARIANT STATE (OPTIONS) */
+  const variantName = product.options?.name ?? null;
+  const variantOptions = product.options?.values ?? [];
 
-  const variantName = firstVariantGroup ? Object.keys(firstVariantGroup)[0] : null;
-  const variantOptions = variantName ? firstVariantGroup![variantName] : [];
+  
 
-  const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
-
-  const [qty, setQty] = useState(1);
+const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
+const [qty, setQty] = useState(1);
 
   /** ----------------------------
    *  STOCK SYSTEM
    * ---------------------------- */
-  const [stockData, setStockData] = useState<any>(null);
-  const [isSoldOut, setIsSoldOut] = useState(false);
+  const [variantsStock, setVariantsStock] = useState<any[]>([]);
+const [isSoldOut, setIsSoldOut] = useState(false);
 
-  // Load stock from MongoDB
+
   useEffect(() => {
-    axios.post("https://skylineculture-api.onrender.com/get-stock", {
-        productName: product.title,
-      })
-      .then((res) => {
-        setStockData(res.data[0]?.stock);
+  const cacheKey = product.title;
 
-        if (!res.data[0]?.stock) return;
+  if (stockCache[cacheKey]) {
+    setVariantsStock(stockCache[cacheKey]);
+    return;
+  } 
 
-        let soldOut = false;
+  axios
+    .post("http://localhost:8080/get-stock", {
+      url: `/${product.url}`,
+    })
+    .then((res) => {
+      stockCache[cacheKey] = res.data;
+      setVariantsStock(res.data);
+    })
+    .catch(console.error);
+}, [product.title]);
 
-        res.data[0].stock.forEach((obj: any) => {
-          for (const [key, value] of Object.entries(obj)) {
-            if ((key === selectedVariant || key === "Default") && value === 0) {
-              soldOut = true;
-            }
-          }
-        });
+useEffect(() => {
+  if (!variantsStock.length) return;
 
-        setIsSoldOut(soldOut);
-      })
-      .catch((err) => console.error(err));
-  }, [selectedVariant]);
+  // Product has variants but user has not selected one yet
+  if (variantName && !selectedVariant) {
+    setIsSoldOut(true); // block add-to-cart
+    return;
+  }
 
+  // Product has variants and one is selected
+  if (variantName && selectedVariant) {
+    const variant = variantsStock.find(
+      (v) =>
+        v.name.trim().toLowerCase() ===
+        selectedVariant.trim().toLowerCase()
+    );
+
+    setIsSoldOut(!variant || variant.stock <= 0);
+    return;
+  }
+
+  // Product has NO variants (single-variant product)
+  setIsSoldOut(variantsStock[0].stock <= 0);
+}, [selectedVariant, variantsStock, variantName]);
+
+
+
+useEffect(() => {
+  if (!product.options) {
+    setSelectedVariant(null);
+    return;
+  }
+
+  const option = product.options.values.find(
+    (opt) => opt.slug === slug
+  );
+
+  setSelectedVariant(option?.label ?? null);
+}, [slug, product.options]);
+
+
+
+  const effectiveVariant =
+  selectedVariant ??
+  product.options?.values.find((opt) => opt.slug === slug)?.label ??
+  null;
+
+  const hasVariants = Boolean(variantName);
+  const variantNotSelected = hasVariants && selectedVariant === null;
+
+  
   /** RECOMMENDED ITEMS */
   const recommended = products
     .filter((p) => p.collection === product.collection && p.url !== product.url)
     .slice(0, 3);
+
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10 text-white">
@@ -213,9 +264,10 @@ export default function ProductPage() {
           </div>
 
           {/* SOLD OUT LABEL */}
-          {isSoldOut && (
+          {isSoldOut && !variantNotSelected && (
             <p className="text-red-600 font-semibold mb-2 text-lg">OUT OF STOCK</p>
           )}
+
 
           {/* VARIANT SELECTOR */}
           {variantName && (
@@ -225,14 +277,16 @@ export default function ProductPage() {
                 {variantOptions.map((option, i) => (
                   <button
                     key={i}
-                    onClick={() => setSelectedVariant(option)}
+                   onClick={() => {
+                      router.push(`/accessories/${product.collection}/${option.slug}`);
+                    }}
                     className={`px-4 py-2 rounded-md border bg-black ${
-                      selectedVariant === option
-                        ? "bg-red-600 border-red-500"
+                      selectedVariant === option.label
+                        ? "bg-red-800 border-red-500"
                         : "border-gray-500 hover:border-gray-300"
                     }`}
                   >
-                    {option}
+                    {option.label}
                   </button>
                 ))}
               </div>
@@ -297,27 +351,42 @@ export default function ProductPage() {
             </div>
           </div>
 
+          {/*
+
           <div className="mb-5">
-            <p className="text-blue-600">Earn Skyline (SKYLN) on this purchase</p>
-            <p className="text-gray-400">SKYLN is earned based on your order total.</p>
+            <p className="text-slate-600 text-sm">
+              Earn Skyline <span className="font-medium">(SKYLN)</span> automatically with this purchase
+            </p>
+            <p className="text-gray-400 text-xs mt-1">
+              SKYLN rewards are calculated based on your order total.
+            </p>
           </div>
 
-          {/* ADD TO CART */}
-          <button
-            disabled={isSoldOut}
-            className={`w-full py-3 rounded-md text-lg font-semibold transition ${
-              isSoldOut
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-red-600 hover:bg-red-500 text-white"
-            }`}
-            onClick={() => {
-              if (isSoldOut) return;
-              addToCart(product, qty, selectedVariant);
-              toast.success("Added to cart!");
-            }}
-          >
-            {isSoldOut ? "Out of Stock" : "Add to Cart"}
-          </button>
+          */}
+
+
+         {/* ADD TO CART */}
+        <button
+          disabled={isSoldOut || variantNotSelected}
+          className={`w-full py-3 rounded-md text-lg font-semibold transition ${
+            isSoldOut || variantNotSelected
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-red-800 hover:bg-red-700 text-white"
+          }`}
+          onClick={() => {
+            if (isSoldOut || variantNotSelected) return;
+
+            addToCart(product, qty, effectiveVariant);
+            toast.success("Added to cart!");
+          }}
+        >
+          {variantNotSelected
+            ? product.options?.name ?? "Select Option"
+            : isSoldOut
+            ? "Out of Stock"
+            : "Add to Cart"}
+        </button>
+
         </div>
       </div>
 

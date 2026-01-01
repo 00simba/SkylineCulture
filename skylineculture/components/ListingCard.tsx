@@ -4,7 +4,7 @@ import { Car } from "@/types/car";
 
 export default function ListingCard({ car }: { car: Car }) {
   return (
-    <div className="w-full rounded-lg border border-gray-300 bg-white shadow-md overflow-hidden hover:shadow-lg transition">
+    <div className="w-full rounded-lg border border-zinc-300 shadow-md overflow-hidden hover:shadow-lg transition">
 
       <div className="relative w-full h-56">
         <Image
@@ -12,12 +12,13 @@ export default function ListingCard({ car }: { car: Car }) {
           alt={`${car.make} ${car.model}`}
           fill
           className="object-cover"
+          unoptimized
         />
       </div>
 
       <div className="p-4">
         
-        <h2 className="text-xl font-bold">
+        <h2 className="text-xl font-semibold">
           {car.year} {car.make} {car.model}
         </h2>
 
@@ -37,7 +38,7 @@ export default function ListingCard({ car }: { car: Car }) {
         
 
         <Link href={`/for-sale/${car.model.split(' ')[0] + '-' + car.model.split(' ')[1].replace('-', "")}/${car.year}-${car.color}-${car.trim}-${car.id}`.toLowerCase()} className="block mt-4">
-          <button className="w-full bg-black text-white py-2 rounded-md hover:bg-red-600 transition">
+          <button className="w-full bg-black text-white py-2 rounded-md hover:bg-zinc-800 transition">
             View Details
           </button>
         </Link>

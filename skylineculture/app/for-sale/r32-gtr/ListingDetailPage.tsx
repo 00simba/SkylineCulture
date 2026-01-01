@@ -244,7 +244,7 @@ export default function ListingDetailPage({ slug } : any) {
           </div>
 
           {/* CONTACT FORM */}
-          <div className="rounded-lg p-6 bg-gray-100 shadow-md">
+          <div className="rounded-lg p-6 bg-gray-100 shadow-md border border-gray-300">
 
             {sent ? (
               <div className="bg-green-100 text-green-800 border border-green-300 p-4 rounded">
@@ -277,7 +277,7 @@ export default function ListingDetailPage({ slug } : any) {
                     type="text"
                     name="fullName"
                     placeholder="Full Name"
-                    className="w-full rounded p-3 bg-white"
+                    className="w-full rounded-md p-3 h-24 bg-white border border-zinc-300"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     required
@@ -287,7 +287,7 @@ export default function ListingDetailPage({ slug } : any) {
                     type="email"
                     name="email"
                     placeholder="Email"
-                    className="w-full rounded p-3 bg-white"
+                    className="w-full rounded-md p-3 h-24 bg-white border border-zinc-300"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -297,7 +297,7 @@ export default function ListingDetailPage({ slug } : any) {
                     type="tel"
                     name="phone"
                     placeholder="Phone Number"
-                    className="w-full rounded p-3 bg-white"
+                    className="w-full rounded-md p-3 h-24 bg-white border border-zinc-300"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                   />
@@ -305,7 +305,7 @@ export default function ListingDetailPage({ slug } : any) {
                   <textarea
                     name="message"
                     placeholder="Your message..."
-                    className="w-full rounded p-3 h-24 bg-white"
+                    className="w-full rounded-md p-3 h-24 bg-white border border-zinc-300"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required
@@ -313,7 +313,7 @@ export default function ListingDetailPage({ slug } : any) {
 
                   <button
                     type="submit"
-                    className="w-full bg-black text-white py-3 rounded hover:bg-red-600 transition"
+                    className="w-full bg-red-800 text-white py-3 rounded hover:bg-red-700 transition"
                   >
                     Send Inquiry
                   </button>

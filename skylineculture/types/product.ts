@@ -1,6 +1,12 @@
-export interface VariantOption {
-  [key: string]: string[]; 
-}
+export type ProductOptionValue = {
+  label: string;
+  slug: string;
+};
+
+export type ProductOption = {
+  name: string;
+  values: ProductOptionValue[];
+};
 
 export interface Product {
     id: number;
@@ -12,8 +18,9 @@ export interface Product {
     description: string[];
     specs: string;
     shipping: string[];
-    variants: VariantOption[];
+    options?: ProductOption;
+    category : string,
     collection: string;
-    stars: number;
     featured: boolean;
+    weightLb: number;
 }

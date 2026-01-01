@@ -38,9 +38,9 @@ export default function ListingsPage() {
           <Link
             key={car.id}
             href={`/for-sale/${car.model.split(' ')[0] + '-' + car.model.split(' ')[1].replace('-', "")}/${car.year}-${car.color}-${car.trim}-${car.id}`.toLowerCase()}
-            className="block bg-white border rounded-lg overflow-hidden shadow hover:shadow-lg transition"
+            className="w-full rounded-lg border border-zinc-300 shadow-md overflow-hidden hover:shadow-lg transition"
           >
-            <div className="relative w-full h-56">
+            <div className="relative w-full h-56 ">
               <Image
                 src={car.img[0]}
                 alt={`${car.make} ${car.model}`}
@@ -68,7 +68,7 @@ export default function ListingsPage() {
                 </p>
               </div>
 
-              <button className="mt-4 w-full bg-black text-white py-2 rounded hover:bg-red-600 transition">
+              <button className="mt-4 w-full bg-black text-white py-2 rounded hover:bg-zinc-800 transition">
                 View Details
               </button>
             </div>

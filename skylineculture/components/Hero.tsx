@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import heroData from "@/data/heroData"
+import heroData from "@/data/heroData";
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
@@ -11,8 +11,7 @@ export default function Hero() {
   // --- Swipe detection ---
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
-
-  const minSwipeDistance = 50; // required distance
+  const minSwipeDistance = 50;
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.changedTouches[0].clientX;
@@ -29,10 +28,8 @@ export default function Hero() {
     if (Math.abs(distance) < minSwipeDistance) return;
 
     if (distance > 0) {
-      // swipe right → previous slide
       setIndex((prev) => (prev - 1 + heroData.length) % heroData.length);
     } else {
-      // swipe left → next slide
       setIndex((prev) => (prev + 1) % heroData.length);
     }
 
@@ -49,12 +46,9 @@ export default function Hero() {
   };
 
   useEffect(() => {
-  startTimer();
-
+    startTimer();
     return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, []);
 
@@ -65,7 +59,7 @@ export default function Hero() {
 
   return (
     <div
-      className="relative w-full h-[55vh] md:h-[45vh] overflow-hidden"
+      className="relative w-full h-[50vh] md:h-[45vh] overflow-hidden"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
@@ -80,6 +74,7 @@ export default function Hero() {
               alt={slide.title}
               fill
               className="object-cover"
+              unoptimized
             />
 
             <div className="absolute inset-0 bg-black/40" />
@@ -94,7 +89,7 @@ export default function Hero() {
 
               <a
                 href={slide.href}
-                className="px-6 py-3 bg-black hover:bg-red-600 text-white rounded-md text-lg font-medium transition"
+                className="px-6 py-3 bg-black hover:bg-zinc-800 text-white rounded-lg text-lg font-medium transition"
               >
                 {slide.button}
               </a>
@@ -104,7 +99,7 @@ export default function Hero() {
       </div>
 
       {/* Dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {heroData.map((_, i) => (
           <button
             key={i}
@@ -115,6 +110,9 @@ export default function Hero() {
           />
         ))}
       </div>
+
+      {/* Bottom separator */}
+      <div className="pointer-events-none absolute bottom-0 left-0 w-full h-6 bg-gradient-to-b from-transparent to-black" />
     </div>
   );
 }

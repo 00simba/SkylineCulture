@@ -1,21 +1,30 @@
-export interface VariantOption {
-  [key: string]: string[]; 
-}
+export type PartOptionValue = {
+  label: string;
+  slug: string;
+};
+
+export type PartOption = {
+  name: string;
+  values: PartOptionValue[];
+};
+
 
 export interface Part {
     id: number;
+    brand: string;
     title: string;
     price: number;
     sale_price: number | null;
     img: string[];
-    url: string[];
+    url: string;
     description: string[];
     specs: string;
     shipping: string[];
-    variants: VariantOption[];
+    category: string;
+    options?: PartOption,
     compatible: string[];
-    stars: number;
     featured: boolean;
     catalogue: string;
     partNumber: string[];
+    weightLb: number;
 }

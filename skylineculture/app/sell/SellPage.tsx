@@ -176,7 +176,7 @@ export default function SellPage() {
         Reviewed within 24–48 hours.
       </p>
 
-      <form onSubmit={handleSubmit} className="bg-gray-100 rounded-lg p-8 shadow-md space-y-8">
+      <form onSubmit={handleSubmit} className="border border-gray-300 bg-gray-100 rounded-lg p-8 shadow-md space-y-8">
         {/* CAR DETAILS */}
         <div>
           <h2 className="text-2xl font-semibold text-black mb-4">Car Details</h2>
@@ -328,7 +328,7 @@ export default function SellPage() {
               className="mt-1"
             />
             <span>
-              I acknowledge that SkylineCulture charges a one-time, non-refundable listing fee of $39 USD to publish a vehicle for sale once approved.
+              I accept that SkylineCulture charges a one-time listing fee of $39 USD to publish a vehicle for sale if approved.
             </span>
           </label>
 
@@ -338,7 +338,7 @@ export default function SellPage() {
         {/* SUBMIT */}
         <button
           type="submit"
-          className="w-full bg-black text-white py-4 rounded-lg text-lg font-semibold hover:bg-red-600 transition"
+          className="w-full bg-red-800 text-white py-4 rounded-lg text-lg font-semibold hover:bg-red-700 transition"
         >
           Submit Listing Request
         </button>

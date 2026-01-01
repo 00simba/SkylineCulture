@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function ProductCard({ item } : { item: Part }) {
   return (
-    <Link href={`/parts/${item.url[0]}`} className="block cursor-pointer">
+    <Link href={`/parts/${item.brand.toLocaleLowerCase()}/${item.url}`} className="block cursor-pointer">
       <div>
         <div className="relative w-full aspect-square max-w-[500px]">
           <Image
@@ -12,6 +12,7 @@ export default function ProductCard({ item } : { item: Part }) {
             alt={item.title}
             fill
             className="rounded-md object-cover"
+            unoptimized
           />
         </div>
 

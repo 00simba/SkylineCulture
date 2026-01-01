@@ -66,7 +66,7 @@ export default function ContactPage() {
         <form
           ref={formRef}
           onSubmit={sendEmail}
-          className="space-y-6 bg-gray-100 p-6 rounded-lg shadow"
+          className="space-y-6 bg-white p-6 rounded-lg shadow border border-zinc-300"
         >
           <div className="flex flex-col">
             <label className="font-medium mb-1 text-black">Name</label>
@@ -76,7 +76,7 @@ export default function ContactPage() {
               value={name}
               required
               placeholder="Your Name"
-              className="bg-white rounded-md px-4 py-2"
+              className="bg-white rounded-md px-4 py-2 border border-zinc-300"
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -89,7 +89,7 @@ export default function ContactPage() {
               value={email}
               required
               placeholder="you@example.com"
-              className="bg-white rounded-md px-4 py-2"
+              className="bg-white rounded-md px-4 py-2 border border-zinc-300"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -102,7 +102,7 @@ export default function ContactPage() {
               value={subject}
               required
               placeholder="What is this regarding?"
-              className="bg-white rounded-md px-4 py-2"
+              className="bg-white rounded-md px-4 py-2 border border-zinc-300"
               onChange={(e) => setSubject(e.target.value)}
             />
           </div>
@@ -115,7 +115,7 @@ export default function ContactPage() {
               required
               rows={5}
               placeholder="Write your message..."
-              className="bg-white rounded-md px-4 py-2 resize-none"
+              className="bg-white rounded-md px-4 py-2 resize-none border border-zinc-300"
               onChange={(e) => setMessage(e.target.value)}
             />
           </div>
@@ -125,8 +125,8 @@ export default function ContactPage() {
             disabled={!(name && email && subject && message)}
             className={`w-full py-3 rounded-md text-lg font-semibold transition ${
               name && email && subject && message
-                ? "bg-black hover:bg-red-500 text-white"
-                : "bg-gray-400 text-white cursor-not-allowed"
+                ? "bg-red-800 hover:bg-red-700 text-white"
+                : "bg-zinc-400 text-white cursor-not-allowed"
             }`}
           >
             Send Message
