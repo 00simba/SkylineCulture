@@ -33,7 +33,7 @@ const websiteJsonLd = {
 
 export const metadata: Metadata = {
   title: {
-    default: "SkylineCulture | Nissan Skyline Buy & Sell Marketplace",
+    default: "SkylineCulture | Nissan Skyline Buy & Sell Marketplace, Parts, and Accessories",
     template: "%s | SkylineCulture",
   },
   description:

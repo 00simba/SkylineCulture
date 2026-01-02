@@ -21,7 +21,6 @@ export default function Header() {
     { name: "Keychains", href: "/accessories/keychains" },
     { name: "Stickers", href: "/accessories/stickers" },
     { name: "Diecasts", href: "/accessories/diecast-cars" },
-    { name: "Pins", href: "/accessories/pins" },
     { name: "Other", href: "/accessories/other"}
   ];
 

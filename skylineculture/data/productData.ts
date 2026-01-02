@@ -304,7 +304,7 @@ const products: Product[] = [
         specs: "Size: 1.5 in x 0.75 in\n Double Black Rubber Pin Clutch\n Soft Enamel Process\n Black Dyed Metal",
         shipping: [shipping[0]],
         category : "accessories",
-        collection : "pins",
+        collection : "other",
         featured : false,
         weightLb : 0.1
     },
