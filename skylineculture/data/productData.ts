@@ -120,7 +120,7 @@ const products: Product[] = [
     },
     {
         id: 13,
-        title: "Skyline R34 GTR - 1/24",
+        title: "Nissan Skyline R34 GTR - 1/24",
         img: [
             `${cloudFrontUrl}/24r34_diecast/24r34_Blue.webp`,
             `${cloudFrontUrl}/24r34_diecast/24r34_White.webp`,
