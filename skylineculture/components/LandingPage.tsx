@@ -6,6 +6,7 @@ import ListingCard from "./ListingCard";
 import cars from "@/data/carData";
 import PartCard from "./PartCard";
 import Link from "next/link";
+import SellBanner from "./SellBanner";
 
 export default function LandingPage() {
 
@@ -13,7 +14,7 @@ export default function LandingPage() {
   const featuredIndexes = [0, 2, 4, 5];
   const featuredParts = featuredIndexes.map(i => partData[i]).filter(Boolean);
   return (
-    <div className="w-full mb-10">
+    <div className="w-full">
 
       <Hero/>
 
@@ -101,6 +102,8 @@ export default function LandingPage() {
           </h1>
         </Link>
       </div>
+
+      <SellBanner/>
 
   
     </div>

@@ -5,7 +5,7 @@ const cloudFrontUrl = 'https://d38opoffv15p79.cloudfront.net/Images';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-black text-white mt-20 pt-12 pb-8">
+    <footer className="w-full bg-black text-white pt-15 pb-8">
       
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 px-6">
         

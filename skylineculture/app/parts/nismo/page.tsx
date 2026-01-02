@@ -3,7 +3,7 @@ import PartsPage from "../PartsPage";
 import { generateCollectionJsonLd } from "@/lib/generateCollectionJsonLd";
 
 export const metadata = {
-  title: "NISMO Parts | SkylineCulture",
+  title: "NISMO Parts",
   description:
     "Factory-engineered NISMO performance parts for Nissan Skyline R32, R33, and R34 GT-R.",
 };
