@@ -44,7 +44,7 @@ export default function LandingPage() {
       <div className="flex justify-center mt-5">
         <Link href="/for-sale">
           <h1
-            className="mt-4 text-black font-medium underline hover:opacity-80 transition"
+            className="mt-4 text-red-700 font-medium underline hover:opacity-80 transition"
           >
             Browse Skylines →
           </h1>
@@ -69,7 +69,7 @@ export default function LandingPage() {
       <div className="flex justify-center mt-5 ">
         <Link href="/parts/nismo">
           <h1
-            className="mt-4 text-black font-medium underline hover:opacity-80 transition"
+            className="mt-4 text-red-700 font-medium underline hover:opacity-80 transition"
           >
             Browse Parts →
           </h1>
@@ -95,7 +95,7 @@ export default function LandingPage() {
       <div className="flex justify-center mt-5">
         <Link href="/accessories">
           <h1
-            className="mt-4 text-black font-medium underline hover:opacity-80 transition"
+            className="mt-4 text-red-700 font-medium underline hover:opacity-80 transition"
           >
             Browse Accessories →
           </h1>

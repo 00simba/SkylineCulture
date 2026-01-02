@@ -308,7 +308,7 @@ useEffect(() => {
               { part.catalogue ?
                 <p>
                   <Link href={`${part.catalogue}`} target="_blank" rel="noopener noreferrer">
-                    <span className="text-red-600 underline">Parts Catalogue</span>
+                    <span className="text-black underline">Parts Catalogue</span>
                   </Link> 
                     <span className="text-black">: {part.partNumber.join(", ")}</span>
                 </p>
