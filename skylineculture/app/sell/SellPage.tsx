@@ -153,6 +153,22 @@ export default function SellPage() {
     setAgreeTerms(false);
     setAgreeFee(false);
   }
+  
+  const isCarFormValid = Object.values(carForm).every(
+  (value) => value.trim() !== ""
+  );
+
+  const isContactValid = Object.values(contact).every(
+    (value) => value.trim() !== ""
+  );
+
+  const isFormValid =
+    isCarFormValid &&
+    isContactValid &&
+    images.length > 0 &&
+    agreeTerms &&
+    agreeFee;
+
 
   // ----------------- UI -----------------
   return (
@@ -332,9 +348,16 @@ export default function SellPage() {
         {/* SUBMIT */}
         <button
           type="submit"
-          className="w-full bg-red-800 text-white py-4 rounded-lg text-lg font-semibold hover:bg-red-700 transition"
+          disabled={!isFormValid}
+          className={`w-full py-4 rounded-lg text-lg font-semibold transition
+    ${
+      isFormValid
+        ? "bg-red-800 hover:bg-red-700 text-white"
+        : "bg-zinc-400 text-white cursor-not-allowed"
+    }
+  `}
         >
-          Submit Listing Request
+          Submit Request
         </button>
       </form>
     </div>

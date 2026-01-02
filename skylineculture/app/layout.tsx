@@ -31,6 +31,11 @@ const websiteJsonLd = {
   url: "https://www.skylineculture.com",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: {
     default: "SkylineCulture | Marketplace, Parts, and Accessories",

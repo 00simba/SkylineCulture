@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
 @theme inline {
-    --font-main: var(--font-montserrat);
+  --font-main: var(--font-montserrat);
+}
+
+/* 🔑 REQUIRED NORMALIZATION */
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
 }

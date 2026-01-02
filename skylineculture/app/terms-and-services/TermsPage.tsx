@@ -91,7 +91,7 @@ export default function TermsPage() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-3">6. Returns & Refunds</h2>
         <p>
-          Returns are accepted for unused accessory items within 14 days of delivery.
+          Returns are accepted for unused items within 14 days of delivery.
           Vehicle listing fees, promotional services, and published listings are
           non-refundable.
         </p>
