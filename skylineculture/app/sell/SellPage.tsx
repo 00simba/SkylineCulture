@@ -167,16 +167,10 @@ export default function SellPage() {
       <h1 className="text-3xl font-bold text-black mb-5">List Your Skyline</h1>
 
       <p className="text-gray-600 mb-6">
-        Sell your Skyline with confidence. Your listing will be featured on
-        <span className="font-semibold"> SkylineCulture</span> — a leading Nissan Skyline page established in{" "}
-        <span className="font-semibold">2016</span> with over
-        <span className="font-semibold"> 430,000 followers</span>.
-        <br />
-        <br />
-        Reviewed within 24–48 hours.
+        Sell your Skyline with confidence. Your listing will be featured on SkylineCulture — a leading Nissan Skyline platform established in 2016 — and promoted to our global audience of over 430,000 followers across our website and Instagram.
       </p>
 
-      <form onSubmit={handleSubmit} className="border border-gray-300 bg-gray-100 rounded-lg p-8 shadow-md space-y-8">
+      <form onSubmit={handleSubmit} className="border border-zinc-300 bg-white rounded-lg p-8 shadow-md space-y-8">
         {/* CAR DETAILS */}
         <div>
           <h2 className="text-2xl font-semibold text-black mb-4">Car Details</h2>
@@ -196,7 +190,7 @@ export default function SellPage() {
                   type={field === "year" ? "number" : "text"}
                   placeholder={label}
                   value={(carForm as any)[field]}
-                  className="w-full bg-white rounded p-3 mt-1"
+                  className="w-full bg-white rounded-lg p-3 mt-1 border border-zinc-300"
                   onChange={(e) => setCarForm({ ...carForm, [field]: e.target.value })}
                 />
               </div>
@@ -209,7 +203,7 @@ export default function SellPage() {
                 type="text"
                 placeholder="BNR34-401489"
                 value={carForm.vin}
-                className="w-full bg-white rounded p-3 mt-1"
+                className="w-full bg-white rounded-lg p-3 mt-1  border border-zinc-300"
                 onChange={(e) => setCarForm({ ...carForm, vin: e.target.value })}
               />
             </div>
@@ -220,7 +214,7 @@ export default function SellPage() {
                 required
                 type="number"
                 value={carForm.price}
-                className="w-full bg-white rounded p-3 mt-1"
+                className="w-full bg-white rounded-lg p-3 mt-1  border border-zinc-300"
                 onChange={(e) => setCarForm({ ...carForm, price: e.target.value })}
               />
             </div>
@@ -233,7 +227,7 @@ export default function SellPage() {
           <textarea
             required
             value={carForm.description}
-            className="w-full bg-white rounded p-4 h-32"
+            className="w-full bg-white rounded-lg p-4 h-32 border border-zinc-300"
             placeholder="Condition, mods, service history, etc."
             onChange={(e) => setCarForm({ ...carForm, description: e.target.value })}
           />
@@ -241,7 +235,7 @@ export default function SellPage() {
 
         {/* UPLOAD IMAGES */}
         <div>
-          <h2 className="text-2xl font-semibold text-black mb-4">Upload Media</h2>
+          <h2 className="text-2xl font-semibold text-black mb-4 ">Upload Media</h2>
           <p className="text-gray-600 mb-3">
             Upload up to <strong>20 images and videos</strong>.
           </p>
@@ -252,7 +246,7 @@ export default function SellPage() {
             multiple
             accept="image/*"
             onChange={handleImageUpload}
-            className="w-full p-2 bg-white rounded"
+            className="w-full p-2 bg-white rounded-lg border border-zinc-300"
           />
 
           {imageError && <p className="text-red-600 text-sm mt-2">{imageError}</p>}
@@ -260,13 +254,13 @@ export default function SellPage() {
           {preview.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4">
               {preview.map((src, i) => (
-                <div key={i} className="relative w-full h-32 bg-gray-200 rounded overflow-hidden group">
+                <div key={i} className="relative w-full h-32 bg-zinc-200 rounded-lg overflow-hidden group">
                   <Image src={src} alt={`preview-${i}`} fill className="object-cover" />
 
                   <button
                     type="button"
                     onClick={() => removeImage(i)}
-                    className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition"
+                    className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition"
                   >
                     Remove
                   </button>
@@ -294,7 +288,7 @@ export default function SellPage() {
                   type={field === "email" ? "email" : "text"}
                   placeholder={label}
                   value={(contact as any)[field]}
-                  className="w-full bg-white rounded p-3 mt-1"
+                  className="w-full bg-white rounded-lg p-3 mt-1  border border-zinc-300"
                   onChange={(e) => setContact({ ...contact, [field]: e.target.value })}
                 />
               </div>
