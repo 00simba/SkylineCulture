@@ -51,7 +51,7 @@ export default function Header() {
 
       {/* ANNOUNCEMENT BAR */}
       <div className="w-full bg-zinc-800 text-white text-sm text-center py-2">
-        Free USA/Canada shipping on part orders over <span className="font-semibold">$200+</span>
+        Free USA/Canada shipping on part orders over <span className="font-semibold">$250+</span>
       </div>
 
       <div className="hidden lg:flex flex-row max-w-6xl mx-auto px-6 h-25 items-center justify-between">
