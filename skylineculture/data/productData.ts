@@ -1,7 +1,6 @@
 import { Product } from "@/types/product";
 
-const shipping =  ["Orders of $35 or more qualify for FREE Shipping.\nUSA: 4-6 business days\nCanada: 2-6 business days\nInternational: 7-15 business days"]
-//curr_id = 13
+const shipping =  ["USA: 3-5 business days\nCanada: 2-6 business days\nInternational: 7-15 business days"]
 const cloudFrontUrl = 'https://d38opoffv15p79.cloudfront.net/Images';
 const products: Product[] = [
     {
@@ -150,7 +149,7 @@ const products: Product[] = [
         },
         category : "accessories",
         collection: "diecast-cars",
-        featured: false,
+        featured: true,
         weightLb : 1
         },
         {
@@ -324,7 +323,7 @@ const products: Product[] = [
         shipping: [shipping[0]],
         category : "accessories",
         collection : "other", 
-        featured : true,  
+        featured : false,  
         weightLb : 0.1 
     },
 ]

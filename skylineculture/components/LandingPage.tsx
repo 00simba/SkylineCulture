@@ -67,7 +67,7 @@ export default function LandingPage() {
 
       {/* VIEW ACCESSORIES BUTTON */}
       <div className="flex justify-center mt-5 ">
-        <Link href="/parts">
+        <Link href="/parts/nismo">
           <h1
             className="mt-4 text-black font-medium underline hover:opacity-80 transition"
           >

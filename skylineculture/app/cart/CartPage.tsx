@@ -76,7 +76,7 @@ export default function CartPage() {
         <h1 className="text-3xl font-bold text-black mb-4">
           Checkout Under Maintenance
         </h1>
-        <Link href="/accessories" className="text-red-600 underline">
+        <Link href="/parts" className="text-red-600 underline">
           Browse Items →
         </Link>
       </div>
