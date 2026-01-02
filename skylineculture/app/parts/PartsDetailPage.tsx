@@ -276,7 +276,7 @@ useEffect(() => {
                   <button
                     key={i}
                    onClick={() => {
-                      router.push(`/parts/${option.slug}`);
+                      router.push(`/parts/${part.brand.toLocaleLowerCase()}/${option.slug}`);
                     }}
                     className={`px-4 py-2 rounded-md border bg-black ${
                       selectedVariant === option.label

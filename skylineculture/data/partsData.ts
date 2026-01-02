@@ -79,9 +79,9 @@ const parts: Part[] = [
     options: {
       name: "Select Skyline",
       values: [
-        { label: "BNR34", slug: "nismo-door-handle-protector-r34-gtr" },
-        { label: "BCNR33", slug: "nismo-door-handle-protector-r33-gtr" },
-        { label: "BNR32", slug: "nismo-door-handle-protector-r32-gtr" }
+        { label: "BNR34", slug: "door-handle-protector-r34-gtr" },
+        { label: "BCNR33", slug: "door-handle-protector-r33-gtr" },
+        { label: "BNR32", slug: "door-handle-protector-r32-gtr" }
       ]
     },
     weightLb: 0.7
@@ -110,8 +110,8 @@ const parts: Part[] = [
     options: {
       name: "Select Skyline",
       values: [
-        { label: "BNR34 / BCNR33", slug: "nismo-brake-hose-set-r34-r33-gtr" },
-        { label: "BNR32", slug: "nismo-brake-hose-set-r32-gtr" }
+        { label: "BNR34 / BCNR33", slug: "brake-hose-set-r34-r33-gtr" },
+        { label: "BNR32", slug: "brake-hose-set-r32-gtr" }
       ]
     },
     weightLb: 2.6

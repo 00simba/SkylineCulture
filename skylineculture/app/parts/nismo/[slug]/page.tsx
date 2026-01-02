@@ -10,8 +10,6 @@ export default async function NismoProductPage({
 }) {
   const { slug } = await params;
 
-  console.log('hello');
-
   const part = partsData.find(
     (p) =>
       (p.url === slug ||
