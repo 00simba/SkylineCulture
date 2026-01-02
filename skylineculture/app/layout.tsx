@@ -18,7 +18,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "SkylineCulture",
   url: "https://www.skylineculture.com",
-  logo: "https://www.skylineculture.com/logo.png",
+  logo: "https://www.skylineculture.com/logo-512.png",
   sameAs: [
     "https://www.instagram.com/skylineculture"
   ]
