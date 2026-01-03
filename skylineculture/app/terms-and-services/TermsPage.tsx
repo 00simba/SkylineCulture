@@ -42,7 +42,7 @@ export default function TermsPage() {
 
         <p>
           SkylineCulture charges a <span className="font-semibold">one-time listing fee of
-          $39 USD</span> to publish a vehicle for sale on the SkylineCulture website.
+          $49 </span> to publish a vehicle for sale on the SkylineCulture website.
         </p>
 
         <p className="mt-2">
