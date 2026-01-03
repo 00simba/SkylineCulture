@@ -338,7 +338,7 @@ export default function SellPage() {
               className="mt-1"
             />
             <span>
-              I accept that SkylineCulture charges a one-time listing fee of $49 to publish a vehicle for sale once approved.
+               I acknowledge that SkylineCulture charges a one-time $99 USD Verified Listing fee upon approval to publish a vehicle for sale.
             </span>
           </label>
 
