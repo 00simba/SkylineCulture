@@ -13,7 +13,7 @@ export default [
     title: "NISMO Parts",
     subtitle: "Factory-engineered performance for the Nissan Skyline.",
     button: "Browse Parts →",
-    href: "/for-sale",
+    href: "/parts/nismo",
   },
   {
     img: `${cloudFrontUrl}/public/hero2.webp`,
