@@ -42,7 +42,7 @@ export default function TermsPage() {
 
         <p>
   SkylineCulture charges a <span className="font-semibold">
-  one-time $99 USD listing fee
+  one-time $149 USD listing fee
   </span> for approved vehicle listings published on the SkylineCulture website.
 </p>
         
